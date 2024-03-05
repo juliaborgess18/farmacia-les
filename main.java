@@ -1,5 +1,4 @@
 import model.domain.Cliente;
-import model.domain.Pessoa;
 
 public class main {
     
@@ -7,7 +6,7 @@ public class main {
         Cliente clientePessoa = new Cliente();
         clientePessoa.setCpf("123456789");
         clientePessoa.setNome("Ayrton");
-        System.out.println(clientePessoa.getNome());
+        System.out.println(clientePessoa.getCpf());
     }
 
 }
