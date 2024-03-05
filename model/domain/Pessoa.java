@@ -10,6 +10,9 @@ public abstract class Pessoa {
     private String sobrenome;
     private int id;
 
+    public Pessoa() {
+    }
+
     public Pessoa(Endereco endereco, LocalDate dataNascimento, String telContato, String nome, String sobrenome,
             int id) {
         this.endereco = endereco;

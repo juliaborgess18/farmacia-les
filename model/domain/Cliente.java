@@ -12,6 +12,10 @@ public class Cliente extends Pessoa {
         this.cpf = cpf;
     }
 
+    public Cliente() {
+        //TODO Auto-generated constructor stub
+    }
+
     public LocalDate getDataCadastro() {
         return dataCadastro;
     }
@@ -26,6 +30,11 @@ public class Cliente extends Pessoa {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente [dataCadastro=" + dataCadastro + ", cpf=" + cpf + "]";
     }
 
 }
