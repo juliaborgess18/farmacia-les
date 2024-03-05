@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Venda {
     private int idVenda;
@@ -9,16 +11,25 @@ public class Venda {
     private int idVendedor;
     private double valorTotal;
     private String status;
-
+    private List<ItemVenda> itensVenda = new ArrayList<>();
     
-    public Venda(int idVenda, LocalDate dataVenda, int idComprador, int idVendedor, double valorTotal, String status) {
+    public Venda(int idVenda, LocalDate dataVenda, int idComprador, int idVendedor, double valorTotal, String status,
+            List<ItemVenda> itensVenda) {
         this.idVenda = idVenda;
         this.dataVenda = dataVenda;
         this.idComprador = idComprador;
         this.idVendedor = idVendedor;
         this.valorTotal = valorTotal;
         this.status = status;
+        this.itensVenda = itensVenda;
     }
+    public List<ItemVenda> getItensVenda() {
+        return itensVenda;
+    }
+    public void setItensVenda(List<ItemVenda> itensVenda) {
+        this.itensVenda = itensVenda;
+    }
+    
     public int getIdVenda() {
         return idVenda;
     }
