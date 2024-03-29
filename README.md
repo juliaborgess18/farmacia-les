@@ -2,6 +2,16 @@
 
 Este repositório contém o código-fonte e a documentação para um **sistema de farmácia**. O objetivo é facilitar a gestão de uma farmácia ou drogaria, automatizando processos e fornecendo informações essenciais para uma operação eficiente.
 
+## Ferramentas utilizadas
+
+1. **Linguagem**: Python version 3.??
+2. **Banco de dados**: PostgreSQL
+3. **Ferramenta de ORM: SQLAlchemy**: pip install SQLAlchemy
+4. **Biblioteca do PostgreSQL**: pip install psycopg2
+5. **Ferramenta de construção de UI: Qtd5**: pip install pyqt5 pyqt5-tools
+6. **Conversão .ui para .py**: pip install pyuic5-tool
+7. **Ferramenta para gerar relatórios: ReportLab**: pip install reportlab
+
 ## Funcionalidades Básicas
 
 1. **Registro de Vendas**: O sistema registra todas as vendas realizadas, incluindo detalhes como produtos vendidos, valores e datas.
