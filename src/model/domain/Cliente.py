@@ -9,3 +9,4 @@ class Cliente(Pessoa):
         self.data_cadastro = data_cadastro
         self.cpf = cpf
 
+
