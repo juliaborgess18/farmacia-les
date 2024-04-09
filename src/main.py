@@ -1,13 +1,19 @@
 ''' Arquivo principal para executar o programa'''
 
-from model.dao.ClienteORM import ClienteORM
-from model.database.DatabasePostgreSQL import DatabasePostgreSQL as db
+from model.database.BaseORM import BaseORM, Base
+from sqlalchemy.orm import sessionmaker
+from model.domain.Funcionario import FuncionarioORM
+
+base_orm = BaseORM()
 
 if __name__ == "__main__":
     
-    cliente_orm = ClienteORM()
+    Session = sessionmaker(bind=base_orm.engine)
+    session = Session()
     
-    var = cliente_orm.selecionar_clientes()
-    
-    print(var)
+    funcionarios = session.query(FuncionarioORM).all()
+
+    for funcionario in funcionarios:
+        print(f'{funcionario.idfuncionario}, {funcionario.nome}, {funcionario.sobrenome}, {funcionario.datanascimento}, {funcionario.telcontato}, {funcionario.dataadmissao}, {funcionario.cargo}, {funcionario.estaativo}, {funcionario.salario}, {funcionario.cpf}, {funcionario.endereco.rua}')
+        
     
