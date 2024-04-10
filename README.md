@@ -4,7 +4,7 @@ Este repositório contém o código-fonte e a documentação para um **sistema d
 
 ## Ferramentas utilizadas
 
-1. **Linguagem**: Python Versão >= 3.9
+1. **Linguagem**: Python versão >= 3.9
 2. **Banco de dados**: PostgreSQL
 3. **Ferramenta de ORM: SQLAlchemy**: pip install SQLAlchemy
 4. **Biblioteca do PostgreSQL**: pip install psycopg2

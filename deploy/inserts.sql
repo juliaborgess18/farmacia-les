@@ -74,7 +74,8 @@ INSERT INTO ItemDevolucao (qtde, idProduto, idDevolucao) VALUES
 (2, 2, 2),
 (3, 3, 3),
 (1, 4, 4),
-(2, 5, 5);
+(2, 5, 5),
+(9, 2, 1);
 
 
 INSERT INTO Convenio (especialidade, dataInicioConvenio, cnpj, idCliente) VALUES

@@ -11,8 +11,6 @@ class Convenio(Base):
     data_inicio_convenio = Column("datainicioconvenio", Date, nullable=False)
     cnpj = Column("cnpj", String(18), nullable=False)
     idcliente = Column(Integer, ForeignKey('cliente.idcliente'), nullable=False)
-
-    # Relacionamento com a tabela Endereco
     cliente = relationship("Cliente")
 
 

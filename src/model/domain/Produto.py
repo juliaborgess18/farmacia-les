@@ -8,7 +8,3 @@ class Produto(Base):
     nome = Column("nome", String(45), nullable=False)
     valor = Column("valor", Double, nullable=False)
     data_validade = Column("datavalidade", Date, nullable=False)
-
-    # produtos = session.query(Produto).all()
-    # for produto in produtos:
-    #     print(f"Id: {produto.idproduto}, Nome: {produto.nome}, Valor: {produto.valor}, Data: {produto.data_validade}")

@@ -11,9 +11,3 @@ class ItemDevolucao(Base):
 
     produto = relationship("Produto")
     devolucao = relationship("Devolucao", back_populates="itens_devolucao", overlaps="itens_devolucao")
-
-    # itens_devolucao = session.query(ItemDevolucao).all()
-    # for item in itens_devolucao:
-    #     print(f"Id Produto: {item.idproduto}, Produto: {item.produto.nome}, Id Devolucao: {item.iddevolucao}, Devolucao: {item.devolucao.valor_devolucao}, Quantidade: {item.qtde}")
-    
-    
