@@ -1,19 +1,21 @@
 ''' Arquivo principal para executar o programa'''
 
-from model.database.BaseORM import BaseORM, Base
-from sqlalchemy.orm import sessionmaker
-from model.domain.Funcionario import FuncionarioORM
+from model.database.dao.ProdutoDAO import ProdutoDAO
 
-base_orm = BaseORM()
+def main():
+    print("Informação: Iniciando o programa")
+
+    dao = ProdutoDAO()    
+    produtos = dao.select_all()
+    
+    for produto in produtos:
+        print(f"Id: {produto.idproduto}, Nome: {produto.nome}, Valor: {produto.valor}, Data: {produto.data_validade}")
+
+    print("Informação: Encerrando o programa")
 
 if __name__ == "__main__":
-    
-    Session = sessionmaker(bind=base_orm.engine)
-    session = Session()
-    
-    funcionarios = session.query(FuncionarioORM).all()
+    main()
 
-    for funcionario in funcionarios:
-        print(f'{funcionario.idfuncionario}, {funcionario.nome}, {funcionario.sobrenome}, {funcionario.datanascimento}, {funcionario.telcontato}, {funcionario.dataadmissao}, {funcionario.cargo}, {funcionario.estaativo}, {funcionario.salario}, {funcionario.cpf}, {funcionario.endereco.rua}')
-        
+    
+
     
