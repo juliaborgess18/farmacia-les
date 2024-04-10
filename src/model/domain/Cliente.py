@@ -3,8 +3,6 @@ from sqlalchemy.orm import sessionmaker, relationship
 from model.database.BaseORM import BaseORM, Base
 from model.domain.Endereco import Endereco
 
-base_orm = BaseORM()
-
 class Cliente(Base):
     
     __tablename__ = 'cliente'  # Nome correto da tabela
@@ -19,15 +17,15 @@ class Cliente(Base):
     idendereco = Column(Integer, ForeignKey('endereco.idendereco'), nullable=False)
 
     # Relacionamento com a tabela Endereco
-    endereco = relationship("EnderecoORM")
+    endereco = relationship("Endereco")
 
-# Cria uma sessão para interagir com o banco de dados
-Session = sessionmaker(bind=base_orm.engine)
-session = Session()
+# # Cria uma sessão para interagir com o banco de dados
+# Session = sessionmaker(bind=base_orm.engine)
+# session = Session()
 
-# Exemplo de consulta SELECT para obter todos os campos da tabela Cliente
-clientes = session.query(Cliente).all()
+# # Exemplo de consulta SELECT para obter todos os campos da tabela Cliente
+# clientes = session.query(Cliente).all()
 
-for cliente in clientes:
-    print(f'ID: {cliente.idcliente}, Nome: {cliente.nome}, Sobrenome: {cliente.sobrenome}, Data de Nascimento: {cliente.datanascimento}, Telefone de Contato: {cliente.telcontato}, Data de Cadastro: {cliente.datacadastro}, CPF: {cliente.cpf}, ID do Endereço: {cliente.idendereco}, RUA do Endereço: {cliente.endereco.rua}')
+# for cliente in clientes:
+#     print(f'ID: {cliente.idcliente}, Nome: {cliente.nome}, Sobrenome: {cliente.sobrenome}, Data de Nascimento: {cliente.datanascimento}, Telefone de Contato: {cliente.telcontato}, Data de Cadastro: {cliente.datacadastro}, CPF: {cliente.cpf}, ID do Endereço: {cliente.idendereco}, RUA do Endereço: {cliente.endereco.rua}')
 

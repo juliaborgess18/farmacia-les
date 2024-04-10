@@ -71,14 +71,14 @@ CREATE TABLE Produto (
   nome VARCHAR(45) NOT NULL,
   valor DECIMAL NOT NULL,
   dataValidade DATE NOT NULL,
-  PRIMARY KEY (idProduto))
-;
+  PRIMARY KEY (idProduto)
+);
 
 CREATE TABLE FormaPagamento (
   idFormaPagamento SERIAL NOT NULL,
   nome VARCHAR(45) NOT NULL,
   PRIMARY KEY (idFormaPagamento)
- );
+);
 
 CREATE TABLE Venda (
   idVenda SERIAL NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE Venda (
   CONSTRAINT fk_Venda_Cliente1
     FOREIGN KEY (idCliente)
     REFERENCES Cliente (idCliente)
- );
+);
 
 CREATE TABLE ItemVenda (
   qtd INT NOT NULL,
@@ -117,7 +117,7 @@ CREATE TABLE Devolucao (
   idDevolucao SERIAL NOT NULL,
   valorDevolucao DECIMAL NOT NULL,
   PRIMARY KEY (idDevolucao)
- );
+);
 
 CREATE TABLE ItemDevolucao (
   qtde INT NOT NULL,

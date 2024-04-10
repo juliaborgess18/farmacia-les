@@ -1,19 +1,17 @@
 ''' Arquivo principal para executar o programa'''
 
-from model.database.BaseORM import BaseORM, Base
-from sqlalchemy.orm import sessionmaker
-from model.domain.Funcionario import FuncionarioORM
+from model.dao.ConvenioDAO import ConvenioDAO
 
-base_orm = BaseORM()
+def main():
+    print("Informação: Iniciando o Programa.")
+    dao = ConvenioDAO()
+
+    convenios = dao.select_all()
+
+    for convenio in convenios:
+        print(f"Id: {convenio.idconvenio}, Especialidade: {convenio.especialidade}, Data do inicio do convênio: {convenio.data_inicio_convenio}, CNPJ: {convenio.cnpj}, Id do cliente: {convenio.idcliente}, Nome do Médico: {convenio.cliente.nome} {convenio.cliente.sobrenome}")
+    
+    print("Informação: Finalizando o Programa.")
 
 if __name__ == "__main__":
-    
-    Session = sessionmaker(bind=base_orm.engine)
-    session = Session()
-    
-    funcionarios = session.query(FuncionarioORM).all()
-
-    for funcionario in funcionarios:
-        print(f'{funcionario.idfuncionario}, {funcionario.nome}, {funcionario.sobrenome}, {funcionario.datanascimento}, {funcionario.telcontato}, {funcionario.dataadmissao}, {funcionario.cargo}, {funcionario.estaativo}, {funcionario.salario}, {funcionario.cpf}, {funcionario.endereco.rua}')
-        
-    
+    main()
