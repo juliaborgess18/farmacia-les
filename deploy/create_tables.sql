@@ -26,7 +26,7 @@ CREATE TABLE Cliente (
   sobrenome VARCHAR(45) NOT NULL,
   dataNascimento DATE NOT NULL,
   telContato VARCHAR(45) NOT NULL,
-  dataCadastro VARCHAR(45) NOT NULL,
+  dataCadastro DATE NOT NULL,
   cpf CHAR(14) NOT NULL UNIQUE,
   idEndereco INT NOT NULL,
   PRIMARY KEY (idCliente),
