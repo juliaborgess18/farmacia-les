@@ -1,6 +1,6 @@
 ''' Arquivo principal para executar o programa'''
 
-from model.database.dao.ProdutoDAO import ProdutoDAO
+from model.dao.ProdutoDAO import ProdutoDAO
 
 def main():
     print("Informação: Iniciando o programa")
