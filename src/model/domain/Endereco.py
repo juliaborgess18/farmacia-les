@@ -6,7 +6,7 @@ from sqlite3 import IntegrityError
 from sqlalchemy.orm import sessionmaker
 from model.database.BaseORM import BaseORM, Base
 
-class EnderecoORM(Base):
+class Endereco(Base):
     __tablename__ = 'endereco'
     idendereco = Column(Integer, primary_key=True, autoincrement=True)
     numero = Column(Integer, nullable=False)
@@ -14,42 +14,6 @@ class EnderecoORM(Base):
     bairro = Column(String(45), nullable=False)
     cidade = Column(String(45), nullable=False)
     uf = Column(String(2), nullable=False)
-
-class EnderecoDAO():
-    session = ''
-    def __init__(self):
-        base_orm = BaseORM()
-        self.session = sessionmaker(bind=base_orm.engine)
-        Session = sessionmaker(bind=base_orm.engine)
-        self.session = Session()
-
-    #SELECT
-    def select_all(self):
-        return self.session.query(EnderecoORM).all()
-    
-    #INSERT
-    def insert(self, endereco):
-        try:
-            self.session.add(endereco)
-            self.session.commit()
-        except IntegrityError:
-            self.session.rollback()
-    
-    #UPDATE
-    def update(self, endereco):
-        try:
-            self.session.merge(endereco)
-            self.session.commit()
-        except IntegrityError:
-            self.session.rollback()
-    
-    #DELETE
-    def delete(self, endereco):
-        try:
-            self.session.delete(endereco)
-            self.session.commit()
-        except IntegrityError:
-            self.session.rollback()
 
 # SELECT
 # enderecoDAO = EnderecoDAO()
@@ -59,7 +23,7 @@ class EnderecoDAO():
 
 #INSERT
 # endereco_dao = EnderecoDAO()
-# novo_endereco = EnderecoORM(numero=123, rua='Rua ABCS', bairro='Bairro B', cidade='Cidade C', uf='UF')
+# novo_endereco = Endereco(numero=123, rua='Rua ABCS', bairro='Bairro B', cidade='Cidade C', uf='UF')
 
 # endereco_dao.insert(novo_endereco)
 
@@ -68,7 +32,7 @@ class EnderecoDAO():
 # endereco_dao = EnderecoDAO()
 
 # # Supondo que você queira atualizar o endereço com o ID 1
-# endereco_para_atualizar = endereco_dao.session.query(EnderecoORM).filter_by(idendereco=1).first()
+# endereco_para_atualizar = endereco_dao.session.query(Endereco).filter_by(idendereco=1).first()
 
 # if endereco_para_atualizar:
 #     # Modifique os atributos conforme necessário

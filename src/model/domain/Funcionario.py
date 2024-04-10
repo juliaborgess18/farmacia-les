@@ -1,11 +1,11 @@
 from sqlalchemy import Boolean, Column, Integer, Numeric, String, Date, ForeignKey
 from sqlalchemy.orm import sessionmaker, relationship
 from model.database.BaseORM import BaseORM, Base
-from model.domain.Endereco import EnderecoORM
+from model.domain.Endereco import Endereco
 
 base_orm = BaseORM()
 
-class FuncionarioORM(Base):
+class Funcionario(Base):
     __tablename__ = 'funcionario'
     idfuncionario = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String(45), nullable=False)
@@ -20,4 +20,4 @@ class FuncionarioORM(Base):
     idendereco = Column(Integer, ForeignKey('endereco.idendereco'), nullable=False)
 
     # Relacionamento com a tabela Endereco
-    endereco = relationship("EnderecoORM")
+    endereco = relationship("Endereco")
