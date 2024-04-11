@@ -13,3 +13,15 @@ class FuncionarioDAO():
         
     def select_all(self):
         return self.session.query(Funcionario).all()
+    
+    def select_by_id(self, id: int):
+        pass
+
+    def insert(self, funcionario: Funcionario):
+        pass
+
+    def update(self, funcionario: Funcionario):
+        pass
+
+    def delete(self, funcionario: Funcionario):
+        pass

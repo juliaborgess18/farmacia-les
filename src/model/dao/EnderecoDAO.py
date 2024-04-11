@@ -16,26 +16,17 @@ class EnderecoDAO():
     def select_all(self):
         return self.session.query(Endereco).all()
     
-    #INSERT
-    def insert(self, endereco):
-        try:
-            self.session.add(endereco)
-            self.session.commit()
-        except IntegrityError:
-            self.session.rollback()
+    def select_all(self):
+        return self.session.query(Endereco).all()
     
-    #UPDATE
-    def update(self, endereco):
-        try:
-            self.session.merge(endereco)
-            self.session.commit()
-        except IntegrityError:
-            self.session.rollback()
-    
-    #DELETE
-    def delete(self, endereco):
-        try:
-            self.session.delete(endereco)
-            self.session.commit()
-        except IntegrityError:
-            self.session.rollback()
+    def select_by_id(self, id: int):
+        pass
+
+    def insert(self, endereco: Endereco):
+        pass
+
+    def update(self, endereco: Endereco):
+        pass
+
+    def delete(self, endereco: Endereco):
+        pass
