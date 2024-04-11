@@ -15,16 +15,30 @@ class ProdutoDAO:
         return self.session.query(Produto).all()
     
     def select_by_id(self, id: int):
-        pass
+        return self.session.query(Produto).get(id)
 
     def insert(self, produto: Produto):
-        pass
+        try:
+            self.session.add(produto)
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao inserir o Produto: \n{ex}")
+            self.session.rollback()
 
     def update(self, produto: Produto):
-        pass
+        try:
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao alterar o Produto: \n{ex}")
+            self.session.rollback()
 
     def delete(self, produto: Produto):
-        pass
+        try:
+            self.session.delete(produto)
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao deletar o Convênio: \n{ex}")
+            self.session.rollback()
 
     # def print_produto():
     # print("========================")
