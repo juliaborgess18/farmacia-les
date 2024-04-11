@@ -1,23 +1,21 @@
 from sqlalchemy import Boolean, Column, Integer, Numeric, String, Date, ForeignKey
-from sqlalchemy.orm import sessionmaker, relationship
-from model.database.BaseORM import BaseORM, Base
+from sqlalchemy.orm import relationship
+from model.database.BaseORM import Base
 from model.domain.Endereco import Endereco
-
-base_orm = BaseORM()
 
 class Funcionario(Base):
     __tablename__ = 'funcionario'
-    idfuncionario = Column(Integer, primary_key=True, autoincrement=True)
-    nome = Column(String(45), nullable=False)
-    sobrenome = Column(String(45), nullable=False)
-    datanascimento = Column(Date, nullable=False)
-    telcontato = Column(String(45), nullable=False)
-    dataadmissao = Column(Date, nullable=False)
+    
+    id_funcionario = Column("idfuncionario",Integer, primary_key=True, autoincrement=True)
+    nome = Column("nome", String(45), nullable=False)
+    sobrenome = Column("sobrenome", String(45), nullable=False)
+    data_nascimento = Column("datanascimento", Date, nullable=False)
+    tel_contato = Column("telcontato", String(45), nullable=False)
+    data_admissao = Column("dataadmissao", Date, nullable=False)
     cargo = Column(String(45), nullable=False)
-    estaativo = Column(Boolean, nullable=False)
-    salario = Column(Numeric, nullable=False)
-    cpf = Column(String, nullable=False)
-    idendereco = Column(Integer, ForeignKey('endereco.idendereco'), nullable=False)
+    esta_ativo = Column("estaativo",Boolean, nullable=False)
+    salario = Column("salario",Numeric, nullable=False)
+    cpf = Column("cpf",String, nullable=False)
+    id_endereco = Column("idendereco",Integer, ForeignKey('endereco.idendereco'), nullable=False)
 
-    # Relacionamento com a tabela Endereco
-    endereco = relationship("Endereco")
+    endereco = relationship("Endereco") # Relacionamento com a tabela Endereco

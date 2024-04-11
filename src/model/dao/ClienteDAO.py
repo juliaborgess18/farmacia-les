@@ -15,7 +15,7 @@ class ClienteDAO():
         return self.session.query(Cliente).all()
     
     def select_by_id(self, id: int):
-        pass
+        return self.session.query(Cliente).get(id)
 
     def insert(self, cliente: Cliente):
         try:
@@ -26,9 +26,19 @@ class ClienteDAO():
             self.session.rollback()
 
     def update(self, cliente: Cliente):
-        pass
+        try:
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao alterar o cliente: \n{ex}")
+            self.session.rollback()
 
     def delete(self, cliente: Cliente):
-        pass
+        try:
+            self.session.delete(cliente.endereco)
+            self.session.delete(cliente)
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao deletar o cliente: \n{ex}")
+            self.session.rollback()
         
         
