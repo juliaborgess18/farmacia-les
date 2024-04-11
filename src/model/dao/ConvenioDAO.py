@@ -15,16 +15,31 @@ class ConvenioDAO:
         return self.session.query(Convenio).all()
     
     def select_by_id(self, id: int):
-        pass
+        return self.session.query(Convenio).get(id)
 
-    def insert(self, produto: Convenio):
-        pass
+    def insert(self, convenio: Convenio):
+        try:
+            self.session.add(convenio)
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao inserir o Convênio: \n{ex}")
+            self.session.rollback()
 
-    def update(self, produto: Convenio):
-        pass
+    def update(self):
+        try:
+            # Sim, neste método apenas executamos o commit, qualquer alteração deve ser feita no objeto convênio que adiquirimos pelo método 'select_by_id', ao alterar qualquer campo deste objeto a função commit ira persistir no banco.
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao alterar o Convênio: \n{ex}")
+            self.session.rollback()
 
-    def delete(self, produto: Convenio):
-        pass
+    def delete(self, convenio: Convenio):
+        try:
+            self.session.delete(convenio)
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao deletar o Convênio: \n{ex}")
+            self.session.rollback()
 
     # def print_convenio():
     # print("========================")
