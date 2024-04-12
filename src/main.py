@@ -6,19 +6,32 @@ from model.database.BaseORM import BaseORM
 from sqlalchemy.orm import sessionmaker
 from model.domain.ItemDevolucao import ItemDevolucao
 from model.dao.ProdutoDAO import ProdutoDAO
-from model.domain.Cliente import Cliente
-from model.dao.ClienteDAO import ClienteDAO
-import datetime
-from PyQt5 import QtCore, QtGui, QtWidgets
-from view.CadastroClienteController import Ui_Dialog
+
+def printar_o_bom_garoto():
+    print('''
+         .--.             .---.
+        /:.  '.         .' ..  '._.---.
+       /:::-.  \.-"""-;` .-:::.     .::\\
+      /::'|  `\/  _ _  \\'   `\:'   ::::|
+  __.'    |   /  (o|o)  \     `'.   ':/
+ /    .:. /   |   ___   |        '---'
+|    ::::'   /:  (._.) .:\\
+\    .='    |:'        :::|
+ `""`       \     .-.   ':/
+             '---`|I|`---'
+                  '-'        
+
+          ''')
+    
+    print("au au...")
 
 def main():
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
+    print("Informação: Iniciando o Programa.")
+
+    print("Ainda não a nada aqui...")
+    printar_o_bom_garoto()
+     
+    print("Informação: Finalizando o Programa.")
 
 if __name__ == "__main__":
     # main()
