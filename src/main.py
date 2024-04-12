@@ -28,4 +28,3 @@ if __name__ == "__main__":
     # result.nome = 'Systech'
     # clienteDAO.update(result)
     # print(result.nome)
-
