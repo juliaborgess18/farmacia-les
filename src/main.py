@@ -34,11 +34,13 @@ def main():
     print("Informação: Finalizando o Programa.")
 
 if __name__ == "__main__":
-    main()
-    # clienteDAO.delete(clienteDAO.select_by_id(2))
-    # clienteDAO = ClienteDAO()
-    # result = clienteDAO.select_by_id(2)
-    # result.nome = 'Systech'
-    # clienteDAO.update(result)
-    # print(result.nome)
+    # main()
+    clienteDAO = ClienteDAO()
+
+    cliente_para_deletar = clienteDAO.select_by_id(1)
+    clienteDAO.delete(cliente_para_deletar)
+    result = clienteDAO.select_all()
+
+    for item in result:
+        print(f"Id: {item.id_cliente}, Nome: {item.nome}. ")
 
