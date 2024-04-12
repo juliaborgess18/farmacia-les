@@ -1,3 +1,4 @@
+from datetime import date
 from model.database.BaseORM import BaseORM
 from sqlalchemy.orm import sessionmaker
 from model.domain.Cliente import Cliente
@@ -12,7 +13,7 @@ class ClienteDAO():
         self.session = Session()
         
     def select_all(self):
-        return self.session.query(Cliente).all()
+        return self.session.query(Cliente).filter(Cliente.foi_deletado == False).all()
     
     def select_by_id(self, id: int):
         return self.session.query(Cliente).get(id)
@@ -34,8 +35,9 @@ class ClienteDAO():
 
     def delete(self, cliente: Cliente):
         try:
-            self.session.delete(cliente.endereco)
-            self.session.delete(cliente)
+            cliente.foi_deletado = True
+            
+            cliente.data_delete = date.today()
             self.session.commit()
         except Exception as ex:
             print(f"Error ao deletar o cliente: \n{ex}")

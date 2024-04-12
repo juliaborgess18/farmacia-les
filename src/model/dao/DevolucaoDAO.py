@@ -15,16 +15,30 @@ class DevolucaoDAO():
         return self.session.query(Devolucao).all()
     
     def select_by_id(self, id: int):
-        pass
+        return self.session.query(Devolucao).get(id)
 
-    def insert(self, produto: Devolucao):
-        pass
+    def insert(self, devolucao: Devolucao):
+        try:
+            self.session.add(devolucao)
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao inserir a Devolucao: \n{ex}")
+            self.session.rollback()
 
-    def update(self, produto: Devolucao):
-        pass
+    def update(self, devolucao: Devolucao):
+        try:
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao alterar a Devolucao: \n{ex}")
+            self.session.rollback()
 
-    def delete(self, produto: Devolucao):
-        pass
+    def delete(self, devolucao: Devolucao):
+        try:
+            self.session.delete(Devolucao)
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao deletar a Devolucao: \n{ex}")
+            self.session.rollback()
 
     # def print_devolucao():
     # print("========================")
