@@ -1,3 +1,4 @@
+from datetime import date
 from model.database.BaseORM import BaseORM
 from sqlalchemy.orm import sessionmaker
 from model.domain.Produto import Produto
@@ -34,10 +35,12 @@ class ProdutoDAO:
 
     def delete(self, produto: Produto):
         try:
-            self.session.delete(produto)
+            produto.foi_deletado = True
+            
+            produto.data_delete = date.today()
             self.session.commit()
         except Exception as ex:
-            print(f"Error ao deletar o Convênio: \n{ex}")
+            print(f"Error ao deletar o produto: \n{ex}")
             self.session.rollback()
 
     # def print_produto():

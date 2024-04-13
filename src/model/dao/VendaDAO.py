@@ -1,3 +1,4 @@
+from datetime import date
 from model.database.BaseORM import BaseORM
 from sqlalchemy.orm import sessionmaker
 from model.domain.Venda import Venda
@@ -14,6 +15,16 @@ class VendaDAO():
 
     def select_all(self):
         return self.session.query(Venda).all()
+
+    def delete(self, venda: Venda):
+        try:
+            venda.foi_deletado = True
+            
+            venda.data_delete = date.today()
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao deletar a venda: \n{ex}")
+            self.session.rollback()
 
 # def print_venda():
 #     print("========================")

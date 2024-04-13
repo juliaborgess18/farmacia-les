@@ -1,3 +1,4 @@
+from datetime import date
 from model.database.BaseORM import BaseORM
 from sqlalchemy.orm import sessionmaker
 from model.domain.Devolucao import Devolucao
@@ -32,12 +33,14 @@ class DevolucaoDAO():
             print(f"Error ao alterar a Devolucao: \n{ex}")
             self.session.rollback()
 
-    def delete(self, devolucao: Devolucao):
+def delete(self, devolucao: Devolucao):
         try:
-            self.session.delete(Devolucao)
+            devolucao.foi_deletado = True
+            
+            devolucao.data_delete = date.today()
             self.session.commit()
         except Exception as ex:
-            print(f"Error ao deletar a Devolucao: \n{ex}")
+            print(f"Error ao deletar a devolucao: \n{ex}")
             self.session.rollback()
 
     # def print_devolucao():

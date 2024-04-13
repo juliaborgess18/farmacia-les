@@ -27,9 +27,9 @@ CREATE TABLE Cliente (
   dataNascimento DATE NOT NULL,
   telContato VARCHAR(45) NOT NULL,
   dataCadastro DATE NOT NULL,
+  cpf CHAR(14) NOT NULL UNIQUE,
   foiDeletado BOOL DEFAULT FALSE,
   dataDelete DATE,
-  cpf CHAR(14) NOT NULL UNIQUE,
   idEndereco INT NOT NULL,
   PRIMARY KEY (idCliente),
   CONSTRAINT fk_Cliente_Endereco1
@@ -48,6 +48,8 @@ CREATE TABLE Funcionario (
   estaAtivo BOOLEAN NOT NULL,
   salario DECIMAL NOT NULL,
   cpf CHAR(14) NOT NULL UNIQUE,
+  foiDeletado BOOL DEFAULT FALSE,
+  dataDelete DATE,
   idEndereco INT NOT NULL,
   PRIMARY KEY (idFuncionario),
   CONSTRAINT fk_Funcionario_Endereco1
@@ -61,6 +63,8 @@ CREATE TABLE Fornecedor (
   cnpj CHAR(18) NOT NULL UNIQUE,
   email VARCHAR(45) NOT NULL,
   telefone VARCHAR(45) NOT NULL,
+  foiDeletado BOOL DEFAULT FALSE,
+  dataDelete DATE,
   idEndereco INT NOT NULL,
   PRIMARY KEY (idFornecedor, idEndereco),
   CONSTRAINT fk_Fornecedor_Endereco1
@@ -73,6 +77,8 @@ CREATE TABLE Produto (
   nome VARCHAR(45) NOT NULL,
   valor DECIMAL NOT NULL,
   dataValidade DATE NOT NULL,
+  foiDeletado BOOL DEFAULT FALSE,
+  dataDelete DATE,
   PRIMARY KEY (idProduto)
 );
 
@@ -87,6 +93,8 @@ CREATE TABLE Venda (
   dataVenda DATE NOT NULL,
   valorTotal DECIMAL NOT NULL,
   status VARCHAR(45) NOT NULL,
+  foiDeletado BOOL DEFAULT FALSE,
+  dataDelete DATE,
   idFormaPagamento INT NOT NULL,
   idFuncionario INT NOT NULL,
   idCliente INT NOT NULL,
@@ -118,6 +126,8 @@ CREATE TABLE ItemVenda (
 CREATE TABLE Devolucao (
   idDevolucao SERIAL NOT NULL,
   valorDevolucao DECIMAL NOT NULL,
+  foiDeletado BOOL DEFAULT FALSE,
+  dataDelete DATE,
   PRIMARY KEY (idDevolucao)
 );
 
@@ -139,6 +149,8 @@ CREATE TABLE Convenio (
   especialidade VARCHAR(45) NOT NULL,
   dataInicioConvenio DATE NOT NULL,
   cnpj CHAR(18) NOT NULL UNIQUE,
+  foiDeletado BOOL DEFAULT FALSE,
+  dataDelete DATE,
   idCliente INT NOT NULL,
   PRIMARY KEY (idConvenio, idCliente),
   CONSTRAINT fk_Convenio_Cliente1

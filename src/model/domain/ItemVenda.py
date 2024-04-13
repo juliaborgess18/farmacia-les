@@ -8,8 +8,8 @@ class ItemVenda(Base):
     __tablename__ = 'itemvenda'
     
     qtd = Column(Integer, nullable=False)
-    idvenda = Column(Integer, ForeignKey('venda.idvenda'), primary_key=True)
-    idproduto = Column(Integer, ForeignKey('produto.idproduto'), primary_key=True)
+    id_venda = Column("idvenda", Integer, ForeignKey('venda.idvenda'), primary_key=True)
+    id_produto = Column("idproduto", Integer, ForeignKey('produto.idproduto'), primary_key=True)
 
     venda = relationship("Venda")
     produto = relationship("Produto")

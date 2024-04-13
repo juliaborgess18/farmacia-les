@@ -1,3 +1,4 @@
+from datetime import date
 from model.database.BaseORM import BaseORM
 from sqlalchemy.orm import sessionmaker
 from model.domain.Convenio import Convenio
@@ -34,12 +35,14 @@ class ConvenioDAO:
             self.session.rollback()
 
     def delete(self, convenio: Convenio):
-        try:
-            self.session.delete(convenio)
-            self.session.commit()
-        except Exception as ex:
-            print(f"Error ao deletar o Convênio: \n{ex}")
-            self.session.rollback()
+            try:
+                convenio.foi_deletado = True
+                
+                convenio.data_delete = date.today()
+                self.session.commit()
+            except Exception as ex:
+                print(f"Error ao deletar o convenio: \n{ex}")
+                self.session.rollback()
 
     # def print_convenio():
     # print("========================")

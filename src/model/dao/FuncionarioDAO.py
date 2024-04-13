@@ -1,3 +1,4 @@
+from datetime import date
 from model.database.BaseORM import BaseORM
 from sqlalchemy.orm import sessionmaker
 from model.domain.Funcionario import Funcionario
@@ -24,4 +25,11 @@ class FuncionarioDAO():
         pass
 
     def delete(self, funcionario: Funcionario):
-        pass
+        try:
+            funcionario.foi_deletado = True
+        
+            funcionario.data_delete = date.today()
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao deletar o funcionario: \n{ex}")
+            self.session.rollback()

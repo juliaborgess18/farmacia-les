@@ -1,3 +1,4 @@
+from datetime import date
 from model.database.BaseORM import BaseORM
 from sqlalchemy.orm import sessionmaker
 from model.domain.Fornecedor import Fornecedor
@@ -15,6 +16,15 @@ class FornecedorDAO():
     def select_all(self):
         return self.session.query(Fornecedor).all()
 
+    def delete(self, fornecedor: Fornecedor):
+        try:
+            fornecedor.foi_deletado = True
+            
+            fornecedor.data_delete = date.today()
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao deletar o fornecedor: \n{ex}")
+            self.session.rollback()
 
     # def print_fornecedor():
     # print("========================")
