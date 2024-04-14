@@ -66,7 +66,7 @@ CREATE TABLE Fornecedor (
   foiDeletado BOOL DEFAULT FALSE,
   dataDelete DATE,
   idEndereco INT NOT NULL,
-  PRIMARY KEY (idFornecedor, idEndereco),
+  PRIMARY KEY (idFornecedor),
   CONSTRAINT fk_Fornecedor_Endereco1
     FOREIGN KEY (idEndereco)
     REFERENCES Endereco (idEndereco)
@@ -79,7 +79,11 @@ CREATE TABLE Produto (
   dataValidade DATE NOT NULL,
   foiDeletado BOOL DEFAULT FALSE,
   dataDelete DATE,
-  PRIMARY KEY (idProduto)
+  idFornecedor INT NOT NULL,
+  PRIMARY KEY (idProduto),
+  CONSTRAINT fk_Produto_Fornecedor
+    FOREIGN KEY (idFornecedor)
+    REFERENCES Fornecedor (idFornecedor)
 );
 
 CREATE TABLE FormaPagamento (
