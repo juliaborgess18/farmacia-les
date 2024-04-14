@@ -44,10 +44,10 @@ class ProdutoDAO:
             self.session.rollback()
 
     # def print_produto():
-    # print("========================")
-    # print("======== Produto =======")
-    # dao = ProdutoDAO()
-    # produtos = dao.select_all()
+    #     print("========================")
+    #     print("======== Produto =======")
+    #     dao = ProdutoDAO()
+    #     produtos = dao.select_all()
 
-    # for produto in produtos:
-    #     print(f"Id: {produto.idproduto}, Nome: {produto.nome}, Valor: {produto.valor}, Data de Validade: {produto.data_validade}")
+    #     for produto in produtos:
+    #         print(f"Id: {produto.id_produto}, Nome: {produto.nome}, Valor: {produto.valor}, Data de Validade: {produto.data_validade}, Id Fornecedor: {produto.fornecedor.id_fornecedor}")
