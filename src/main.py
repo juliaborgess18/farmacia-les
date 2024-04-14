@@ -11,6 +11,7 @@ from model.dao.ClienteDAO import ClienteDAO
 import datetime
 from PyQt5 import QtCore, QtGui, QtWidgets
 from view.CadastroClienteController import Ui_Dialog
+# from view.CadastroProdutoController import Ui_Dialog
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
