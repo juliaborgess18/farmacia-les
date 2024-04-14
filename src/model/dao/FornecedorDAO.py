@@ -5,19 +5,15 @@ from model.domain.Fornecedor import Fornecedor
 
 
 class FornecedorDAO():
-    engine = ''
-    session = ''
 
-    def __init__(self):
-        self.engine = BaseORM.get_engine()
-        Session = sessionmaker(bind=self.engine)
-        self.session = Session()
+    def __init__(self, session):
+        self.session = session
 
     def select_all(self):
         return self.session.query(Fornecedor).filter(Fornecedor.foi_deletado == False).all()
     
     def select_by_id(self, id: int):
-        return self.session.query(Fornecedor).filter(Fornecedor.foi_deletado == False).get(id)
+        return self.session.query(Fornecedor).filter_by(id_fornecedor=id, foi_deletado=False).first()
 
     def insert(self, fornecedor: Fornecedor):
         pass

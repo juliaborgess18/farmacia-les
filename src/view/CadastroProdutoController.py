@@ -9,12 +9,22 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWidgets import QTableWidgetItem
+from model.dao.FornecedorDAO import FornecedorDAO
 from model.dao.ProdutoDAO import ProdutoDAO
 from model.domain.Produto import Produto
+from model.database.BaseORM import BaseORM
+from sqlalchemy.orm import sessionmaker
 
+from model.domain.Fornecedor import Fornecedor
+from model.database.BaseDAO import BaseDAO
 
 class Ui_Dialog(object):
+
+    session = BaseDAO.get_session()
+    fornecedorDAO = FornecedorDAO(session)
+    produtoDAO = ProdutoDAO(session)
+
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(1024, 768)
@@ -73,7 +83,23 @@ class Ui_Dialog(object):
         self.pushButton = QtWidgets.QPushButton(Dialog)
         self.pushButton.setGeometry(QtCore.QRect(880, 80, 93, 28))
         self.pushButton.setObjectName("pushButton")
-
+        self.formLayoutWidget_4 = QtWidgets.QWidget(Dialog)
+        self.formLayoutWidget_4.setGeometry(QtCore.QRect(240, 340, 461, 251))
+        self.formLayoutWidget_4.setObjectName("formLayoutWidget_4")
+        self.formLayout_4 = QtWidgets.QFormLayout(self.formLayoutWidget_4)
+        self.formLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.formLayout_4.setObjectName("formLayout_4")
+        self.label_5 = QtWidgets.QLabel(self.formLayoutWidget_4)
+        self.label_5.setStyleSheet("font: 12pt \"Segoe UI\";")
+        self.label_5.setObjectName("label_5")
+        self.formLayout_4.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.label_5)
+        self.tableWidget = QtWidgets.QTableWidget(self.formLayoutWidget_4)
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setColumnCount(0)
+        self.tableWidget.setRowCount(0)
+        self.formLayout_4.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.tableWidget)
+        self.carregar_tableView()
+        self.tableWidget.cellClicked.connect(self.on_cell_clicked)
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
         self.pushButton.clicked.connect(self.inserir_dados)
@@ -86,13 +112,42 @@ class Ui_Dialog(object):
         self.label_3.setText(_translate("Dialog", "Valor"))
         self.label_4.setText(_translate("Dialog", "Data de Validade"))
         self.pushButton.setText(_translate("Dialog", "Finalizar cadastro"))
+        self.label_5.setText(_translate("Dialog", "Fornecedor"))
+
+    def carregar_tableView(self):
+        headers = ('Id','Nome', 'CNPJ', 'Email', 'Telefone')
+        self.tableWidget.setColumnCount(len(headers))
+        self.tableWidget.setColumnWidth(0, 30)
         
+        self.tableWidget.setHorizontalHeaderLabels(headers)
+
+        fornecedores = self.fornecedorDAO.select_all()
+
+        self.tableWidget.setRowCount(len(fornecedores))
+
+        row_index = 0
+        for item in fornecedores:
+            self.tableWidget.setItem(row_index,0,QTableWidgetItem(str(item.id_fornecedor)))
+            self.tableWidget.setItem(row_index,1,QTableWidgetItem(item.nome))
+            self.tableWidget.setItem(row_index,2,QTableWidgetItem(item.cnpj))
+            self.tableWidget.setItem(row_index,3,QTableWidgetItem(item.email))
+            self.tableWidget.setItem(row_index,4,QTableWidgetItem(item.telefone))
+            row_index += 1
+    
+    def on_cell_clicked(self, row, column):
+        item = self.tableWidget.item(row, 0)
+
+        if item is not None:
+            self.fornecedor_selecionado = item.text()
+
     def inserir_dados(self):
-        produtoDAO = ProdutoDAO()
+
         produto = Produto()
         
         produto.nome = self.input_nome.text()
         produto.valor = self.input_valor.text()
-        produto.data_validade= self.input_data_validade.text()        
-        
-        produtoDAO.insert(produto)
+        produto.data_validade= self.input_data_validade.text()
+        id_fornecedor = int(self.fornecedor_selecionado)  
+
+        produto.fornecedor = self.fornecedorDAO.select_by_id(id_fornecedor)
+        self.produtoDAO.insert(produto)

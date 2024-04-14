@@ -4,19 +4,15 @@ from sqlalchemy.orm import sessionmaker
 from model.domain.Devolucao import Devolucao
 
 class DevolucaoDAO():
-    engine = ''
-    session = ''
 
-    def __init__(self):
-        self.engine = BaseORM.get_engine()
-        Session = sessionmaker(bind=self.engine)
-        self.session = Session()
+    def __init__(self, session):
+        self.session = session
 
     def select_all(self):
         return self.session.query(Devolucao).filter(Devolucao.foi_deletado == False).all()
     
     def select_by_id(self, id: int):
-        return self.session.query(Devolucao).filter(Devolucao.foi_deletado == False).get(id)
+        return self.session.query(Devolucao).filter_by(id_devolucao=id, foi_deletado=False).first()
 
     def insert(self, devolucao: Devolucao):
         try:

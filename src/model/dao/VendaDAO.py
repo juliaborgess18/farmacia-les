@@ -3,21 +3,16 @@ from model.database.BaseORM import BaseORM
 from sqlalchemy.orm import sessionmaker
 from model.domain.Venda import Venda
 
-
 class VendaDAO():
-    engine = ''
-    session = ''
 
-    def __init__(self):
-        self.engine = BaseORM.get_engine()
-        Session = sessionmaker(bind=self.engine)
-        self.session = Session()
+    def __init__(self, session):
+        self.session = session
 
     def select_all(self):
         return self.session.query(Venda).filter(Venda.foi_deletado == False).all()
     
     def select_by_id(self, id: int):
-        return self.session.query(Venda).filter(Venda.foi_deletado == False).get(id)
+        return self.session.query(Venda).filter_by(id_venda=id, foi_deletado=False).first()
 
     def insert(self, venda: Venda):
         pass
