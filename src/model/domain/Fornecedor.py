@@ -14,6 +14,6 @@ class Fornecedor(Base):
     # Soft Delete
     data_delete = Column("datadelete", Date)
     foi_deletado = Column("foideletado", Boolean)
-    idendereco = Column(Integer, ForeignKey('endereco.idendereco'), nullable=False)
+    id_endereco = Column("idendereco", Integer, ForeignKey('endereco.idendereco'), nullable=False)
     # Relacionamento com a tabela Endereco
     endereco = relationship("Endereco")

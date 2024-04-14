@@ -10,7 +10,7 @@ class Convenio(Base):
     especialidade = Column("especialidade", String(45), nullable=False)
     data_inicio_convenio = Column("datainicioconvenio", Date, nullable=False)
     cnpj = Column("cnpj", String(18), nullable=False)
-    idcliente = Column(Integer, ForeignKey('cliente.idcliente'), nullable=False)
+    id_cliente = Column("idcliente", Integer, ForeignKey('cliente.idcliente'), nullable=False)
     # Soft Delete
     data_delete = Column("datadelete", Date)
     foi_deletado = Column("foideletado", Boolean)
