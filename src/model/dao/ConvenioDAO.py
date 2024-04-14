@@ -13,10 +13,10 @@ class ConvenioDAO:
         self.session = Session()
 
     def select_all(self):
-        return self.session.query(Convenio).all()
+        return self.session.query(Convenio).filter(Convenio.foi_deletado == False).all()
     
     def select_by_id(self, id: int):
-        return self.session.query(Convenio).get(id)
+        return self.session.query(Convenio).filter(Convenio.foi_deletado == False).get(id)
 
     def insert(self, convenio: Convenio):
         try:

@@ -14,8 +14,17 @@ class VendaDAO():
         self.session = Session()
 
     def select_all(self):
-        return self.session.query(Venda).all()
+        return self.session.query(Venda).filter(Venda.foi_deletado == False).all()
+    
+    def select_by_id(self, id: int):
+        return self.session.query(Venda).filter(Venda.foi_deletado == False).get(id)
 
+    def insert(self, venda: Venda):
+        pass
+
+    def update(self, venda: Venda):
+        pass
+    
     def delete(self, venda: Venda):
         try:
             venda.foi_deletado = True

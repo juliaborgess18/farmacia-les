@@ -13,10 +13,10 @@ class DevolucaoDAO():
         self.session = Session()
 
     def select_all(self):
-        return self.session.query(Devolucao).all()
+        return self.session.query(Devolucao).filter(Devolucao.foi_deletado == False).all()
     
     def select_by_id(self, id: int):
-        return self.session.query(Devolucao).get(id)
+        return self.session.query(Devolucao).filter(Devolucao.foi_deletado == False).get(id)
 
     def insert(self, devolucao: Devolucao):
         try:

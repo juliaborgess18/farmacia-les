@@ -12,10 +12,6 @@ class EnderecoDAO():
         Session = sessionmaker(bind=self.engine)
         self.session = Session()
 
-    #SELECT
-    def select_all(self):
-        return self.session.query(Endereco).all()
-    
     def select_all(self):
         return self.session.query(Endereco).all()
     

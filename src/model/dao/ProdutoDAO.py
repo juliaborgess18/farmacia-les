@@ -13,10 +13,10 @@ class ProdutoDAO:
         self.session = Session()
 
     def select_all(self):
-        return self.session.query(Produto).all()
+        return self.session.query(Produto).filter(Produto.foi_deletado == False).all()
     
     def select_by_id(self, id: int):
-        return self.session.query(Produto).get(id)
+        return self.session.query(Produto).filter(Produto.foi_deletado == False).get(id)
 
     def insert(self, produto: Produto):
         try:

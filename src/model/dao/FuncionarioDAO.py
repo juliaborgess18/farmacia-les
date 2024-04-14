@@ -13,10 +13,10 @@ class FuncionarioDAO():
         self.session = Session()
         
     def select_all(self):
-        return self.session.query(Funcionario).all()
+        return self.session.query(Funcionario).filter(Funcionario.foi_deletado == False).all()
     
     def select_by_id(self, id: int):
-        pass
+        return self.session.query(Funcionario).filter(Funcionario.foi_deletado == False).get(id)
 
     def insert(self, funcionario: Funcionario):
         pass

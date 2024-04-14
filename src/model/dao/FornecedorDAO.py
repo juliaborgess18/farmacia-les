@@ -14,7 +14,16 @@ class FornecedorDAO():
         self.session = Session()
 
     def select_all(self):
-        return self.session.query(Fornecedor).all()
+        return self.session.query(Fornecedor).filter(Fornecedor.foi_deletado == False).all()
+    
+    def select_by_id(self, id: int):
+        return self.session.query(Fornecedor).filter(Fornecedor.foi_deletado == False).get(id)
+
+    def insert(self, fornecedor: Fornecedor):
+        pass
+
+    def update(self, fornecedor: Fornecedor):
+        pass
 
     def delete(self, fornecedor: Fornecedor):
         try:

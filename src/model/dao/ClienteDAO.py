@@ -16,7 +16,7 @@ class ClienteDAO():
         return self.session.query(Cliente).filter(Cliente.foi_deletado == False).all()
     
     def select_by_id(self, id: int):
-        return self.session.query(Cliente).get(id)
+        return self.session.query(Cliente).filter(Cliente.foi_deletado == False).get(id)
 
     def insert(self, cliente: Cliente):
         try:
