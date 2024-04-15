@@ -11,8 +11,9 @@ from model.dao.ClienteDAO import ClienteDAO
 import datetime
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
-# from view.CadastroClienteController import Ui_Dialog
-from view.CadastroProdutoController import Ui_Dialog
+# from controller.CadastroClienteController import Ui_Dialog
+# from controller.CadastroProdutoController import Ui_Dialog
+# from controller.TelaInicialController import Ui_Dialog
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
@@ -27,9 +28,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # clienteDAO.delete(clienteDAO.select_by_id(2))
-    # clienteDAO = ClienteDAO()
-    # result = clienteDAO.select_by_id(2)
-    # result.nome = 'Systech'
-    # clienteDAO.update(result)
-    # print(result.nome)
