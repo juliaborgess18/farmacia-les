@@ -15,6 +15,9 @@ class Funcionario(Base):
     cargo = Column(String(45), nullable=False)
     esta_ativo = Column("estaativo",Boolean, nullable=False)
     salario = Column("salario",Numeric, nullable=False)
+    # Soft Delete
+    data_delete = Column("datadelete", Date)
+    foi_deletado = Column("foideletado", Boolean)
     cpf = Column("cpf",String, nullable=False)
     id_endereco = Column("idendereco",Integer, ForeignKey('endereco.idendereco'), nullable=False)
 

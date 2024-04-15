@@ -5,5 +5,5 @@ from sqlalchemy.orm import relationship
 class FormaPagamento(Base):
     __tablename__ = 'formapagamento'
 
-    idformapagamento = Column(Integer, primary_key=True, autoincrement=True)
+    id_formapagamento = Column("idformapagamento", Integer, primary_key=True, autoincrement=True)
     nome = Column("nome", String(45), nullable=False)

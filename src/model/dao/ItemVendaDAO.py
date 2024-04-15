@@ -2,15 +2,10 @@ from model.database.BaseORM import BaseORM
 from sqlalchemy.orm import sessionmaker
 from model.domain.ItemVenda import ItemVenda
 
-
 class ItemVendaDAO():
-    engine = ''
-    session = ''
 
-    def __init__(self):
-        self.engine = BaseORM.get_engine()
-        Session = sessionmaker(bind=self.engine)
-        self.session = Session()
+    def __init__(self, session):
+        self.session = session
 
     def select_all(self):
         return self.session.query(ItemVenda).all()

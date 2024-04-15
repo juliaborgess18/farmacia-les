@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Double, ForeignKey, Integer, Date, String
+from sqlalchemy import Boolean, Column, Double, ForeignKey, Integer, Date, String
 from model.database.BaseORM import Base
 from sqlalchemy.orm import relationship
 from model.domain.FormaPagamento import FormaPagamento
@@ -8,14 +8,17 @@ from model.domain.Funcionario import Funcionario
 class Venda(Base):
     __tablename__ = 'venda'
 
-    idvenda = Column(Integer, primary_key=True, autoincrement=True)
-    datavenda = Column("datavenda", Date, nullable=False)
-    valortotal = Column("valortotal", Double, nullable=False)
+    id_venda = Column("idvenda", Integer, primary_key=True, autoincrement=True)
+    data_venda = Column("datavenda", Date, nullable=False)
+    valor_total = Column("valortotal", Double, nullable=False)
     status = Column("status", String(45), nullable=False)
-    idformapagamento = Column(Integer, ForeignKey('formapagamento.idformapagamento'), nullable=False)
-    idfuncionario = Column(Integer, ForeignKey('funcionario.idfuncionario'), nullable=False)
-    idcliente = Column(Integer, ForeignKey('cliente.idcliente'), nullable=False)
-    # Relacionamento com a tabela Endereco
-    formapagamento = relationship("FormaPagamento")
+    id_formapagamento = Column("idformapagamento", Integer, ForeignKey('formapagamento.idformapagamento'), nullable=False)
+    id_funcionario = Column("idfuncionario", Integer, ForeignKey('funcionario.idfuncionario'), nullable=False)
+    id_cliente = Column("idcliente", Integer, ForeignKey('cliente.idcliente'), nullable=False)
+    # Soft Delete
+    data_delete = Column("datadelete", Date)
+    foi_deletado = Column("foideletado", Boolean)
+    
     funcionario = relationship("Funcionario")
     cliente = relationship("Cliente")
+    forma_pagamento = relationship("FormaPagamento")

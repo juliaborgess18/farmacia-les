@@ -1,21 +1,18 @@
+from datetime import date
 from model.database.BaseORM import BaseORM
 from sqlalchemy.orm import sessionmaker
 from model.domain.Devolucao import Devolucao
 
 class DevolucaoDAO():
-    engine = ''
-    session = ''
 
-    def __init__(self):
-        self.engine = BaseORM.get_engine()
-        Session = sessionmaker(bind=self.engine)
-        self.session = Session()
+    def __init__(self, session):
+        self.session = session
 
     def select_all(self):
-        return self.session.query(Devolucao).all()
+        return self.session.query(Devolucao).filter(Devolucao.foi_deletado == False).all()
     
     def select_by_id(self, id: int):
-        return self.session.query(Devolucao).get(id)
+        return self.session.query(Devolucao).filter_by(id_devolucao=id, foi_deletado=False).first()
 
     def insert(self, devolucao: Devolucao):
         try:
@@ -32,12 +29,14 @@ class DevolucaoDAO():
             print(f"Error ao alterar a Devolucao: \n{ex}")
             self.session.rollback()
 
-    def delete(self, devolucao: Devolucao):
+def delete(self, devolucao: Devolucao):
         try:
-            self.session.delete(Devolucao)
+            devolucao.foi_deletado = True
+            
+            devolucao.data_delete = date.today()
             self.session.commit()
         except Exception as ex:
-            print(f"Error ao deletar a Devolucao: \n{ex}")
+            print(f"Error ao deletar a devolucao: \n{ex}")
             self.session.rollback()
 
     # def print_devolucao():

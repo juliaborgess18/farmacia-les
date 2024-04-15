@@ -1,21 +1,19 @@
+from datetime import date
 from model.database.BaseORM import BaseORM
 from sqlalchemy.orm import sessionmaker
 from model.domain.Produto import Produto
 
-class ProdutoDAO:
-    engine = ''
-    session = ''
 
-    def __init__(self):
-        self.engine = BaseORM.get_engine()
-        Session = sessionmaker(bind=self.engine)
-        self.session = Session()
+class ProdutoDAO():
+
+    def __init__(self, session):
+        self.session = session
 
     def select_all(self):
-        return self.session.query(Produto).all()
+        return self.session.query(Produto).filter(Produto.foi_deletado == False).all()
     
     def select_by_id(self, id: int):
-        return self.session.query(Produto).get(id)
+        return self.session.query(Produto).filter_by(id_produto=id, foi_deletado=False).first()
 
     def insert(self, produto: Produto):
         try:
@@ -34,17 +32,19 @@ class ProdutoDAO:
 
     def delete(self, produto: Produto):
         try:
-            self.session.delete(produto)
+            produto.foi_deletado = True
+            
+            produto.data_delete = date.today()
             self.session.commit()
         except Exception as ex:
-            print(f"Error ao deletar o Convênio: \n{ex}")
+            print(f"Error ao deletar o produto: \n{ex}")
             self.session.rollback()
 
     # def print_produto():
-    # print("========================")
-    # print("======== Produto =======")
-    # dao = ProdutoDAO()
-    # produtos = dao.select_all()
+    #     print("========================")
+    #     print("======== Produto =======")
+    #     dao = ProdutoDAO()
+    #     produtos = dao.select_all()
 
-    # for produto in produtos:
-    #     print(f"Id: {produto.idproduto}, Nome: {produto.nome}, Valor: {produto.valor}, Data de Validade: {produto.data_validade}")
+    #     for produto in produtos:
+    #         print(f"Id: {produto.id_produto}, Nome: {produto.nome}, Valor: {produto.valor}, Data de Validade: {produto.data_validade}, Id Fornecedor: {produto.fornecedor.id_fornecedor}")

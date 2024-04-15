@@ -29,12 +29,12 @@ INSERT INTO Fornecedor (nome, cnpj, email, telefone, idEndereco) VALUES
 ('Fornecedor E', '99.887.766/0001-05', 'fornecedorE@email.com', '(71) 0000-9999', 5);
 
 
-INSERT INTO Produto (nome, valor, dataValidade) VALUES
-('Produto A', 50.00, '2024-06-30'),
-('Produto B', 35.00, '2024-08-15'),
-('Produto C', 70.00, '2024-07-20'),
-('Produto D', 25.00, '2024-09-10'),
-('Produto E', 40.00, '2024-07-31');
+INSERT INTO Produto (nome, valor, dataValidade, idFornecedor) VALUES
+('Produto A', 50.00, '2024-06-30', 1),
+('Produto B', 35.00, '2024-08-15', 2),
+('Produto C', 70.00, '2024-07-20', 3),
+('Produto D', 25.00, '2024-09-10', 4),
+('Produto E', 40.00, '2024-07-31', 5);
 
 
 INSERT INTO FormaPagamento (nome) VALUES

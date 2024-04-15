@@ -10,11 +10,16 @@ from model.domain.Cliente import Cliente
 from model.dao.ClienteDAO import ClienteDAO
 import datetime
 from PyQt5 import QtCore, QtGui, QtWidgets
-from view.CadastroClienteController import Ui_Dialog
+from PyQt5.QtCore import Qt
+# from view.CadastroClienteController import Ui_Dialog
+from view.CadastroProdutoController import Ui_Dialog
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
+    Dialog.setMaximumSize(1024,728) # Definindo dimensões para congelar tela no 1024x728
+    Dialog.setMinimumSize(1024,728) # Definindo dimensões para congelar tela no 1024x728
+    Dialog.setWindowFlag(Qt.WindowMinimizeButtonHint, True) # Ativando o botão de minimizar
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
     Dialog.show()
