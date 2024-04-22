@@ -100,9 +100,9 @@ class Ui_Dialog(object):
         self.formLayout_4.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.tableWidget)
         self.carregar_tableView()
         self.tableWidget.cellClicked.connect(self.on_cell_clicked)
+        self.pushButton.clicked.connect(self.inserir_dados)
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
-        self.pushButton.clicked.connect(self.inserir_dados)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
