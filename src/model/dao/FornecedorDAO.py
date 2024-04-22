@@ -16,7 +16,12 @@ class FornecedorDAO():
         return self.session.query(Fornecedor).filter_by(id_fornecedor=id, foi_deletado=False).first()
 
     def insert(self, fornecedor: Fornecedor):
-        pass
+        try:
+            self.session.add(fornecedor)
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao inserir o fornecedor: \n{ex}")
+            self.session.rollback()
 
     def update(self, fornecedor: Fornecedor):
         pass
