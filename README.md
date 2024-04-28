@@ -14,7 +14,7 @@ Este repositório contém o código-fonte e a documentação para um **sistema d
 
 ## Scripts pyui5
 1. ##Gerar .py padrão##: pyuic5 file.ui -o file.py 
-2. ##Gerar .py resources##: pyuic5 resource.qrc -o resource.py 
+2. ##Gerar .py resources##: pyrcc5 resource.qrc -o resource.py 
 
 ## Funcionalidades Básicas
 
