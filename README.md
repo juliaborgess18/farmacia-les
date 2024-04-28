@@ -12,6 +12,10 @@ Este repositório contém o código-fonte e a documentação para um **sistema d
 6. **Conversão .ui para .py**: pip install pyuic5-tool
 7. **Ferramenta para gerar relatórios: ReportLab**: pip install reportlab
 
+## Scripts pyui5
+1. ##Gerar .py padrão##: pyuic5 file.ui -o file.py 
+2. ##Gerar .py resources##: pyuic5 resource.qrc -o resource.py 
+
 ## Funcionalidades Básicas
 
 1. **Registro de Vendas**: O sistema registra todas as vendas realizadas, incluindo detalhes como produtos vendidos, valores e datas.
@@ -24,11 +28,11 @@ Este repositório contém o código-fonte e a documentação para um **sistema d
 
 ## Funcionalidades Avançadas
 
-1. **Gestão de Colaboradores**: Registra informações sobre funcionários, escalas de trabalho e folhas de pagamento.
+1. Gestão de Colaboradores: Registra informações sobre funcionários, escalas de trabalho e folhas de pagamento.
 
-2. **Relatórios Gerenciais**: Gera relatórios detalhados sobre vendas, estoque, despesas e lucros.
+2. Relatórios Gerenciais: Gera relatórios detalhados sobre vendas, estoque, despesas e lucros.
 
-3. **Integração com Fornecedores**: Facilita a comunicação com fornecedores para reabastecimento de produtos.
+3. Integração com Fornecedores: Facilita a comunicação com fornecedores para reabastecimento de produtos.
 
 ## Vantagens do Sistema de Farmácia
 
