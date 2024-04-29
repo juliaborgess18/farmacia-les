@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
 # from controller.CadastroClienteController import Ui_Dialog
 # from controller.CadastroProdutoController import Ui_Dialog
-# from controller.TelaInicialController import Ui_Dialog
+from controller.TelaInicialController import Ui_Dialog
 
 def main():
     app = QtWidgets.QApplication(sys.argv)

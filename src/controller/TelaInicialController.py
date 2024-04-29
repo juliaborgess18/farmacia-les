@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'TelaInicialController.ui'
+# Form implementation generated from reading ui file '.\TelaInicialView.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -9,6 +9,10 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+from PyQt5.uic import loadUi
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from controller.CadastroClienteController import Ui_Dialog as Ui_Dialog_Cadastro_Cliente
 
 
 class Ui_Dialog(object):
@@ -17,30 +21,46 @@ class Ui_Dialog(object):
         Dialog.resize(1024, 728)
         Dialog.setStyleSheet("background-color: rgb(56, 104, 106)")
         self.frame = QtWidgets.QFrame(Dialog)
-        self.frame.setGeometry(QtCore.QRect(350, 180, 301, 401))
-        self.frame.setStyleSheet("background-color: rgb(250, 250, 250);\n"
-"border-radius: 5px;")
+        self.frame.setGeometry(QtCore.QRect(340, 170, 321, 311))
+        self.frame.setStyleSheet("background-color: #fafafa")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
+        self.lineEdit = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit.setGeometry(QtCore.QRect(30, 90, 261, 22))
+        self.lineEdit.setObjectName("lineEdit")
+        self.lineEdit_2 = QtWidgets.QLineEdit(self.frame)
+        self.lineEdit_2.setGeometry(QtCore.QRect(30, 160, 261, 22))
+        self.lineEdit_2.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
+        self.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.pushButton = QtWidgets.QPushButton(self.frame)
+        self.pushButton.setGeometry(QtCore.QRect(110, 260, 93, 28))
+        self.pushButton.setObjectName("pushButton")
         self.label = QtWidgets.QLabel(self.frame)
-        self.label.setGeometry(QtCore.QRect(20, 30, 61, 41))
-        self.label.setStyleSheet("font: 12pt \"Segoe UI\";")
+        self.label.setGeometry(QtCore.QRect(30, 70, 111, 16))
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.frame)
-        self.label_2.setGeometry(QtCore.QRect(20, 170, 61, 41))
-        self.label_2.setStyleSheet("font: 12pt \"Segoe UI\";")
+        self.label_2.setGeometry(QtCore.QRect(30, 140, 111, 16))
         self.label_2.setObjectName("label_2")
-        self.lineEdit = QtWidgets.QLineEdit(self.frame)
-        self.lineEdit.setGeometry(QtCore.QRect(20, 70, 261, 51))
-        self.lineEdit.setFrame(True)
-        self.lineEdit.setObjectName("lineEdit")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.pushButton.clicked.connect(self.mostrar_outra_tela)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.label.setText(_translate("Dialog", "Login"))
+        self.pushButton.setText(_translate("Dialog", "Entrar"))
+        self.label.setText(_translate("Dialog", "Nome de usuário"))
         self.label_2.setText(_translate("Dialog", "Senha"))
+        
+    def mostrar_outra_tela(self):
+        self.Dialog = QtWidgets.QDialog()
+        self.ui = Ui_Dialog_Cadastro_Cliente()
+        self.ui.setupUi(self.Dialog)
+        self.Dialog.close()  # Fecha o diálogo atual
+        self.Dialog.show()
+        
+
+
