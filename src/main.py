@@ -13,17 +13,17 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
 # from controller.CadastroClienteController import Ui_Dialog
 # from controller.CadastroProdutoController import Ui_Dialog
-from controller.TelaInicialController import Ui_Dialog
+# from controller.TelaInicialController import Ui_Dialog
+from controller.TelaPrincipalController import Ui_MainWindow
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    Dialog.setMaximumSize(1024,728) # Definindo dimensões para congelar tela no 1024x728
-    Dialog.setMinimumSize(1024,728) # Definindo dimensões para congelar tela no 1024x728
-    Dialog.setWindowFlag(Qt.WindowMinimizeButtonHint, True) # Ativando o botão de minimizar
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    TelaPrincipal = QtWidgets.QMainWindow()
+    TelaPrincipal.setMaximumSize(1024,728) # Definindo dimensões para congelar tela no 1024x728
+    TelaPrincipal.setMinimumSize(1024,728) # Definindo dimensões para congelar tela no 1024x728
+    ui = Ui_MainWindow()
+    ui.setupUi(TelaPrincipal)
+    TelaPrincipal.show()
     sys.exit(app.exec_())
 
 if __name__ == "__main__":

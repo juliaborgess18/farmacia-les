@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/caixa-aberta.svg</file>
+    <file>icons/list.svg</file>
+    <file>icons/point-of-sale-bill.svg</file>
+    <file>icons/sign-out-alt.svg</file>
+    <file>icons/circle-user.svg</file>
+    <file>icons/house-chimney.svg</file>
+  </qresource>
+</RCC>
