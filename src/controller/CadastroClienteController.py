@@ -12,9 +12,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from model.dao.ClienteDAO import ClienteDAO
 from model.domain.Cliente import Cliente
 from model.domain.Endereco import Endereco
+from model.database.BaseDAO import BaseDAO
 
 
 class Ui_Dialog(object):
+    
+    session = BaseDAO.get_session()
+    cliente_dao = ClienteDAO(session)
+    
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(1024, 768)
@@ -161,7 +166,7 @@ class Ui_Dialog(object):
         self.label_8.setText(_translate("Dialog", "Rua"))
         
     def inserir_dados(self):
-        clienteDAO = ClienteDAO()
+        cliente_dao = ClienteDAO()
         cliente = Cliente()
         endereco = Endereco()
         
@@ -180,5 +185,5 @@ class Ui_Dialog(object):
         endereco.uf = self.input_uf.text()
         cliente.endereco = endereco
         
-        clienteDAO.insert(cliente)
+        cliente_dao.insert(cliente)
         # print("teste")

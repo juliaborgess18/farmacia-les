@@ -13,6 +13,7 @@ class Cliente(Base):
     data_nascimento = Column("datanascimento",Date, nullable=False)
     tel_contato = Column("telcontato",String(45), nullable=False)
     data_cadastro = Column("datacadastro",Date, nullable=False) 
+    
     # Soft Delete
     data_delete = Column("datadelete", Date)
     foi_deletado = Column("foideletado", Boolean)

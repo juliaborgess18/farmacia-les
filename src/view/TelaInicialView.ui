@@ -82,7 +82,27 @@ font-family: 'Segoe UI';</string>
       <string>Senha</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="insert_senha_usuario"/>
+    <widget class="QLineEdit" name="insert_senha_usuario">
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="dados_invalidos">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>220</y>
+      <width>261</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: red;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
  </widget>

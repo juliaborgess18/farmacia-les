@@ -12,11 +12,17 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from controller.CadastroClienteController import Ui_Dialog as Ui_Dialog_Cadastro_Cliente
-
+from model.domain.Usuario import Usuario
+from model.dao.UsuarioDAO import UsuarioDAO
+from model.database.BaseDAO import BaseDAO
 
 class Ui_widget_login(object):
+
+    session = BaseDAO.get_session()
+    usuario_dao = UsuarioDAO(session)
+    
     def setupUi(self, widget_login):
+
         widget_login.setObjectName("widget_login")
         widget_login.resize(1065, 586)
         widget_login.setStyleSheet("background-color: #38686A")
@@ -47,9 +53,16 @@ class Ui_widget_login(object):
         self.label_2.setObjectName("label_2")
         self.insert_senha_usuario = QtWidgets.QLineEdit(self.splitter)
         self.insert_senha_usuario.setObjectName("insert_senha_usuario")
+        self.insert_senha_usuario.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.dados_invalidos = QtWidgets.QLabel(self.frame)
+        self.dados_invalidos.setObjectName(u"dados_invalidos")
+        self.dados_invalidos.setGeometry(QtCore.QRect(55,220,261,16))
+        self.dados_invalidos.setStyleSheet(u"color: red; text-align: center;")
 
         self.retranslateUi(widget_login)
         QtCore.QMetaObject.connectSlotsByName(widget_login)
+        
+        self.button_entrar.clicked.connect(self.entrar)
 
     def retranslateUi(self, widget_login):
         _translate = QtCore.QCoreApplication.translate
@@ -58,4 +71,11 @@ class Ui_widget_login(object):
         self.label.setText(_translate("widget_login", "Nome de usuário"))
         self.label_2.setText(_translate("widget_login", "Senha"))
         
-
+    def entrar(self):
+        usuario = Usuario()
+        
+        usuario.nome_usuario = self.insert_nome_usuario.text()
+        usuario.senha_usuario = self.insert_senha_usuario.text()
+        
+        if (self.usuario_dao.verifica_usuario(usuario) == 0):
+                self.dados_invalidos.setText("Dados inválidos. Por gentileza, revise-os.")

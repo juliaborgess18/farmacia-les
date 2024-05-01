@@ -9,6 +9,15 @@ DROP TABLE IF EXISTS Devolucao;
 DROP TABLE IF EXISTS Convenio; 
 DROP TABLE IF EXISTS Cliente ;
 DROP TABLE IF EXISTS Endereco;
+DROP TABLE IF EXISTS Usuario;
+
+CREATE TABLE Usuario(
+	idUsuario SERIAL NOT NULL,
+	nomeUsuario VARCHAR(100) not null,
+	senhaUsuario VARCHAR(8) not null,
+	CONSTRAINT id_usuario_pk PRIMARY KEY(idUsuario)
+);
+
 
 CREATE TABLE Endereco (
   idEndereco SERIAL NOT NULL,
