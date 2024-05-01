@@ -10,8 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget
-from controller.CadastroClienteController import Ui_Dialog as CadastroProduto
-# from controller.CadastroProdutoController import Ui_Form as CadastroProduto
+from controller.CadastroProdutoController import Ui_Form as CadastroProduto
 import resources_rc
 
 class Ui_MainWindow(object):
@@ -266,9 +265,6 @@ class Ui_MainWindow(object):
         self.menumenu_item.addAction(self.actionopt_4)
         self.menubar.addAction(self.menumenu_item_1.menuAction())
         self.menubar.addAction(self.menumenu_item.menuAction())
-
-        self.configure_stackWidgets()
-
         self.retranslateUi(MainWindow)
         self.btn_side_menu_collapse.toggled['bool'].connect(self.icons_only_widget.setVisible) # type: ignore
         self.btn_side_menu_collapse.toggled['bool'].connect(self.full_menu_widget.setHidden) # type: ignore
@@ -283,6 +279,8 @@ class Ui_MainWindow(object):
         self.btn_produtos_max.toggled['bool'].connect(self.btn_produtos_min.setChecked) # type: ignore
         self.btn_produtos_min.toggled['bool'].connect(self.btn_produtos_max.setChecked) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.configure_stackWidgets()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
