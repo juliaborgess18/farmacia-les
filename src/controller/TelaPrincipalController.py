@@ -10,15 +10,14 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget
-# from controller.CadastroProdutoController import Ui_Dialog as TelaCadastroProduto
-from controller.CadastroProdutoController import Ui_Form as CadastroProduto
+from controller.CadastroClienteController import Ui_Dialog as CadastroProduto
+# from controller.CadastroProdutoController import Ui_Form as CadastroProduto
 import resources_rc
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(912, 598)
+        MainWindow.resize(1280, 720)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
@@ -236,7 +235,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.widget_3, 0, 2, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 912, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 21))
         self.menubar.setObjectName("menubar")
         self.menumenu_item_1 = QtWidgets.QMenu(self.menubar)
         self.menumenu_item_1.setObjectName("menumenu_item_1")
@@ -268,6 +267,8 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menumenu_item_1.menuAction())
         self.menubar.addAction(self.menumenu_item.menuAction())
 
+        self.configure_stackWidgets()
+
         self.retranslateUi(MainWindow)
         self.btn_side_menu_collapse.toggled['bool'].connect(self.icons_only_widget.setVisible) # type: ignore
         self.btn_side_menu_collapse.toggled['bool'].connect(self.full_menu_widget.setHidden) # type: ignore
@@ -282,7 +283,6 @@ class Ui_MainWindow(object):
         self.btn_produtos_max.toggled['bool'].connect(self.btn_produtos_min.setChecked) # type: ignore
         self.btn_produtos_min.toggled['bool'].connect(self.btn_produtos_max.setChecked) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        self.configure_stackWidgets()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate

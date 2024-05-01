@@ -19,8 +19,8 @@ from controller.TelaPrincipalController import Ui_MainWindow
 def main():
     app = QtWidgets.QApplication(sys.argv)
     TelaPrincipal = QtWidgets.QMainWindow()
-    TelaPrincipal.setMaximumSize(1024,728) # Definindo dimensões para congelar tela no 1024x728
-    TelaPrincipal.setMinimumSize(1024,728) # Definindo dimensões para congelar tela no 1024x728
+    # TelaPrincipal.setMaximumSize(1024,728) # Definindo dimensões para congelar tela no 1024x728
+    # TelaPrincipal.setMinimumSize(1024,728) # Definindo dimensões para congelar tela no 1024x728
     ui = Ui_MainWindow()
     ui.setupUi(TelaPrincipal)
     TelaPrincipal.show()
