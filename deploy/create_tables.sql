@@ -9,12 +9,6 @@ DROP TABLE IF EXISTS Devolucao;
 DROP TABLE IF EXISTS Convenio; 
 DROP TABLE IF EXISTS Cliente ;
 DROP TABLE IF EXISTS Endereco;
-DROP TABLE IF EXISTS Usuario;
-
-CREATE TABLE Usuario(
-	nomeUsuario VARCHAR(100) not null,
-	senhaUsuario VARCHAR(8) not null
-);
 
 CREATE TABLE Endereco (
   idEndereco SERIAL NOT NULL,
