@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'TelaInicialController.ui'
+# Form implementation generated from reading ui file '.\TelaInicialView.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -9,38 +9,73 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+from PyQt5.uic import loadUi
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from model.domain.Usuario import Usuario
+from model.dao.UsuarioDAO import UsuarioDAO
+from model.database.BaseDAO import BaseDAO
 
+class Ui_widget_login(object):
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(1024, 728)
-        Dialog.setStyleSheet("background-color: rgb(56, 104, 106)")
-        self.frame = QtWidgets.QFrame(Dialog)
-        self.frame.setGeometry(QtCore.QRect(350, 180, 301, 401))
-        self.frame.setStyleSheet("background-color: rgb(250, 250, 250);\n"
-"border-radius: 5px;")
+    session = BaseDAO.get_session()
+    usuario_dao = UsuarioDAO(session)
+    
+    def setupUi(self, widget_login):
+
+        widget_login.setObjectName("widget_login")
+        widget_login.resize(1065, 586)
+        widget_login.setStyleSheet("background-color: #38686A")
+        self.frame = QtWidgets.QFrame(widget_login)
+        self.frame.setGeometry(QtCore.QRect(350, 120, 351, 301))
+        self.frame.setStyleSheet("background-color: #fafafa;")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
-        self.label = QtWidgets.QLabel(self.frame)
-        self.label.setGeometry(QtCore.QRect(20, 30, 61, 41))
-        self.label.setStyleSheet("font: 12pt \"Segoe UI\";")
+        self.button_entrar = QtWidgets.QPushButton(self.frame)
+        self.button_entrar.setGeometry(QtCore.QRect(130, 250, 93, 28))
+        self.button_entrar.setStyleSheet("background-color: #A3B4A2;\n"
+"color: white;")
+        self.button_entrar.setObjectName("button_entrar")
+        self.splitter = QtWidgets.QSplitter(self.frame)
+        self.splitter.setGeometry(QtCore.QRect(20, 60, 311, 151))
+        self.splitter.setOrientation(QtCore.Qt.Vertical)
+        self.splitter.setObjectName("splitter")
+        self.label = QtWidgets.QLabel(self.splitter)
+        self.label.setStyleSheet("font-size: 16px;\n"
+"font-family: \'Segoe UI\';")
         self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(self.frame)
-        self.label_2.setGeometry(QtCore.QRect(20, 170, 61, 41))
-        self.label_2.setStyleSheet("font: 12pt \"Segoe UI\";")
+        self.insert_nome_usuario = QtWidgets.QLineEdit(self.splitter)
+        self.insert_nome_usuario.setObjectName("insert_nome_usuario")
+        self.label_2 = QtWidgets.QLabel(self.splitter)
+        self.label_2.setStyleSheet("font-size: 16px;\n"
+"font-family: \'Segoe UI\';")
         self.label_2.setObjectName("label_2")
-        self.lineEdit = QtWidgets.QLineEdit(self.frame)
-        self.lineEdit.setGeometry(QtCore.QRect(20, 70, 261, 51))
-        self.lineEdit.setFrame(True)
-        self.lineEdit.setObjectName("lineEdit")
+        self.insert_senha_usuario = QtWidgets.QLineEdit(self.splitter)
+        self.insert_senha_usuario.setObjectName("insert_senha_usuario")
+        self.insert_senha_usuario.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.dados_invalidos = QtWidgets.QLabel(self.frame)
+        self.dados_invalidos.setObjectName(u"dados_invalidos")
+        self.dados_invalidos.setGeometry(QtCore.QRect(55,220,261,16))
+        self.dados_invalidos.setStyleSheet(u"color: red; text-align: center;")
 
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(widget_login)
+        QtCore.QMetaObject.connectSlotsByName(widget_login)
+        
+        self.button_entrar.clicked.connect(self.entrar)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, widget_login):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.label.setText(_translate("Dialog", "Login"))
-        self.label_2.setText(_translate("Dialog", "Senha"))
+        widget_login.setWindowTitle(_translate("widget_login", "Form"))
+        self.button_entrar.setText(_translate("widget_login", "Entrar"))
+        self.label.setText(_translate("widget_login", "Nome de usuário"))
+        self.label_2.setText(_translate("widget_login", "Senha"))
+        
+    def entrar(self):
+        usuario = Usuario()
+        
+        usuario.nome_usuario = self.insert_nome_usuario.text()
+        usuario.senha_usuario = self.insert_senha_usuario.text()
+        
+        if (self.usuario_dao.verifica_usuario(usuario) == 0):
+                self.dados_invalidos.setText("Dados inválidos. Por gentileza, revise-os.")

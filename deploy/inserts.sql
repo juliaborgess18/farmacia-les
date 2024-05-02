@@ -1,3 +1,6 @@
+INSERT INTO Usuario (nomeUsuario, senhaUsuario) VALUES 
+("testeadmin","teste123");
+
 INSERT INTO Endereco (numero, rua, bairro, cidade, uf) VALUES
 (123, 'Rua das Flores', 'Centro', 'São Paulo', 'SP'),
 (456, 'Avenida dos Anjos', 'Vila Nova', 'Rio de Janeiro', 'RJ'),
