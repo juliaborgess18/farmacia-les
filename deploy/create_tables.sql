@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS Fornecedor; 
 DROP TABLE IF EXISTS ItemVenda;
 DROP TABLE IF EXISTS Venda;
 DROP TABLE IF EXISTS Funcionario; 
@@ -8,8 +7,9 @@ DROP TABLE IF EXISTS Produto;
 DROP TABLE IF EXISTS Devolucao;
 DROP TABLE IF EXISTS Convenio; 
 DROP TABLE IF EXISTS Cliente ;
-DROP TABLE IF EXISTS Endereco;
 DROP TABLE IF EXISTS Usuario;
+DROP TABLE IF EXISTS Fornecedor; 
+DROP TABLE IF EXISTS Endereco;
 
 CREATE TABLE Usuario(
 	idUsuario SERIAL NOT NULL,
@@ -17,7 +17,6 @@ CREATE TABLE Usuario(
 	senhaUsuario VARCHAR(8) not null,
 	CONSTRAINT id_usuario_pk PRIMARY KEY(idUsuario)
 );
-
 
 CREATE TABLE Endereco (
   idEndereco SERIAL NOT NULL,

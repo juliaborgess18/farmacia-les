@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icons/user-headset.svg</file>
     <file>icons/caixa-aberta.svg</file>
     <file>icons/list.svg</file>
     <file>icons/point-of-sale-bill.svg</file>

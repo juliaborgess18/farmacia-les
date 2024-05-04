@@ -156,6 +156,33 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QPushButton" name="btn_clientes_min">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../../resources/resources.qrc">
+             <normaloff>:/icons/icons/user-headset.svg</normaloff>
+             <normalon>:/icons/icons/user-headset.svg</normalon>:/icons/icons/user-headset.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="autoExclusive">
+            <bool>true</bool>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item>
@@ -312,31 +339,55 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QPushButton" name="btn_produtos_max">
+           <property name="text">
+            <string>Produtos</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../../resources/resources.qrc">
+             <normaloff>:/icons/icons/caixa-aberta.svg</normaloff>
+             <normalon>:/icons/icons/caixa-aberta.svg</normalon>:/icons/icons/caixa-aberta.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>14</width>
+             <height>14</height>
+            </size>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="autoExclusive">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_clientes_max">
+           <property name="text">
+            <string>Clientes</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../../resources/resources.qrc">
+             <normaloff>:/icons/icons/user-headset.svg</normaloff>
+             <normalon>:/icons/icons/user-headset.svg</normalon>:/icons/icons/user-headset.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>14</width>
+             <height>14</height>
+            </size>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="autoExclusive">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
         </layout>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_produtos_max">
-         <property name="text">
-          <string>Produtos</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../../resources/resources.qrc">
-           <normaloff>:/icons/icons/caixa-aberta.svg</normaloff>
-           <normalon>:/icons/icons/caixa-aberta.svg</normalon>:/icons/icons/caixa-aberta.svg</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>14</width>
-           <height>14</height>
-          </size>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="autoExclusive">
-          <bool>true</bool>
-         </property>
-        </widget>
        </item>
        <item>
         <spacer name="verticalSpacer_2">
@@ -457,7 +508,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>2</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="page_inicio">
           <widget class="QLabel" name="label_6">
@@ -525,6 +576,29 @@
            </property>
            <property name="text">
             <string>Produtos</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="page_clientes">
+          <widget class="QLabel" name="label_9">
+           <property name="geometry">
+            <rect>
+             <x>280</x>
+             <y>170</y>
+             <width>131</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Segoe UI Black</family>
+             <pointsize>22</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Clientes</string>
            </property>
           </widget>
          </widget>
@@ -639,12 +713,12 @@
    <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>19</x>
-     <y>564</y>
+     <x>28</x>
+     <y>690</y>
     </hint>
     <hint type="destinationlabel">
-     <x>139</x>
-     <y>568</y>
+     <x>178</x>
+     <y>690</y>
     </hint>
    </hints>
   </connection>
@@ -656,11 +730,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>178</x>
-     <y>568</y>
+     <y>690</y>
     </hint>
     <hint type="destinationlabel">
-     <x>23</x>
-     <y>558</y>
+     <x>32</x>
+     <y>690</y>
     </hint>
    </hints>
   </connection>
@@ -671,8 +745,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>169</x>
-     <y>560</y>
+     <x>178</x>
+     <y>690</y>
     </hint>
     <hint type="destinationlabel">
      <x>170</x>
@@ -687,8 +761,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>51</x>
-     <y>544</y>
+     <x>60</x>
+     <y>690</y>
     </hint>
     <hint type="destinationlabel">
      <x>31</x>
@@ -789,6 +863,38 @@
     <hint type="destinationlabel">
      <x>91</x>
      <y>145</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_clientes_max</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>btn_clientes_min</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>162</x>
+     <y>161</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>47</x>
+     <y>193</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_clientes_min</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>btn_clientes_max</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>53</x>
+     <y>180</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>113</x>
+     <y>164</y>
     </hint>
    </hints>
   </connection>

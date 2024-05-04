@@ -15,6 +15,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from model.domain.Usuario import Usuario
 from model.dao.UsuarioDAO import UsuarioDAO
 from model.database.BaseDAO import BaseDAO
+from controller.TelaPrincipalController import Ui_MainWindow as TelaPrincipal, MainWindow
 
 class Ui_widget_login(object):
 
@@ -62,20 +63,35 @@ class Ui_widget_login(object):
         self.retranslateUi(widget_login)
         QtCore.QMetaObject.connectSlotsByName(widget_login)
         
-        self.button_entrar.clicked.connect(self.entrar)
-
     def retranslateUi(self, widget_login):
         _translate = QtCore.QCoreApplication.translate
         widget_login.setWindowTitle(_translate("widget_login", "Form"))
         self.button_entrar.setText(_translate("widget_login", "Entrar"))
         self.label.setText(_translate("widget_login", "Nome de usuário"))
         self.label_2.setText(_translate("widget_login", "Senha"))
-        
-    def entrar(self):
+
+class LoginWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        # Carregue a interface .ui
+        loadUi('src/view/TelaInicialView.ui', self)
+        # Conecte os sinais aos slots
+        self.button_entrar.clicked.connect(self.login)
+
+    def login(self):
+        session = BaseDAO.get_session()
+        usuario_dao = UsuarioDAO(session)
         usuario = Usuario()
         
         usuario.nome_usuario = self.insert_nome_usuario.text()
         usuario.senha_usuario = self.insert_senha_usuario.text()
         
-        if (self.usuario_dao.verifica_usuario(usuario) == 0):
-                self.dados_invalidos.setText("Dados inválidos. Por gentileza, revise-os.")
+        if (usuario_dao.verifica_usuario(usuario) == 0):
+            self.dados_invalidos.setText("Dados inválidos. Por gentileza, revise-os.")
+        else:
+            self.openMainWindow()
+
+    def openMainWindow(self):
+        self.mainWindow = MainWindow()
+        self.mainWindow.show()
+        self.close()

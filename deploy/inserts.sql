@@ -1,5 +1,6 @@
 INSERT INTO Usuario (nomeUsuario, senhaUsuario) VALUES 
-("testeadmin","teste123");
+('testeadmin','teste123'),
+('admin', 'admin');
 
 INSERT INTO Endereco (numero, rua, bairro, cidade, uf) VALUES
 (123, 'Rua das Flores', 'Centro', 'São Paulo', 'SP'),

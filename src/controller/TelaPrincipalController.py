@@ -9,8 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QWidget, QMainWindow
 from controller.CadastroProdutoController import Ui_Form as CadastroProduto
+from controller.CadastroClienteController import Ui_Form as CadastroCliente
 import resources_rc
 
 class Ui_MainWindow(object):
@@ -76,15 +77,27 @@ class Ui_MainWindow(object):
         self.btn_produtos_min.setAutoExclusive(True)
         self.btn_produtos_min.setObjectName("btn_produtos_min")
         self.verticalLayout.addWidget(self.btn_produtos_min)
+        self.btn_clientes_min = QtWidgets.QPushButton(self.icons_only_widget)
+        self.btn_clientes_min.setText("")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(":/icons/icons/user-headset.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(":/icons/icons/user-headset.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        self.btn_clientes_min.setIcon(icon3)
+        self.btn_clientes_min.setIconSize(QtCore.QSize(20, 20))
+        self.btn_clientes_min.setCheckable(True)
+        self.btn_clientes_min.setAutoExclusive(True)
+        self.btn_clientes_min.setFlat(False)
+        self.btn_clientes_min.setObjectName("btn_clientes_min")
+        self.verticalLayout.addWidget(self.btn_clientes_min)
         self.verticalLayout_3.addLayout(self.verticalLayout)
         spacerItem = QtWidgets.QSpacerItem(20, 416, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_3.addItem(spacerItem)
         self.btn_sair_min = QtWidgets.QPushButton(self.icons_only_widget)
         self.btn_sair_min.setText("")
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/icons/icons/sign-out-alt.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        icon3.addPixmap(QtGui.QPixmap(":/icons/icons/sign-out-alt.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        self.btn_sair_min.setIcon(icon3)
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/icons/icons/sign-out-alt.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap(":/icons/icons/sign-out-alt.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        self.btn_sair_min.setIcon(icon4)
         self.btn_sair_min.setIconSize(QtCore.QSize(20, 20))
         self.btn_sair_min.setCheckable(False)
         self.btn_sair_min.setAutoExclusive(False)
@@ -120,40 +133,47 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.btn_inicio_max = QtWidgets.QPushButton(self.full_menu_widget)
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(":/icons/icons/house-chimney.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_inicio_max.setIcon(icon4)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/icons/icons/house-chimney.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_inicio_max.setIcon(icon5)
         self.btn_inicio_max.setIconSize(QtCore.QSize(14, 14))
         self.btn_inicio_max.setCheckable(True)
         self.btn_inicio_max.setAutoExclusive(True)
         self.btn_inicio_max.setObjectName("btn_inicio_max")
         self.verticalLayout_2.addWidget(self.btn_inicio_max)
         self.btn_vendas_max = QtWidgets.QPushButton(self.full_menu_widget)
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/icons/icons/point-of-sale-bill.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_vendas_max.setIcon(icon5)
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/icons/icons/point-of-sale-bill.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_vendas_max.setIcon(icon6)
         self.btn_vendas_max.setIconSize(QtCore.QSize(14, 14))
         self.btn_vendas_max.setCheckable(True)
         self.btn_vendas_max.setAutoExclusive(True)
         self.btn_vendas_max.setObjectName("btn_vendas_max")
         self.verticalLayout_2.addWidget(self.btn_vendas_max)
-        self.verticalLayout_4.addLayout(self.verticalLayout_2)
         self.btn_produtos_max = QtWidgets.QPushButton(self.full_menu_widget)
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(":/icons/icons/caixa-aberta.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        icon6.addPixmap(QtGui.QPixmap(":/icons/icons/caixa-aberta.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        self.btn_produtos_max.setIcon(icon6)
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/icons/icons/caixa-aberta.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon7.addPixmap(QtGui.QPixmap(":/icons/icons/caixa-aberta.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        self.btn_produtos_max.setIcon(icon7)
         self.btn_produtos_max.setIconSize(QtCore.QSize(14, 14))
         self.btn_produtos_max.setCheckable(True)
         self.btn_produtos_max.setAutoExclusive(True)
         self.btn_produtos_max.setObjectName("btn_produtos_max")
-        self.verticalLayout_4.addWidget(self.btn_produtos_max)
+        self.verticalLayout_2.addWidget(self.btn_produtos_max)
+        self.btn_clientes_max = QtWidgets.QPushButton(self.full_menu_widget)
+        self.btn_clientes_max.setIcon(icon3)
+        self.btn_clientes_max.setIconSize(QtCore.QSize(14, 14))
+        self.btn_clientes_max.setCheckable(True)
+        self.btn_clientes_max.setAutoExclusive(True)
+        self.btn_clientes_max.setObjectName("btn_clientes_max")
+        self.verticalLayout_2.addWidget(self.btn_clientes_max)
+        self.verticalLayout_4.addLayout(self.verticalLayout_2)
         spacerItem1 = QtWidgets.QSpacerItem(20, 441, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_4.addItem(spacerItem1)
         self.btn_sair_max = QtWidgets.QPushButton(self.full_menu_widget)
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/icons/icons/sign-out-alt.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.btn_sair_max.setIcon(icon7)
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(":/icons/icons/sign-out-alt.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.btn_sair_max.setIcon(icon8)
         self.btn_sair_max.setIconSize(QtCore.QSize(14, 14))
         self.btn_sair_max.setObjectName("btn_sair_max")
         self.verticalLayout_4.addWidget(self.btn_sair_max)
@@ -170,10 +190,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.btn_side_menu_collapse = QtWidgets.QPushButton(self.widget)
         self.btn_side_menu_collapse.setText("")
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(":/icons/icons/list.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        icon8.addPixmap(QtGui.QPixmap(":/icons/icons/list.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        self.btn_side_menu_collapse.setIcon(icon8)
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap(":/icons/icons/list.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon9.addPixmap(QtGui.QPixmap(":/icons/icons/list.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        self.btn_side_menu_collapse.setIcon(icon9)
         self.btn_side_menu_collapse.setCheckable(True)
         self.btn_side_menu_collapse.setAutoExclusive(False)
         self.btn_side_menu_collapse.setObjectName("btn_side_menu_collapse")
@@ -230,6 +250,18 @@ class Ui_MainWindow(object):
         self.label_8.setFont(font)
         self.label_8.setObjectName("label_8")
         self.stackedWidget.addWidget(self.page_produtos)
+        self.page_clientes = QtWidgets.QWidget()
+        self.page_clientes.setObjectName("page_clientes")
+        self.label_9 = QtWidgets.QLabel(self.page_clientes)
+        self.label_9.setGeometry(QtCore.QRect(280, 170, 131, 91))
+        font = QtGui.QFont()
+        font.setFamily("Segoe UI Black")
+        font.setPointSize(22)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_9.setFont(font)
+        self.label_9.setObjectName("label_9")
+        self.stackedWidget.addWidget(self.page_clientes)
         self.verticalLayout_5.addWidget(self.stackedWidget)
         self.gridLayout.addWidget(self.widget_3, 0, 2, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -265,7 +297,9 @@ class Ui_MainWindow(object):
         self.menumenu_item.addAction(self.actionopt_4)
         self.menubar.addAction(self.menumenu_item_1.menuAction())
         self.menubar.addAction(self.menumenu_item.menuAction())
+
         self.retranslateUi(MainWindow)
+        self.stackedWidget.setCurrentIndex(3)
         self.btn_side_menu_collapse.toggled['bool'].connect(self.icons_only_widget.setVisible) # type: ignore
         self.btn_side_menu_collapse.toggled['bool'].connect(self.full_menu_widget.setHidden) # type: ignore
         self.btn_sair_min.toggled['bool'].connect(self.btn_sair_max.setChecked) # type: ignore
@@ -278,8 +312,9 @@ class Ui_MainWindow(object):
         self.btn_vendas_min.toggled['bool'].connect(self.btn_vendas_max.setChecked) # type: ignore
         self.btn_produtos_max.toggled['bool'].connect(self.btn_produtos_min.setChecked) # type: ignore
         self.btn_produtos_min.toggled['bool'].connect(self.btn_produtos_max.setChecked) # type: ignore
+        self.btn_clientes_max.toggled['bool'].connect(self.btn_clientes_min.setChecked) # type: ignore
+        self.btn_clientes_min.toggled['bool'].connect(self.btn_clientes_max.setChecked) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
         self.configure_stackWidgets()
 
     def retranslateUi(self, MainWindow):
@@ -289,11 +324,13 @@ class Ui_MainWindow(object):
         self.btn_inicio_max.setText(_translate("MainWindow", "Inicio"))
         self.btn_vendas_max.setText(_translate("MainWindow", "Vendas"))
         self.btn_produtos_max.setText(_translate("MainWindow", "Produtos"))
+        self.btn_clientes_max.setText(_translate("MainWindow", "Clientes"))
         self.btn_sair_max.setText(_translate("MainWindow", "Sair"))
         self.label_4.setText(_translate("MainWindow", "IfesFarma"))
         self.label_6.setText(_translate("MainWindow", "HomePage"))
         self.label_7.setText(_translate("MainWindow", "Vendas"))
         self.label_8.setText(_translate("MainWindow", "Produtos"))
+        self.label_9.setText(_translate("MainWindow", "Clientes"))
         self.menumenu_item_1.setTitle(_translate("MainWindow", "menu-item"))
         self.menumenu_item.setTitle(_translate("MainWindow", "menu-item"))
         self.actionmenu_item_2.setText(_translate("MainWindow", "opt-1"))
@@ -305,7 +342,10 @@ class Ui_MainWindow(object):
 
     def configure_stackWidgets(self):
         self.page_produtos = TelaProdutos()
+        self.page_clientes = TelaClientes()
+
         self.stackedWidget.addWidget(self.page_produtos)
+        self.stackedWidget.addWidget(self.page_clientes)
 
         self.btn_inicio_min.clicked.connect(self.btn_inicio_clicked)
         self.btn_inicio_max.clicked.connect(self.btn_inicio_clicked)
@@ -313,6 +353,10 @@ class Ui_MainWindow(object):
         self.btn_vendas_max.clicked.connect(self.btn_vendas_clicked)
         self.btn_produtos_min.clicked.connect(self.btn_produtos_clicked)
         self.btn_produtos_max.clicked.connect(self.btn_produtos_clicked)
+
+        self.btn_clientes_min.clicked.connect(self.btn_clintes_clicked)
+        self.btn_clientes_max.clicked.connect(self.btn_clintes_clicked)
+
         self.btn_side_menu_collapse.toggle()
 
     def btn_inicio_clicked(self):
@@ -322,11 +366,25 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(1)
 
     def btn_produtos_clicked(self):
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(4)
+    
+    def btn_clintes_clicked(self):
+        self.stackedWidget.setCurrentIndex(5)
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
 
 class TelaProdutos(QWidget):
     def __init__(self):
         super().__init__()
         self.ui = CadastroProduto()
         self.ui.setupUi(self)
-        self.page_vendas = self.ui.setupUi
+
+class TelaClientes(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = CadastroCliente()
+        self.ui.setupUi(self)
