@@ -299,7 +299,6 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menumenu_item.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(3)
         self.btn_side_menu_collapse.toggled['bool'].connect(self.icons_only_widget.setVisible) # type: ignore
         self.btn_side_menu_collapse.toggled['bool'].connect(self.full_menu_widget.setHidden) # type: ignore
         self.btn_sair_min.toggled['bool'].connect(self.btn_sair_max.setChecked) # type: ignore
