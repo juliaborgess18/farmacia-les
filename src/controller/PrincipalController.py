@@ -4,7 +4,8 @@ from PyQt5.uic import loadUi
 from controller.CadastroClienteController import CadastroClienteController
 from controller.CadastroVendaController import CadastroVendaController
 from controller.CadastroProdutoController import CadastroProdutoController
-import resources_rc
+# Não remover o import abaixo, apesar da IDE acusar que ele não é utilizado, o PyQt5 está o utilizando para carregar os ícones da aplicação.
+import resources_rc 
     
 class openTelaPrincipal(QMainWindow):
     def __init__(self):
