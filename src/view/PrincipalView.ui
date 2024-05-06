@@ -32,8 +32,34 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QFrame" name="frame">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="whatsThis">
+        <string/>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
        <property name="styleSheet">
-        <string notr="true">background-color: #38686A;</string>
+        <string notr="true">QFrame{
+	 background-color: #38686A;
+}
+
+QPushButton{
+color: #FFFFFF;
+background-color: #A3B4A2;
+font-size: 23px;
+font-family: 'Segoe UI';
+}
+
+QPushButton:checked{
+  background-color:#FFFFFF; 
+  color: #38686A; 
+font-size: 23px;
+font-family: 'Segoe UI';
+}
+</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -41,7 +67,7 @@
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="btn_tela_inicio">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -51,13 +77,31 @@
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: #38686A;
-font-size: 23px;
-font-family: 'Segoe UI';
-background-color: #FFFFFF;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Início</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="autoRepeat">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+        <property name="autoRepeatDelay">
+         <number>300</number>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_tela_vendas">
@@ -70,13 +114,16 @@ background-color: #FFFFFF;</string>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: #FFFFFF;
-font-size: 23px;
-font-family: 'Segoe UI';
-background-color: #A3B4A2;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Vendas</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_tela_produtos">
@@ -89,13 +136,16 @@ background-color: #A3B4A2;</string>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: #FFFFFF;
-font-size: 23px;
-font-family: 'Segoe UI';
-background-color: #A3B4A2;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Produtos</string>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_tela_clientes">
@@ -108,19 +158,19 @@ background-color: #A3B4A2;</string>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">color: #FFFFFF;
-font-size: 23px;
-font-family: 'Segoe UI';
-background-color: #A3B4A2;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Clientes</string>
         </property>
         <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
          <bool>false</bool>
         </property>
         <property name="autoExclusive">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
        </widget>
       </widget>

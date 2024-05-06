@@ -1,4 +1,27 @@
-.QPushButton {
-  background-color: red;
+/* .QPushButton {
+  background-color:#A3B4A2;
+  color: #FFFFFF; 
+  font-size: 23px; 
+  font-family: 'Segoe UI'
 }
 
+.QPushButton:active{
+  background-color:#FFFFFF;
+  color: #38686A;
+  font-size: 23px; 
+  font-family: 'Segoe UI'
+}
+ */
+QPushButton #btn_tela_clientes{
+    color: #FFFFFF;
+    font-size: 23px;
+    font-family: 'Segoe UI';
+    background-color: #A3B4A2;
+}
+
+QPushButton #btn_tela_clientes:active{
+  background-color:#FFFFFF;
+  color: #38686A;
+  font-size: 23px; 
+  font-family: 'Segoe UI'
+}
