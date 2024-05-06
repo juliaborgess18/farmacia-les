@@ -1,4 +1,5 @@
 ''' Arquivo principal para executar o programa'''
+
 from PyQt5.QtWidgets import QApplication
 from controller.TelaInicialController import LoginWindow
 from PyQt5.QtWidgets import QApplication
