@@ -15,12 +15,14 @@ class ClienteDAO():
         return self.session.query(Cliente).filter_by(id_cliente=id, foi_deletado=False).first()
 
     def insert(self, cliente: Cliente):
+        cliente.foi_deletado = False
         try:
             self.session.add(cliente)
             self.session.commit()
         except Exception as ex:
             print(f"Error ao inserir o cliente: \n{ex}")
             self.session.rollback()
+            raise ex
 
     def update(self, cliente: Cliente):
         try:

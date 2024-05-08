@@ -16,12 +16,14 @@ class ProdutoDAO():
         return self.session.query(Produto).filter_by(id_produto=id, foi_deletado=False).first()
 
     def insert(self, produto: Produto):
+        produto.foi_deletado = False
         try:
             self.session.add(produto)
             self.session.commit()
         except Exception as ex:
             print(f"Error ao inserir o Produto: \n{ex}")
             self.session.rollback()
+            raise ex
 
     def update(self, produto: Produto):
         try:
@@ -39,12 +41,3 @@ class ProdutoDAO():
         except Exception as ex:
             print(f"Error ao deletar o produto: \n{ex}")
             self.session.rollback()
-
-    # def print_produto():
-    #     print("========================")
-    #     print("======== Produto =======")
-    #     dao = ProdutoDAO()
-    #     produtos = dao.select_all()
-
-    #     for produto in produtos:
-    #         print(f"Id: {produto.id_produto}, Nome: {produto.nome}, Valor: {produto.valor}, Data de Validade: {produto.data_validade}, Id Fornecedor: {produto.fornecedor.id_fornecedor}")

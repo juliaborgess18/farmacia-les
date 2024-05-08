@@ -1,5 +1,11 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icons/user-pen.png</file>
+    <file>icons/user-pen.svg</file>
+    <file>icons/box-open.png</file>
+    <file>icons/point-of-sale-bill.png</file>
+    <file>icons/house-chimney.png</file>
+    <file>icons/user-headset.svg</file>
     <file>icons/caixa-aberta.svg</file>
     <file>icons/list.svg</file>
     <file>icons/point-of-sale-bill.svg</file>

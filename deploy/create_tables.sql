@@ -18,7 +18,6 @@ CREATE TABLE Usuario(
 	CONSTRAINT id_usuario_pk PRIMARY KEY(idUsuario)
 );
 
-
 CREATE TABLE Endereco (
   idEndereco SERIAL NOT NULL,
   numero INT NOT NULL,

@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="btn_cadastrar_cliente">
    <property name="geometry">
     <rect>
      <x>792</x>
@@ -30,9 +30,9 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>0</y>
+     <y>30</y>
      <width>609</width>
-     <height>558</height>
+     <height>521</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
