@@ -18,6 +18,8 @@ class Venda(Base):
     # Soft Delete
     data_delete = Column("datadelete", Date)
     foi_deletado = Column("foideletado", Boolean)
+    #teste
+    item_venda = relationship("ItemVenda", back_populates="venda")
     
     funcionario = relationship("Funcionario")
     cliente = relationship("Cliente")

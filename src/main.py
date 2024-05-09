@@ -1,5 +1,3 @@
-''' Arquivo principal para executar o programa'''
-
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QApplication
 from controller.InicialController import LoginWindow

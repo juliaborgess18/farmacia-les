@@ -10,6 +10,16 @@ class ItemVendaDAO():
     def select_all(self):
         return self.session.query(ItemVenda).all()
     
+    def insert(self, itemVenda: ItemVenda):
+        itemVenda.foi_deletado = False
+        try:
+            self.session.add(itemVenda)
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao inserir o Item Venda: \n{ex}")
+            self.session.rollback()
+            raise ex
+    
 # def print_itemVenda():
 #     print("========================")
 #     print("======== itemVenda =======")

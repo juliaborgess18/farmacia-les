@@ -15,7 +15,12 @@ class VendaDAO():
         return self.session.query(Venda).filter_by(id_venda=id, foi_deletado=False).first()
 
     def insert(self, venda: Venda):
-        pass
+        try:
+            self.session.add(venda)
+            self.session.commit()
+        except Exception as ex:
+            print(f"Error ao inserir a venda: \n{ex}")
+            self.session.rollback()
 
     def update(self, venda: Venda):
         pass
