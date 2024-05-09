@@ -56,7 +56,7 @@ class CadastroVendaController(QWidget):
             else:
                 print("Erro: Produto não definido para o ItemVenda")
 
-        self.label_valor_pagamento.setText(f"Valor total: R${total:.2f}")  # Atualiza o texto do QLabel
+        self.label_valor_pagamento.setText(f"R${total:.2f}")  # Atualiza o texto do QLabel
         self.label_valor_pagamento.repaint()  # Atualiza o valor total na interface gráfica
 
 

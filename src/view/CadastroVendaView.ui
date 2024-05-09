@@ -248,9 +248,9 @@
    <widget class="QLabel" name="label_valor_pagamento">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>330</x>
       <y>115</y>
-      <width>161</width>
+      <width>111</width>
       <height>21</height>
      </rect>
     </property>
@@ -260,7 +260,7 @@
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
   </widget>
