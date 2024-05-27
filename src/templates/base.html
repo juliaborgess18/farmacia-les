@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/lib/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/lib/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/static/css/estilos.css">
+    <title>Gestão de Farmácia :: {% block title %}Principal{% endblock %}</title>
+</head>
+<body>
+
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-2">
+                {% include 'sidebar.html' %}
+            </div>
+            <div class="col-10">
+                {% include 'navbar.html' %}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/lib/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/acoes.js"></script>
+</body>
+</html>

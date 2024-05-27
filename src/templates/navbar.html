@@ -1,0 +1,21 @@
+{% block navbar%}{% endblock %}
+<div class="navbar-custom">
+    <div class="row justify-content-evenly g-0">
+        <div class="col-auto">
+            <i class="bi bi-person"></i>
+            <a href="/cadastrar_{{ urlItem }}">Cadastrar {{ navItem }}</a>
+        </div>
+        <div class="col-auto">
+            <i class="bi bi-pencil"></i>
+            <a href="#">Editar {{ navItem }}</a>
+        </div>
+        <div class="col-auto">
+            <i class="bi bi-trash3"></i>
+            <a href="#">Remover {{ navItem }}</a>
+        </div>
+        <div class="col-auto">
+            <i class="bi bi-view-list"></i>
+            <a href="#">Visualizar {{ navItem }}</a>
+        </div>
+    </div>
+</div>
