@@ -4,7 +4,76 @@
 
 {% block content %}
 
-<h1>fazer a tela VENDA</h1>
-<!-- fazer a tela -->
+<style>
 
+    .container {
+        border: 1px;
+        width: 1800px;
+        height: 300px;
+        position: relative;
+    }
+    .label, .input, .button, .frame, .line {
+        position: absolute;
+    }
+    .label {
+        font-size: 11pt;
+    }
+    .frame {
+        background-color: rgb(56, 104, 106);
+    }
+    .frame .inner-frame {
+        background-color: rgb(255, 255, 255);
+    }
+    .button {
+        font-size: 9pt;
+        font-weight: bold;
+        color: rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
+        color: rgb(56, 104, 106);
+        border: 1px solid rgb(107, 107, 107);
+    }
+    .line {
+        border-style: solid;
+    }
+    .horizontal {
+        border-width: 1px 0 0 0;
+    }
+    .vertical {
+        border-width: 0 0 0 1px;
+    }
+</style>
+<div class="container">
+    <label class="label" style="left: 50px; top: 60px; width: 61px; height: 28px;">Cliente:</label>
+    <input class="input" type="text" style="left: 120px; top: 10px; width: 401px; height: 31px;">
+    <input class="input" type="text" style="left: 120px; top: 110px; width: 401px; height: 31px;">
+    <div class="line horizontal" style="left: 10px; top: 220px; width: 1021px; height: 1px;"></div>
+    <label class="label" style="left: 90px; top: 10px; width: 21px; height: 28px;">ID:</label>
+    <input class="input" type="text" style="left: 120px; top: 60px; width: 401px; height: 31px;">
+    <label class="label" style="left: 20px; top: 110px; width: 91px; height: 28px;">Forma Pag:</label>
+    <div class="frame" style="left: 550px; top: 0; width: 481px; height: 151px;">
+        <div class="frame inner-frame" style="left: 270px; top: 10px; width: 181px; height: 31px;"></div>
+        <div class="frame inner-frame" style="left: 270px; top: 60px; width: 181px; height: 31px;"></div>
+        <label class="label" style="left: 40px; top: 20px; width: 111px; height: 16px; color: rgb(255, 255, 255); font-weight: bold;">Valor Bruto</label>
+        <label class="label" style="left: 40px; top: 60px; width: 71px; height: 16px; color: rgb(255, 255, 255); font-weight: bold;">Desconto</label>
+        <label class="label" style="left: 40px; top: 110px; width: 131px; height: 21px; color: rgb(255, 255, 255); font-weight: bold;">Valor pagamento</label>
+        <div class="line horizontal" style="left: 0; top: 90px; width: 481px; height: 1px; color: rgb(255, 255, 255);"></div>
+        <label class="label" style="left: 330px; top: 115px; width: 111px; height: 21px; font-size: 10pt;"></label>
+    </div>
+    <div class="frame" style="left: 280px; top: 240px; width: 751px; height: 471px;">
+        <div class="frame inner-frame" style="left: 10px; top: 10px; width: 731px; height: 451px;">
+            <div class="list" style="left: 0; top: 0; width: 731px; height: 451px; font-size: 10pt;"></div>
+        </div>
+    </div>
+    <div class="frame" style="left: 10px; top: 240px; width: 251px; height: 471px;">
+        <button class="button" style="left: 20px; top: 320px; width: 211px; height: 131px;">Realizar venda</button>
+    </div>
+    <div class="line vertical" style="left: 260px; top: 240px; width: 1px; height: 471px;"></div>
+    <div class="line vertical" style="left: 530px; top: 0; width: 1px; height: 161px;"></div>
+    <div class="line horizontal" style="left: 10px; top: 150px; width: 1021px; height: 1px;"></div>
+    <input class="input" type="text" style="left: 120px; top: 170px; width: 401px; height: 51px;">
+    <button class="button" style="left: 870px; top: 170px; width: 151px; height: 51px;">Adicionar</button>
+    <label class="label" style="left: 20px; top: 180px; width: 91px; height: 28px;">ID Produto:</label>
+    <input class="input" type="text" style="left: 580px; top: 170px; width: 281px; height: 51px;">
+    <label class="label" style="left: 530px; top: 180px; width: 41px; height: 28px;">Qtd:</label>
+</div>
 {% endblock %}
