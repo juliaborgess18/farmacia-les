@@ -4,8 +4,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from infrastructure.config.database import criar_bd
 
-app = FastAPI()
 criar_bd()
+app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 

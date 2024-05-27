@@ -123,7 +123,7 @@ CREATE TABLE Venda (
 );
 
 CREATE TABLE ItemVenda (
-  qtd INT NOT NULL,
+  qtde INT NOT NULL,
   idVenda INT NOT NULL,
   idProduto INT NOT NULL,
   PRIMARY KEY (idVenda, idProduto),
