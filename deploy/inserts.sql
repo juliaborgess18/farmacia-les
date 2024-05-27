@@ -57,7 +57,7 @@ INSERT INTO Venda (dataVenda, valorTotal, status, idFormaPagamento, idFuncionari
 ('2024-03-29', 90.00, 'Concluída', 5, 5, 5);
 
 
-INSERT INTO ItemVenda (qtd, idVenda, idProduto) VALUES
+INSERT INTO ItemVenda (qtde, idVenda, idProduto) VALUES
 (2, 1, 1),
 (3, 2, 2),
 (1, 3, 3),
@@ -85,3 +85,9 @@ INSERT INTO ItemDevolucao (qtde, idProduto, idDevolucao) VALUES
 INSERT INTO Convenio (especialidade, dataInicioConvenio, cnpj, idCliente) VALUES
 ('Pediatra', '2023-01-01', '23.456.789/0001-01', 1);
 
+UPDATE Cliente SET foiDeletado = false;
+UPDATE Funcionario SET foiDeletado = false;
+UPDATE Produto SET foiDeletado = false;
+UPDATE Venda SET foiDeletado = false;
+UPDATE Devolucao SET foiDeletado = false;
+UPDATE Convenio SET foiDeletado = false;

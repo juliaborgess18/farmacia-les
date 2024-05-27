@@ -1,0 +1,9 @@
+from typing import List, Optional
+from pydantic import BaseModel
+
+from schemas.itemDevolucao import ItemDevolucao
+
+class Devolucao(BaseModel):
+    id_devolucao: Optional[int] = None
+    valor_devolucao: float
+    itens_devolucao: Optional[List[ItemDevolucao]] = None
