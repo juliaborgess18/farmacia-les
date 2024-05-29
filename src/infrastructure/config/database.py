@@ -8,7 +8,7 @@ __password__ = 'postgres'
 __hostname__ = '127.0.0.1:5432'
 __database_name__ = 'farmacia-les'
 SQLALCHEMY_DATABASE_URL = f'postgresql+psycopg2://{__username__}:{__password__}@{__hostname__}/{__database_name__}'
-# SQLALCHEMY_DATABASE_URL = "sqlite:///../app_farmacia.db" # Precisa inserir dados nesse banco
+#SQLALCHEMY_DATABASE_URL = "sqlite:///../app_farmacia.db" # Precisa inserir dados nesse banco
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
