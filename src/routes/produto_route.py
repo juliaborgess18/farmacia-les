@@ -33,17 +33,10 @@ async def get_editar_produto(request: Request):
     produtos = ProdutoRepositorio.obter_todos()
     return templates.TemplateResponse("/pages/produtos/visualizar_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "produtos": produtos })
 
-
-
-
 @router.post("/cadastrar_produto")
 async def post_produto(produto: Produto = Body()):
     produto = ProdutoRepositorio.inserir(produto)
     return {"MSG": produto.id_produto}
-
-@router.get("/remover_produto", response_class=HTMLResponse)
-async def get_remover_produto(request: Request):
-    return templates.TemplateResponse("/pages/produtos/remover_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM })
 
 @router.get("/obter_produtos")
 async def get_produtos():
