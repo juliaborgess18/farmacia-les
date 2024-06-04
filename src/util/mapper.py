@@ -45,7 +45,6 @@ class Mapper():
             endereco_mapeado = cls.mapear_endereco(cliente.endereco)
 
         cliente_mapeado = ClienteModel(
-            id_cliente=cliente.id_cliente,
             nome=cliente.nome,
             sobrenome=cliente.sobrenome,
             data_nascimento=cliente.data_nascimento,
@@ -61,7 +60,6 @@ class Mapper():
     @classmethod
     def mapear_convenio(cls, convenio: ConvenioSchema) -> ConvenioModel:
         convenio_mapeado = ConvenioModel(
-            id_convenio=convenio.id_cliente,
             especialidade=convenio.especialidade,
             data_inicio_convenio=convenio.data_inicio_convenio,
             cnpj=convenio.cnpj,
@@ -86,7 +84,6 @@ class Mapper():
     @classmethod
     def mapear_devolucao(cls, devolucao: DevolucaoSchema) -> DevolucaoModel:
         devolucao_mapeado = DevolucaoModel(
-            id_devolucao=devolucao.id_devolucao,
             valor_devolucao=devolucao.valor_devolucao,
             data_delete=None,
             foi_deletado=False,
@@ -101,7 +98,6 @@ class Mapper():
             endereco_mapeado = cls.mapear_endereco(fornecedor.endereco)
 
         fornecedor_mapeado = FornecedorModel(
-            id_fornecedor=fornecedor.id_fornecedor,
             nome=fornecedor.nome,
             cnpj=fornecedor.cnpj,
             email=fornecedor.email,
@@ -119,7 +115,6 @@ class Mapper():
             endereco_mapeado = cls.mapear_endereco(funcionario.endereco)
 
         funcionario_mapeado = FuncionarioModel(
-            id_funcionario=funcionario.id_funcionario,
             nome=funcionario.nome,
             sobrenome=funcionario.sobrenome,
             data_nascimento=funcionario.data_nascimento,
@@ -138,7 +133,6 @@ class Mapper():
     @classmethod
     def mapear_produto(cls, produto: ProdutoSchema) -> ProdutoModel:
         produto_mapeado = ProdutoModel(
-            id_produto=produto.id_produto,
             nome=produto.nome,
             valor=produto.valor,
             data_validade=produto.data_validade,
@@ -150,7 +144,6 @@ class Mapper():
     @classmethod
     def mapear_usuario(cls, usuario: UsuarioSchema) -> UsuarioModel:
         usuario_mapeado = UsuarioModel(
-            id_usuario=usuario.id_usuario,
             nome_usuario=usuario.nome_usuario,
             senha_usuario=usuario.senha_usuario)
         return usuario_mapeado
@@ -172,7 +165,6 @@ class Mapper():
     @classmethod
     def mapear_venda(cls, venda: VendaSchema) -> VendaModel:
         venda_mapeado = VendaModel(
-            id_venda=venda.id_venda,
             data_venda=venda.data_venda,
             valor_total=venda.valor_total,
             status=venda.status,
