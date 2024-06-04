@@ -2,6 +2,8 @@ from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
+from infrastructure.repositories.cliente import ClienteRepositorio
+
 router = APIRouter()
 
 templates = Jinja2Templates(directory="templates")
@@ -26,6 +28,7 @@ async def get_remover_cliente(request: Request):
 
 @router.get("/visualizar_cliente", response_class=HTMLResponse)
 async def get_visualizar_cliente(request: Request):
-    return templates.TemplateResponse("/pages/clientes/visualizar_cliente.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM })
+    clientes = ClienteRepositorio.obter_todos()
+    return templates.TemplateResponse("/pages/clientes/visualizar_cliente.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "clientes": clientes })
 
 
