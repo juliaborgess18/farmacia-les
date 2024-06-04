@@ -6,8 +6,8 @@ import uvicorn
 from infrastructure.config.database import criar_bd
 from routes import produto_route
 
-app = FastAPI()
 criar_bd()
+app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 
