@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Alterar de Produto{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container">
+        <form class="row">
+            <h3>Pesquisar Produto</h3>
+                
+                <label for="id_produto">ID:</label>
+                <div class="form mb-3 col-10">
+                    <input type="number" id="id_produto" name="id" class="form-control" placeholder="ID do Produto...">
+                </div>
+                
+                <div class="col-2">
+                    <button class="btn btn-success" onclick="submitForm()">Buscar Produto</button>
+                </div>
+        </form>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+        <form class="row">
+            <h3>Alterar Produto</h3>
+                
+            <label for="nome_produto">Nome:</label>
+            <div class="form mb-3">
+                <input type="text" id="nome_produto" name="nome" class="form-control" placeholder="Nome do Produto...">
+            </div>
+
+            <label for="valor_produto">Valor: </label>
+            <div class="form mb-3">
+                <input type="number" id="valor_produto" name="valor" class="form-control"  placeholder="Valor do Produto...">
+            </div>
+            
+            <label for="validade_produto">Data de Validade: </label>
+            <div class="form mb-3">
+                <input type="date" name="data_validade" id="validade_produto" class="form-control">
+            </div>
+                
+            <div class="col-2">
+                <button class="btn btn-success" onclick="submitForm()">Alterar Produto</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
