@@ -1,1 +1,94 @@
 {% extends 'base.html' %}
+
+{% block title %}Editar de cliente{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container">
+        <form class="row">
+            <h3>Pesquisar</h3>
+
+                <div class="form mb-3 col-2">
+                    <label for="id_cliente">ID: </label>
+                    <div class="form mb-3">
+                        <input class="form-control" type="text" name="" id="id_cliente">
+                    </div>
+                </div>
+                <div class="col-2 mt-4">
+                    <button class="btn btn-success" onclick="submitForm()">Buscar</button>
+                </div>
+                
+        </form>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+        <form class="row">
+            <h3>Editar</h3>
+                
+            <label for="nome_cliente">Nome completo:</label>
+            <div class="form mb-3">
+                <input type="text" id="nome_cliente" name="nome" class="form-control" placeholder="Nome do cliente...">
+            </div>
+            
+            <label for="validade_cliente">Data nascimento: </label>
+            <div class="form mb-3">
+                <input type="date" name="data_validade" id="validade_cliente" class="form-control">
+            </div>
+            
+            <label for="nome_cliente">CPF:</label>
+            <div class="form mb-3">
+                <input type="text" id="nome_cliente" name="nome" class="form-control" placeholder="Nome do cliente...">
+            </div>
+            
+            <label for="nome_cliente">Contato:</label>
+            <div class="form mb-3">
+                <input type="text" id="nome_cliente" name="nome" class="form-control" placeholder="Nome do cliente...">
+            </div>
+            
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <label for="rua_endereco_cliente">Rua: </label>
+                    <div class="form mb-3">
+                        <input class="form-control" placeholder="Rua do cliente..." type="text" name="" id="endereco_cliente">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-2">
+                    <label for="numero_endereco_cliente">Número: </label>
+                    <div class="form mb-3">
+                        <input class="form-control" placeholder="Núm do cliente..." type="text" name="" id="numero_endereco_cliente">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <label for="bairro_endereco_cliente">Bairro: </label>
+                    <div class="form mb-3">
+                        <input class="form-control" placeholder="Bairro do cliente..." type="text" name="" id="bairro_endereco_cliente">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <label for="cidade_endereco_cliente">Cidade: </label>
+                    <div class="form mb-3">
+                        <input class="form-control" placeholder="Cidade do cliente..." type="text" name="" id="cidade_endereco_cliente">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-2">
+                    <label for="uf_endereco_cliente">UF: </label>
+                    <div class="form mb-3">
+                        <input class="form-control" placeholder="UF do cliente..." type="text" name="" id="uf_endereco_cliente">
+                    </div>
+                </div>
+            </div>
+                
+            <div class="col-2">
+                <button class="btn btn-success" onclick="submitForm()">Editar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
