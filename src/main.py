@@ -15,7 +15,7 @@ app.include_router(produto_route.router)
 
 @app.get("/", response_class=HTMLResponse)
 async def get_farmacia(request: Request):
-    return templates.TemplateResponse("index_sem_selecao.html", {"request":request})
+    return templates.TemplateResponse("index.html", {"request":request})
 
 @app.get("/cliente", response_class=HTMLResponse)
 async def get_cliente(request: Request):
@@ -24,7 +24,6 @@ async def get_cliente(request: Request):
 @app.get("/fornecedor", response_class=HTMLResponse)
 async def get_fornecedor(request: Request):
     return templates.TemplateResponse("fornecedor.html", {"request":request, "navItem": "Fornecedor", "urlItem": "fornecedor" })
-
 
 @app.get("/venda", response_class=HTMLResponse)
 async def get_venda(request: Request):
