@@ -11,7 +11,7 @@ app.mount(path="/static", app=StaticFiles(directory="static"), name="static")
 
 @app.get("/", response_class=HTMLResponse)
 async def get_farmacia(request: Request):
-    return templates.TemplateResponse("index.html", {"request":request})
+    return templates.TemplateResponse("index_sem_selecao.html", {"request":request})
 
 @app.get("/cliente", response_class=HTMLResponse)
 async def get_cliente(request: Request):
