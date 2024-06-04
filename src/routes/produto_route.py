@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Body, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-
 from infrastructure.repositories.fornecedor import FornecedorRepositorio
 from infrastructure.repositories.produto import ProdutoRepositorio
 from schemas.produto import Produto
@@ -41,6 +40,10 @@ async def get_editar_produto(request: Request):
 async def post_produto(produto: Produto = Body()):
     produto = ProdutoRepositorio.inserir(produto)
     return {"MSG": produto.id_produto}
+
+@router.get("/remover_produto", response_class=HTMLResponse)
+async def get_remover_produto(request: Request):
+    return templates.TemplateResponse("/pages/produtos/remover_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM })
 
 @router.get("/obter_produtos")
 async def get_produtos():

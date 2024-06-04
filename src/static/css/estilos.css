@@ -8,6 +8,8 @@ body{
 
 .sidebar {
   background-color: #38686a;
+  position: fixed;
+  width: 260px;
 }
 
 .sidebar .sidebar-titulo {
@@ -47,9 +49,9 @@ body{
   color: black;
   font-weight: 100;
   background-color: #d8d8d8;
-  width: 320px;
+  width: 250px;
   height: 40px;
-  border-radius: 5px;
+  border-radius: 5px 0px 0px 5px;
   padding-top: 5px;
 }
 
@@ -64,7 +66,6 @@ body{
   color: black;
   font-weight: 100;
   font-size: 20px;
-
 }
 
 .navbar-custom a:hover{
