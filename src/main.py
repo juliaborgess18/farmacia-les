@@ -15,11 +15,11 @@ app.include_router(produto_route.router)
 
 @app.get("/", response_class=HTMLResponse)
 async def get_farmacia(request: Request):
-    return templates.TemplateResponse("index.html", {"request":request})
+    return templates.TemplateResponse("index_sem_selecao.html", {"request":request})
 
 @app.get("/cliente", response_class=HTMLResponse)
 async def get_cliente(request: Request):
-    return templates.TemplateResponse("cliente.html", { "request":request, "navItem": "Cliente", "urlItem": "cliente" })
+    return templates.TemplateResponse("/pages/clientes/cliente.html", { "request":request, "navItem": "Cliente", "urlItem": "cliente" })
 
 @app.get("/fornecedor", response_class=HTMLResponse)
 async def get_fornecedor(request: Request):
@@ -30,10 +30,13 @@ async def get_fornecedor(request: Request):
 async def get_venda(request: Request):
     return templates.TemplateResponse("venda.html", {"request":request, "navItem": "Venda", "urlItem": "venda" })
 
-# @app.get("/cliente/cadastro", response_class=HTMLResponse)
 @app.get("/cadastrar_cliente", response_class=HTMLResponse)
-async def get_venda(request: Request):
-    return templates.TemplateResponse("cadastrar_cliente.html", {"request":request, "navItem": "Cliente", "urlItem": "cliente" })
+async def get_cadastro_cliente(request: Request):
+    return templates.TemplateResponse("/pages/clientes/cadastrar_cliente.html", {"request":request, "navItem": "Cliente", "urlItem": "cliente" })
+
+@app.get("/editar_cliente", response_class=HTMLResponse)
+async def get_atualiza_cliente(request: Request):
+    return templates.TemplateResponse("/pages/clientes/editar_cliente.html", {"request":request, "navItem": "Cliente", "urlItem": "cliente" })
 
 if __name__ == "__main__":
     uvicorn.run("main:app", port=8000, reload=True)

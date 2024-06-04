@@ -9,19 +9,21 @@ from schemas.produto import Produto
 router = APIRouter()
 
 templates = Jinja2Templates(directory="templates")
+NAV_ITEM = "Produto"
+URL_ITEM = "produto"
 
 @router.get("/produto", response_class=HTMLResponse)
 async def get_produto(request: Request):
-    return templates.TemplateResponse("/pages/produtos/produto.html", {"request":request, "navItem": "Produto", "urlItem": "produto" })
+    return templates.TemplateResponse("/pages/produtos/produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM })
 
 @router.get("/cadastrar_produto", response_class=HTMLResponse)
 async def get_cadastrar_produto(request: Request):
     fornecedores = FornecedorRepositorio.obter_todos()
-    return templates.TemplateResponse("/pages/produtos/cadastrar_produto.html", {"request":request, "navItem": "Produto", "urlItem": "produto", "fornecedores": fornecedores })
+    return templates.TemplateResponse("/pages/produtos/cadastrar_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "fornecedores": fornecedores })
 
-@router.get("/alterar_produto", response_class=HTMLResponse)
-async def get_alterar_produto(request: Request):
-    return templates.TemplateResponse("/pages/produtos/alterar_produto.html", {"request":request, "navItem": "Produto", "urlItem": "produto" })
+@router.get("/editar_produto", response_class=HTMLResponse)
+async def get_editar_produto(request: Request):
+    return templates.TemplateResponse("/pages/produtos/editar_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM })
 
 @router.post("/cadastrar_produto")
 async def post_produto(produto: Produto = Body()):

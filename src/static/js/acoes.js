@@ -17,7 +17,6 @@ if (path.includes("venda")){
     item.classList.add('active');
 }
 
-
 function btnClickIdFornecedor(id) {
     const inputIdFornecedor = document.getElementById("id_fornecedor_produto")
     const rows = document.querySelectorAll("tr")

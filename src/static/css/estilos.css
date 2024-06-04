@@ -2,6 +2,10 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body{
+  background-color: #d8d8d8;
+}
+
 .sidebar {
   background-color: #38686a;
 }
@@ -42,7 +46,7 @@
   display: inline-block;
   color: black;
   font-weight: 100;
-  background-color: white;
+  background-color: #d8d8d8;
   width: 320px;
   height: 40px;
   border-radius: 5px;
@@ -67,16 +71,18 @@
   text-decoration: none;
   color: rgb(99, 99, 99);
   font-weight: 100;
-  font-size: 20px; 
+  font-size: 20px;
 } 
 
 /* nunca, never, jamais, niemals, mai, nikogda, kesshite, cóng bù, abadan você deve apagar essa div maravilhosa que agora é minha coisa favorita no mundo. Fonte das traduções de 'nunca': chatgpt. */
 .content {
-  display: grid;
-  grid-template-rows: 50% 50%;
-  background: #f6f7fb;
-  margin: 15px;
-  padding: 20px;
+  display: grid; 
+  grid-template-rows: 50% 50%; 
+  background-color: #ececec;
+  padding: 10px 10px 20px 10px;
   border-radius: 15px;
+  margin: 20px;
 }
+
+
 
