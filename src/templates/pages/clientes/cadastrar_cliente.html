@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro de Cliente{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container ">
+        <form class="row" action="" method="post">
+            <h3>Cadastro</h3>
+            <div class="col-12 col-lg-4">
+                <label for="nome_cliente">Nome: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="text" name="" id="nome_cliente">
+                </div>
+
+                <label for="nome_cliente">Sobrenome: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="text" name="" id="sobrenome_cliente">
+                </div>
+
+                <label for="data_nascimento_cliente">Data de nascimento: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="date" name="" id="data_nascimento_cliente">
+                </div>
+
+                <label for="cpf_cliente">CPF: </label>
+                <div class="form mb-3">
+                    <input class="form-control" type="text" name="" id="cpf_cliente">
+                </div>
+
+                <label for="celular_cliente">Celular: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="text" name="" id="celular_cliente">
+                </div>
+            </div>
+            <h4>Endereço</h4>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <label for="rua_endereco_cliente">Rua: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="" id="endereco_cliente">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-1">
+                    <label for="numero_endereco_cliente">Número: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="" id="numero_endereco_cliente">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <label for="bairro_endereco_cliente">Bairro: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="" id="bairro_endereco_cliente">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <label for="cidade_endereco_cliente">Cidade: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="" id="cidade_endereco_cliente">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-1">
+                    <label for="uf_endereco_cliente">UF: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="" id="uf_endereco_cliente">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-success" type="submit">Cadastrar cliente</button>
+    </div>
+</div>
+
+
+{% endblock %}
