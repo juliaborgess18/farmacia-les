@@ -1,98 +1,161 @@
 {% extends 'base.html' %}
 
-{% block title %} Venda {% endblock %}
+{% block title %}Cadastro de Venda{% endblock %}
 
 {% block content %}
-<style>
-    body {
-        font-family: 'Segoe UI', sans-serif;
-    }
-    .form {
-        width: 1153px;
-        height: 624px;
-        position: relative;
-    }
-    .fixed-size {
-        width: 1153px;
-        height: 624px;
-    }
-    .label {
-        font-size: 11pt;
-        position: absolute;
-    }
-    .input {
-        position: absolute;
-    }
-    .line {
-        position: absolute;
-        background-color: black;
-    }
-    .line.horizontal {
-        height: 1px;
-        width: 100%;
-    }
-    .line.vertical {
-        width: 1px;
-        height: 100%;
-    }
-    .frame {
-        background-color: rgb(56, 104, 106);
-        position: absolute;
-    }
-    .frame .label {
-        color: rgb(255, 255, 255);
-    }
-    .button {
-        position: absolute;
-        background-color: rgb(255, 255, 255);
-        color: rgb(56, 104, 106);
-        font-size: 9pt;
-        font-weight: bold;
-    }
-    .button.add-item {
-        background-color: rgb(255, 255, 255);
-        color: rgb(56, 104, 106);
-        border: 1px solid rgb(107, 107, 107);
-        font-size: 8pt;
-    }
-</style>
 
-<div class="form fixed-size">
-    <label class="label" style="left: 50px; top: 60px; width: 61px; height: 28px;">Cliente:</label>
-    <input type="text" class="input" style="left: 120px; top: 10px; width: 441px; height: 31px;">
-    <input type="text" class="input" style="left: 120px; top: 110px; width: 441px; height: 31px;">
-    <div class="line horizontal" style="left: 10px; top: 220px; width: 1141px;"></div>
-    <label class="label" style="left: 90px; top: 10px; width: 21px; height: 28px;">ID:</label>
-    <input type="text" class="input" style="left: 120px; top: 60px; width: 441px; height: 31px;">
-    <label class="label" style="left: 20px; top: 110px; width: 91px; height: 28px;">Forma Pag:</label>
-    <!-- VALOR DA VENDA -->
-    <div class="frame" style="left: 580px; top: 0px; width: 570px; height: 151px;">
-        <div class="frame" style="left: 320px; top: 20px; width: 181px; height: 31px;"></div>
-        <div class="frame" style="left: 320px; top: 60px; width: 181px; height: 31px;"></div>
-        <label class="label" style="left: 30px; top: 20px; width: 111px; height: 16px;">Valor Bruto</label>
-        <label class="label" style="left: 30px; top: 60px; width: 71px; height: 16px;">Desconto</label>
-        <label class="label" style="left: 30px; top: 110px; width: 131px; height: 21px;">Valor pagamento</label>
-        <div class="line horizontal" style="left: 0px; top: 90px; width: 561px;"></div>
-        <label class="label" style="left: 320px; top: 110px; width: 181px; height: 21px;"></label>
+<div class="content">
+    <div class="container">
+        <form class="row" id="form_venda">
+            <h3>Cadastro de Venda</h3>
+
+            <label for="id_funcionario">ID do Funcionário:</label>
+            <div class="form-group mb-3">
+                <input type="number" id="id_funcionario" name="id_funcionario" class="form-control" placeholder="ID do Funcionário...">
+            </div>
+
+            <label for="id_cliente">ID do Cliente:</label>
+            <div class="form-group mb-3">
+                <input type="number" id="id_cliente" name="id_cliente" class="form-control" placeholder="ID do Cliente...">
+            </div>
+
+            <label for="id_forma_pagamento">Forma de Pagamento:</label>
+            <div class="form-group mb-3">
+                <select id="id_forma_pagamento" name="id_forma_pagamento" class="form-control">
+                    <option value="" selected disabled>Selecione a Forma de Pagamento</option>
+                    <!-- As opções de forma de pagamento serão carregadas via JavaScript -->
+                </select>
+            </div>
+
+            <div class="col-12">
+                <h4>Adicionar Produtos</h4>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="id_produto">ID do Produto:</label>
+                        <input type="number" id="id_produto" name="id_produto" class="form-control" placeholder="ID do Produto...">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="quantidade_produto">Quantidade do Produto:</label>
+                        <input type="number" id="quantidade_produto" name="quantidade_produto" class="form-control" placeholder="Quantidade do Produto...">
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button type="button" class="btn btn-primary" onclick="adicionarProduto()">Adicionar Produto</button>
+                    </div>
+                </div>
+                <table class="table table-striped" id="lista_produtos">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-success">Cadastrar Venda</button>
+            </div>
+        </form>
     </div>
-    <!-- PRODUTOS -->
-    <div class="frame" style="left: 280px; top: 240px; width: 871px; height: 381px;">
-        <div class="frame" style="left: 10px; top: 10px; width: 851px; height: 361px;">
-            <div style="left: 0px; top: 0px; width: 851px; height: 361px; font-size: 10pt;"></div>
-        </div>
-    </div>
-    <!-- REALIZAR VENDA -->
-    <div class="frame" style="left: 10px; top: 240px; width: 251px; height: 381px;">
-        <button class="button" style="left: 20px; top: 230px; width: 211px; height: 131px;">Realizar venda</button>
-    </div>
-    <div class="line vertical" style="left: 260px; top: 240px; height: 381px;"></div>
-    <div class="line vertical" style="left: 570px; top: 0px; height: 151px;"></div>
-    <div class="line horizontal" style="left: 10px; top: 150px; width: 1141px;"></div>
-    <input type="text" class="input" style="left: 120px; top: 170px; width: 441px; height: 41px;">
-    <button class="button add-item" style="left: 950px; top: 170px; width: 171px; height: 41px;">Adicionar</button>
-    <label class="label" style="left: 20px; top: 180px; width: 91px; height: 28px;">ID Produto:</label>
-    <input type="text" class="input" style="left: 620px; top: 170px; width: 321px; height: 41px;">
-    <label class="label" style="left: 580px; top: 180px; width: 41px; height: 28px;">Qtd:</label>
 </div>
+
+<script>
+    let produtos = [];
+
+    function adicionarProduto() {
+        const idProduto = document.getElementById('id_produto').value;
+        const nomeProduto = document.getElementById('id_produto').value; // Não temos o nome do produto aqui, você pode adicioná-lo de outra forma
+        const quantidadeProduto = document.getElementById('quantidade_produto').value;
+
+        if (idProduto && quantidadeProduto) {
+            produtos.push({ id: idProduto, nome: nomeProduto, quantidade: quantidadeProduto });
+            atualizarListaProdutos();
+            document.getElementById('id_produto').value = '';
+            document.getElementById('quantidade_produto').value = '';
+        } else {
+            alert('Por favor, preencha todos os campos do produto.');
+        }
+    }
+
+    function removerProduto(index) {
+        produtos.splice(index, 1);
+        atualizarListaProdutos();
+    }
+
+    function atualizarListaProdutos() {
+        const tbody = document.getElementById('lista_produtos').getElementsByTagName('tbody')[0];
+        tbody.innerHTML = '';
+
+        produtos.forEach((produto, index) => {
+            const row = tbody.insertRow();
+            const cellNomeProduto = row.insertCell(0);
+            const cellQuantidade = row.insertCell(1);
+            const cellAcoes = row.insertCell(2);
+
+            cellNomeProduto.textContent = produto.nome;
+            cellQuantidade.textContent = produto.quantidade;
+            cellAcoes.innerHTML = `<button class="btn btn-danger" type="button" onclick="removerProduto(${index})">Remover</button>`;
+        });
+    }
+
+    // Carregar opções de forma de pagamento via fetch
+    window.onload = function () {
+        fetch('/obter_formas_pagamento')
+            .then(response => response.json())
+            .then(data => {
+                const selectFormaPagamento = document.getElementById('id_forma_pagamento');
+
+                data.forEach(formaPagamento => {
+                    const option = document.createElement('option');
+                    option.value = formaPagamento.id;
+                    option.textContent = formaPagamento.nome;
+                    selectFormaPagamento.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar formas de pagamento:', error));
+    }
+
+    document.getElementById('form_venda').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const idFuncionario = document.getElementById('id_funcionario').value;
+        const idCliente = document.getElementById('id_cliente').value;
+        const idFormaPagamento = document.getElementById('id_forma_pagamento').value;
+
+        if (!idFuncionario || !idCliente || !idFormaPagamento || produtos.length === 0) {
+            alert('Por favor, preencha todos os campos e adicione pelo menos um produto.');
+            return;
+        }
+
+        const dadosVenda = {
+            id_funcionario: idFuncionario,
+            id_cliente: idCliente,
+            id_forma_pagamento: idFormaPagamento,
+            produtos: produtos
+        };
+
+        console.log('Dados da Venda:', dadosVenda);
+        
+        fetch('/cadastrar_venda', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dadosVenda),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Successo:', data);
+            document.getElementById('form_venda').reset();
+            produtos = [];
+            atualizarListaProdutos();
+        })
+        .catch((error) => {
+            console.error('Erro:', error);
+        });
+    });
+</script>
 
 {% endblock %}
