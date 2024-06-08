@@ -1,7 +1,6 @@
 from datetime import date
 from typing import Optional
 from pydantic import BaseModel
-
 from schemas.endereco import Endereco
 
 class Cliente(BaseModel):

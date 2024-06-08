@@ -1,6 +1,5 @@
 from datetime import date
 from typing import List, Optional
-
 import psycopg2
 from sqlalchemy.orm import joinedload
 from sqlalchemy import update
