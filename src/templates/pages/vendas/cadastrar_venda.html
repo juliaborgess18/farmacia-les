@@ -70,6 +70,8 @@
         const quantidadeProduto = document.getElementById('quantidade_produto').value;
 
         if (idProduto && quantidadeProduto) {
+
+            
             produtos.push({ id: idProduto, nome: nomeProduto, quantidade: quantidadeProduto });
             atualizarListaProdutos();
             document.getElementById('id_produto').value = '';

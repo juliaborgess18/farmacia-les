@@ -1,15 +1,17 @@
-from sqlalchemy.orm import Session
+from datetime import date
+from typing import List, Optional
+
+from sqlalchemy.exc import SQLAlchemyError
 from infrastructure.config.database import get_db
-from infrastructure.models.formaPagamento import FormaPagamento
+from schemas.formaPagamento import FormaPagamento
 
 class FormaPagamentoRepositorio:
-    @staticmethod
-    def obter_todos():
-        db_session = get_db()
+
+    @classmethod
+    def obter_todos(cls) -> Optional[List[FormaPagamento]]:
         try:
-            with db_session() as session:
-                formas_pagamento = session.query(FormaPagamento).all()
-                print("Formas de Pagamento encontradas:", formas_pagamento)
-                return formas_pagamento
-        finally:
-            db_session.close()
+            db = get_db()
+            return db.query(FormaPagamento).filter(FormaPagamento.foi_deletado == False).all()
+        except SQLAlchemyError as ex:
+            print(f"Error ao obter formas de pagamento: \n{ex}")
+            return []
