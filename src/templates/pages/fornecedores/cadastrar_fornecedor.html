@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro de Fornecedor{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container ">
+        <form class="row" action="/cadastrar_fornecedor" method="post">
+            <h3>Cadastro de Fornecedor</h3>
+            <div class="col-12 col-lg-6">
+                <label for="nome_fornecedor">Nome: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="text" name="nome" id="nome_fornecedor" placeholder="Ex: Fornecedor ABC Ltda" required>
+                </div>
+
+                <label for="cnpj_fornecedor">CNPJ: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="text" name="cnpj" id="cnpj_fornecedor" placeholder="Ex: 00.000.000/0000-00" required>
+                </div>
+
+                <label for="email_fornecedor">Email: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="email" name="email" id="email_fornecedor" placeholder="Ex: fornecedor@empresa.com" required>
+                </div>
+
+                <label for="telefone_fornecedor">Telefone: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="text" name="telefone" id="telefone_fornecedor" placeholder="Ex: (11) 98765-4321" required>
+                </div>
+            </div>
+
+            <h4>Endereço</h4>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <label for="rua_endereco_fornecedor">Rua: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="rua" id="rua_endereco_fornecedor" placeholder="Ex: Rua das Flores" required>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-1">
+                    <label for="numero_endereco_fornecedor">Número: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="numero" id="numero_endereco_fornecedor" placeholder="Ex: 123" required>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <label for="bairro_endereco_fornecedor">Bairro: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="bairro" id="bairro_endereco_fornecedor" placeholder="Ex: Centro" required>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <label for="cidade_endereco_fornecedor">Cidade: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="cidade" id="cidade_endereco_fornecedor" placeholder="Ex: São Paulo" required>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-1">
+                    <label for="uf_endereco_fornecedor">UF: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="uf" id="uf_endereco_fornecedor" placeholder="Ex: SP" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-success" type="submit">Cadastrar Fornecedor</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

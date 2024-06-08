@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Fornecedor{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="container">
+        <form class="row">
+            <h3>Pesquisar</h3>
+
+            <div class="form mb-3 col-2">
+                <label for="id_fornecedor">ID:</label>
+                <div class="form mb-3">
+                    <input class="form-control" type="text" name="id_fornecedor" id="id_fornecedor" placeholder="Ex: 123">
+                </div>
+            </div>
+            <div class="col-2 mt-4">
+                <button class="btn btn-success" onclick="submitForm()">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+        <form class="row">
+            <h3>Editar</h3>
+            
+            <label for="nome_fornecedor">Nome:</label>
+            <div class="form mb-3">
+                <input type="text" id="nome_fornecedor" name="nome" class="form-control" placeholder="Ex: Fornecedor ABC Ltda">
+            </div>
+            
+            <label for="cnpj_fornecedor">CNPJ:</label>
+            <div class="form mb-3">
+                <input type="text" id="cnpj_fornecedor" name="cnpj" class="form-control" placeholder="Ex: 00.000.000/0000-00">
+            </div>
+            
+            <label for="email_fornecedor">Email:</label>
+            <div class="form mb-3">
+                <input type="email" id="email_fornecedor" name="email" class="form-control" placeholder="Ex: fornecedor@empresa.com">
+            </div>
+            
+            <label for="telefone_fornecedor">Telefone:</label>
+            <div class="form mb-3">
+                <input type="text" id="telefone_fornecedor" name="telefone" class="form-control" placeholder="Ex: (11) 98765-4321">
+            </div>
+            
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <label for="rua_endereco_fornecedor">Rua:</label>
+                    <div class="form mb-3">
+                        <input class="form-control" placeholder="Ex: Rua das Flores" type="text" name="rua" id="rua_endereco_fornecedor">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-2">
+                    <label for="numero_endereco_fornecedor">Número:</label>
+                    <div class="form mb-3">
+                        <input class="form-control" placeholder="Ex: 123" type="text" name="numero" id="numero_endereco_fornecedor">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <label for="bairro_endereco_fornecedor">Bairro:</label>
+                    <div class="form mb-3">
+                        <input class="form-control" placeholder="Ex: Centro" type="text" name="bairro" id="bairro_endereco_fornecedor">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <label for="cidade_endereco_fornecedor">Cidade:</label>
+                    <div class="form mb-3">
+                        <input class="form-control" placeholder="Ex: São Paulo" type="text" name="cidade" id="cidade_endereco_fornecedor">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-2">
+                    <label for="uf_endereco_fornecedor">UF:</label>
+                    <div class="form mb-3">
+                        <input class="form-control" placeholder="Ex: SP" type="text" name="uf" id="uf_endereco_fornecedor">
+                    </div>
+                </div>
+            </div>
+                
+            <div class="col-2">
+                <button class="btn btn-success" onclick="submitForm()">Editar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -28,7 +28,8 @@ async def get_editar_venda(request: Request):
 @router.get("/remover_venda", response_class=HTMLResponse)
 async def get_remover_venda(request: Request):
     vendas = VendaRepositorio.obter_todos()
-    return templates.TemplateResponse("/pages/vendas/remover_venda.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM })
+    return templates.TemplateResponse("/pages/vendas/remover_venda.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "vendas": vendas })
+
 
 @router.get("/visualizar_venda", response_class=HTMLResponse)
 async def get_visualizar_venda(request: Request):
