@@ -14,15 +14,12 @@ function submeterFormulario() {
     const uf = document.getElementById('uf_endereco_cliente').value;
 
     const clienteData = {
-        id_cliente: id_cliente,
-        id_endereco: id_endereco,
         nome: nome,
         sobrenome: sobrenome,
         data_nascimento: dataNascimento,
         tel_contato: celular,
         cpf: cpf,
         endereco: {
-            id_endereco: id_endereco,
             rua: endereco,
             numero: numero,
             bairro: bairro,
@@ -30,8 +27,6 @@ function submeterFormulario() {
             uf: uf
         }
     };
-
-    console.log("Dados do cliente", clienteData);
 
     // Enviando dados para o servidor
     fetch('/cadastrar_cliente', {
