@@ -22,6 +22,12 @@ async def get_cadastro_devolucao(request: Request, id_venda: int = 0):
     venda = VendaRepositorio.obter_por_id(id_venda)
     return templates.TemplateResponse("/pages/devolucao/cadastrar_devolucao.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "venda": venda})
 
+@router.get("/editar_devolucao", response_class=HTMLResponse)
+async def get_editar_devolucao(request: Request, id_venda: int = 0):
+    venda = VendaRepositorio.obter_por_id(id_venda)
+    return templates.TemplateResponse("/pages/devolucao/editar_devolucao.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "venda": venda})
+
+
 @router.post("/cadastrar_devolucao")
 async def get_cadastro_devolucao(devolucao: Devolucao = Body()):
     devolucao = DevolucaoRepositorio.inserir(devolucao)
