@@ -16,6 +16,18 @@ if (path.includes("venda")){
     var item = document.getElementById("sidebar-venda");
     item.classList.add('active');
 }
+if (path.includes("funcionario")){
+    var item = document.getElementById("sidebar-funcionario");
+    item.classList.add('active');
+}
+if (path.includes("devolucao")){
+    var item = document.getElementById("sidebar-devolucao");
+    item.classList.add('active');
+}
+if (path.includes("convenio")){
+    var item = document.getElementById("sidebar-convenio");
+    item.classList.add('active');
+}
 
 
 // testes
