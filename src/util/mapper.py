@@ -85,6 +85,7 @@ class Mapper():
     @classmethod
     def mapear_devolucao(cls, devolucao: DevolucaoSchema) -> DevolucaoModel:
         devolucao_mapeado = DevolucaoModel(
+            id_venda=devolucao.id_venda,
             valor_devolucao=devolucao.valor_devolucao,
             data_delete=None,
             foi_deletado=False,

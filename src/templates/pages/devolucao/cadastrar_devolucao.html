@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro de Devolução{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container">
+        <h3>Cadastro de Devolução</h3>
+        <form class="row" id="form_venda" action="/cadastrar_devolucao" method="get" role="search">
+            <div class="form-group mb-3">
+                <label for="input_id_venda">Buscar Venda:</label>
+                <input type="search" id="input_id_venda" name="id_venda" class="form-control" placeholder="Id venda...">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+        <form class="row">
+            <h3>Vendas</h3>
+
+            <div class="form-group mb-3">
+                <table class="table table-striped table-bordered table-hover mt-3">
+                    <thead class="bg-dark">
+                        <tr class="table-active">
+                            <th scope="col">Id da Venda</th>
+                            <th scope="col">Id do Produto</th>
+                            <th scope="col">Nome do Produto</th>
+                            <th scope="col">Qtde</th>
+                            <th scope="col">Valor Unit</th>
+                            <th scope="col">Valor Total</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+
+                        {% for item in venda.itens_venda %}
+                        <tr id="{{ item.id_produto }}">
+                            <th scope="row" id="th_id_venda">{{ item.id_venda }}</th>
+                            <td>{{ item.id_produto }}</td>
+                            <td>{{ item.produto.nome }}</td>
+                            <td>{{ item.qtde }}</td>
+                            <td>{{ item.produto.valor }}</td>
+                            <td id="valor-{{item.id_produto}}">{{ (item.produto.valor * item.qtde) }}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" type="button" onclick="btnClickIdVenda('{{ item.id_produto }}', '{{ item.qtde}}')">+</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+    
+                    <tfoot>
+                        <tr id="valor_total_venda">
+                            <td colspan="7" scope="row">
+                                <span>Valor Total: {{ venda.valor_total }}</span>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div>
+                <button class="btn btn-success" onclick="submeterFormularioCadastro()">Cadastrar Devolução</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/static/js/devolucao.js"></script>
+{% endblock %}

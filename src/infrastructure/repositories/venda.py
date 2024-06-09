@@ -4,6 +4,7 @@ from typing import List, Optional
 import psycopg2
 from sqlalchemy import update
 from infrastructure.config.database import get_db
+from infrastructure.models.itemVenda import ItemVenda
 from infrastructure.models.venda import Venda
 from schemas.venda import Venda as VendaSchema
 from util.mapper import Mapper
@@ -16,7 +17,7 @@ class VendaRepositorio():
             db = get_db()
             return db.query(Venda).filter(Venda.foi_deletado == False).all()
         except psycopg2.Error as ex:
-            print(f"Error ao inserir o cliente: \n{ex}")    
+            print(f"Error ao buscas a venda: \n{ex}")    
             return []
 
     @classmethod
@@ -25,7 +26,7 @@ class VendaRepositorio():
             db = get_db()
             return db.query(Venda).filter_by(id_venda=id).first()
         except psycopg2.Error as ex:
-            print(f"Error ao inserir o cliente: \n{ex}")    
+            print(f"Error ao buscas a venda: \n{ex}")    
             return Venda()
 
     @classmethod
@@ -70,5 +71,34 @@ class VendaRepositorio():
             print(f"Error ao deletar o venda: \n{ex}")
             db.rollback()
 
+    @classmethod
+    def obter_itens_venda_por_id_venda(cls, id: int):
+        try:
+            db = get_db()
+            return db.query(ItemVenda).filter(ItemVenda.id_venda == id).all()
+        except psycopg2.Error as ex:
+            print(f"Error ao buscas os itens de venda: \n{ex}")    
+            return []
 
 
+    @classmethod
+    def remover_item_venda(cls, id_produto, id_venda):
+        try:
+            db = get_db()
+            items_delete = db.query(ItemVenda).filter(
+                ItemVenda.id_produto == id_produto,
+                ItemVenda.id_venda == id_venda
+            ).all()
+
+            valor_retirado = 0
+            for item in items_delete:
+                valor_retirado += item.produto.valor*item.qtde
+                db.delete(item)
+            venda = db.query(Venda).filter_by(id_venda=id_venda).first()
+            venda.valor_total -= valor_retirado
+
+            db.commit()
+        except psycopg2.Error as ex:
+            print(f"Error ao buscas os itens de venda: \n{ex}")   
+            db.rollback() 
+            return []

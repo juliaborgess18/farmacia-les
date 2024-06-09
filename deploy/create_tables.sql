@@ -1,15 +1,16 @@
 DROP TABLE IF EXISTS ItemVenda;
-DROP TABLE IF EXISTS Venda;
-DROP TABLE IF EXISTS Funcionario; 
-DROP TABLE IF EXISTS FormaPagamento; 
 DROP TABLE IF EXISTS ItemDevolucao; 
 DROP TABLE IF EXISTS Produto; 
 DROP TABLE IF EXISTS Devolucao;
+DROP TABLE IF EXISTS Venda;
+DROP TABLE IF EXISTS Funcionario; 
 DROP TABLE IF EXISTS Convenio; 
 DROP TABLE IF EXISTS Cliente ;
 DROP TABLE IF EXISTS Usuario;
 DROP TABLE IF EXISTS Fornecedor; 
 DROP TABLE IF EXISTS Endereco;
+DROP TABLE IF EXISTS FormaPagamento; 
+
 
 CREATE TABLE Usuario(
 	idUsuario SERIAL NOT NULL,
@@ -130,17 +131,21 @@ CREATE TABLE ItemVenda (
   CONSTRAINT fk_ItemVenda_Venda
     FOREIGN KEY (idVenda)
     REFERENCES Venda (idVenda),
-  CONSTRAINT fk_ItemVenda_Produto1
+  CONSTRAINT fk_ItemVenda_Produto
     FOREIGN KEY (idProduto)
     REFERENCES Produto (idProduto)
 );
 
 CREATE TABLE Devolucao (
   idDevolucao SERIAL NOT NULL,
+  idVenda INT NOT NULL,
   valorDevolucao DECIMAL NOT NULL,
   foiDeletado BOOL DEFAULT FALSE,
   dataDelete DATE,
-  PRIMARY KEY (idDevolucao)
+  PRIMARY KEY (idDevolucao),
+  CONSTRAINT fk_Devolucao_Venda
+    FOREIGN KEY (idVenda)
+    REFERENCES Venda (idVenda)
 );
 
 CREATE TABLE ItemDevolucao (
@@ -148,10 +153,10 @@ CREATE TABLE ItemDevolucao (
   idProduto INT NOT NULL,
   idDevolucao INT NOT NULL,
   PRIMARY KEY (idProduto, idDevolucao),
-  CONSTRAINT fk_ItemDevolucao_Produto1
+  CONSTRAINT fk_ItemDevolucao_Produto
     FOREIGN KEY (idProduto)
     REFERENCES Produto (idProduto),
-  CONSTRAINT fk_ItemDevolucao_Devolucao1
+  CONSTRAINT fk_ItemDevolucao_Devolucao
     FOREIGN KEY (idDevolucao)
     REFERENCES Devolucao (idDevolucao)
 );

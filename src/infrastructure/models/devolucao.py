@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Date, Double, Integer
+from sqlalchemy import Boolean, Column, Date, Double, ForeignKey, Integer
 from sqlalchemy.orm import relationship
 
 from infrastructure.config.database import Base
@@ -14,3 +14,7 @@ class Devolucao(Base):
     # Soft Delete
     data_delete = Column("datadelete", Date)
     foi_deletado = Column("foideletado", Boolean)
+
+    # relacionamentos
+    id_venda = Column("idvenda", Integer, ForeignKey('venda.idvenda'), nullable=False)
+    venda = relationship("Venda")

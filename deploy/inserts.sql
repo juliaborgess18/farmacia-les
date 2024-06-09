@@ -50,36 +50,40 @@ INSERT INTO FormaPagamento (nome) VALUES
 
 
 INSERT INTO Venda (dataVenda, valorTotal, status, idFormaPagamento, idFuncionario, idCliente) VALUES
-('2024-03-25', 150.00, 'Concluída', 1, 1, 1),
-('2024-03-26', 200.00, 'Concluída', 2, 2, 2),
-('2024-03-27', 120.00, 'Pendente', 3, 3, 3),
-('2024-03-28', 80.00, 'Concluída', 4, 4, 4),
-('2024-03-29', 90.00, 'Concluída', 5, 5, 5);
+('2024-03-25', 325.00, 'Concluída', 1, 1, 1),
+('2024-03-26', 245.00, 'Concluída', 2, 2, 2),
+('2024-03-27', 400.00, 'Pendente', 3, 3, 3),
+('2024-03-28', 220.00, 'Concluída', 4, 4, 4),
+('2024-03-29', 35.00, 'Concluída', 5, 5, 5);
 
 
 INSERT INTO ItemVenda (qtde, idVenda, idProduto) VALUES
-(2, 1, 1),
-(3, 2, 2),
-(1, 3, 3),
-(4, 4, 4),
-(2, 5, 5);
+(3, 1, 1),
+(1, 1, 2),
+(2, 1, 3),
+
+(5, 2, 4),
+(3, 2, 5),
+
+(10, 3, 5),
+(1, 4, 1),
+(1, 4, 2),
+(1, 4, 3),
+(1, 4, 4),
+(1, 4, 5),
+(1, 5, 2);
 
 
-INSERT INTO Devolucao (valorDevolucao) VALUES
-(30.00),
-(40.00),
-(25.00),
-(15.00),
-(20.00);
+INSERT INTO Devolucao (valorDevolucao, idVenda) VALUES
+(115.00, 1),
+(90.00, 2);
 
 
 INSERT INTO ItemDevolucao (qtde, idProduto, idDevolucao) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(1, 4, 4),
-(2, 5, 5),
-(9, 2, 1);
+(2, 5, 1),
+(1, 2, 1),
+(1, 5, 2),
+(2, 4, 2);
 
 
 INSERT INTO Convenio (especialidade, dataInicioConvenio, cnpj, idCliente) VALUES
