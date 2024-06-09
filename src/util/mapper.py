@@ -62,7 +62,7 @@ class Mapper():
     def mapear_convenio(cls, convenio: ConvenioSchema) -> ConvenioModel:
         convenio_mapeado = ConvenioModel(
             especialidade=convenio.especialidade,
-            data_inicio_convenio=convenio.data_inicio_convenio,
+            data_inicio_convenio=date.today(),
             cnpj=convenio.cnpj,
             data_delete=None,
             foi_deletado=False,
