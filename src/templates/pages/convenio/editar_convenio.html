@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar de Convênio{% endblock %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container">
+        <form class="row">
+            <h3>Pesquisar</h3>
+                
+                <label for="id_convenio">ID:</label>
+                <div class="form-group mb-3 col-10">
+                    <input type="number" id="id_convenio" name="id" class="form-control" placeholder="ID do Convênio...">
+                </div>
+                
+                <div class="col-2">
+                    <button class="btn btn-success" onclick="">Buscar Convênio</button>
+                </div>
+        </form>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+        <form class="row">
+            <h3>Editar</h3>
+                
+            <label for="nome_convenio_cliente">Nome:</label>
+            <div class="form-group mb-3">
+                <input type="text" id="nome_convenio_cliente" name="nome" class="form-control" placeholder="Nome do Convêniado..." disabled>
+            </div>
+
+            <label for="especialidade_convenio">Especialidade: </label>
+            <div class="form-group mb-3">
+                <input type="text" id="especialidade_convenio" name="especialidade" class="form-control"  placeholder="Especialidade...">
+            </div>
+            
+            <label for="cnpj_convenio">Cnpj: </label>
+            <div class="form-group mb-3">
+                <input type="text" id="cnpj_convenio" name="cnpj" class="form-control">
+            </div>
+                
+            <div class="col-2">
+                <button class="btn btn-success" onclick="">Editar Convênio</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
