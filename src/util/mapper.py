@@ -50,7 +50,7 @@ class Mapper():
             sobrenome=cliente.sobrenome,
             data_nascimento=cliente.data_nascimento,
             tel_contato=cliente.tel_contato,
-            data_cadastro=cliente.data_cadastro,
+            data_cadastro=date.today(),
             data_delete=None,
             foi_deletado=False,
             cpf=cliente.cpf,
