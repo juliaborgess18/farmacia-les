@@ -27,6 +27,15 @@ async def get_editar_devolucao(request: Request, id_venda: int = 0):
     venda = VendaRepositorio.obter_por_id(id_venda)
     return templates.TemplateResponse("/pages/devolucao/editar_devolucao.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "venda": venda})
 
+@router.get("/remover_devolucao", response_class=HTMLResponse)
+async def get_remover_devolucao(request: Request):
+    devolucoes = []
+    return templates.TemplateResponse("/pages/devolucao/remover_devolucao.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "devolucoes": devolucoes})
+
+@router.get("/visualizar_devolucao", response_class=HTMLResponse)
+async def get_remover_devolucao(request: Request):
+    devolucoes = DevolucaoRepositorio.obter_todos()
+    return templates.TemplateResponse("/pages/devolucao/visualizar_devolucao.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "devolucoes": devolucoes})
 
 @router.post("/cadastrar_devolucao")
 async def get_cadastro_devolucao(devolucao: Devolucao = Body()):
