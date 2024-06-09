@@ -1,7 +1,7 @@
-function btnClickIdFornecedor(id) {
-    const inputIdFornecedor = document.getElementById("id_fornecedor_produto")
+function btnClickIdCliente(id) {
+    const inputIdCliente = document.getElementById("id_cliente_convenio")
     const rows = document.querySelectorAll("tr")
-    inputIdFornecedor.value = id;
+    inputIdCliente.value = id;
     TableRowLimparClassesDeEstilo(rows);
     TableRowAdicionarClasseSucesso(id, rows);
 }
@@ -22,13 +22,14 @@ function TableRowAdicionarClasseSucesso(id, rows){
 
 function submeterFormularioCadastro() {
     var formData = {
-        'nome': document.getElementById('nome_produto').value,
-        'valor': parseFloat(document.getElementById('valor_produto').value),
-        'data_validade': document.getElementById('validade_produto').value,
-        'id_fornecedor': parseInt(document.getElementById('id_fornecedor_produto').value)
+        'especialidade': document.getElementById('especialidade_convenio').value,
+        'cnpj': document.getElementById('cnpj_convenio').value,
+        'id_cliente': parseInt(document.getElementById('id_cliente_convenio').value)
     };
+
+    console.log("Data: ", JSON.stringify(formData))
     
-    fetch('/cadastrar_produto', {
+    fetch('/cadastrar_convenio', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -36,9 +37,9 @@ function submeterFormularioCadastro() {
         body: JSON.stringify(formData),
     }).then(response => {
         if (response.ok) {
-            alert("Produto cadastrado com sucesso.")
+            alert("Convênio cadastrado com sucesso.")
         } else {
-            alert("Erro ao cadastrar o produto.")
+            alert("Erro ao cadastrar o convênio.")
         }
     })
 }
