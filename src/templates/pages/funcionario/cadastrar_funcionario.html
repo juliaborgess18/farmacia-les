@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro de Funcionário{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="container">
+        {% include '/pages/funcionario/form_funcionario.html' %}
+        <div class="row">
+            <div class="col-12 col-lg-1">
+                <button class="btn btn-success" type="submit">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

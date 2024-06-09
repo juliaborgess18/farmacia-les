@@ -46,3 +46,5 @@ function submeterFormulario() {
         alert("Erro ao cadastrar o cliente. Por favor, tente novamente mais tarde.");
     });
 }
+
+

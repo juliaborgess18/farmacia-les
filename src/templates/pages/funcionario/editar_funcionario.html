@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Editar de cliente{% endblock %}
+{% block title %}Editar Funcionário{% endblock %}
 
 {% block content %}
 
@@ -10,27 +10,22 @@
             <h3>Pesquisar</h3>
 
             <div class="form mb-3 col-2">
-                <label for="id_cliente">ID: </label>
+                <label for="id_funcionario">ID: </label>
                 <div class="form mb-3">
-                    <input class="form-control" type="text" name="" id="id_cliente">
+                    <input class="form-control" type="text" name="" id="id_funcionario">
                 </div>
             </div>
             <div class="col-2 mt-4">
                 <button class="btn btn-success" onclick="submitForm()">Buscar</button>
             </div>
-
         </form>
     </div>
 </div>
 
 <div class="content">
     <div class="container">
-        {% include '/pages/clientes/form_cliente.html' %}
-        <div class="col-2">
-            <button class="btn btn-success" onclick="submitForm()">Editar</button>
-        </div>
+        {% include '/pages/funcionario/form_funcionario.html' %}
     </div>
 </div>
-
 
 {% endblock %}

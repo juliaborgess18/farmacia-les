@@ -12,16 +12,16 @@ NAV_ITEM = "Cliente"
 URL_ITEM = "cliente"
 
 @router.get("/cliente", response_class=HTMLResponse)
-async def get_cliente(request: Request):
+async def get_cliente(request: Request):   
     return templates.TemplateResponse("/pages/clientes/cliente.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM })
 
 @router.get("/cadastrar_cliente", response_class=HTMLResponse)
 async def get_cliente(request: Request):
-    return templates.TemplateResponse("/pages/clientes/cadastrar_cliente.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM })
+    return templates.TemplateResponse("/pages/clientes/cadastrar_cliente.html", {"request":request, "funcItem": "Cadastrar", "navItem": NAV_ITEM, "urlItem": URL_ITEM })
 
 @router.get("/editar_cliente", response_class=HTMLResponse)
 async def get_editar_cliente(request: Request):
-    return templates.TemplateResponse("/pages/clientes/editar_cliente.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM })
+    return templates.TemplateResponse("/pages/clientes/editar_cliente.html", {"request":request, "funcItem": "Editar", "navItem": NAV_ITEM, "urlItem": URL_ITEM })
 
 @router.get("/remover_cliente", response_class=HTMLResponse)
 async def get_remover_cliente(request: Request):
