@@ -68,6 +68,7 @@ body{
   background-color: #A3B4A2;
   padding-top: 10px;
   padding-bottom: 10px;
+  min-height: 50px;
 }
 
 .navbar-custom a{

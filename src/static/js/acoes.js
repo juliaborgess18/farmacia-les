@@ -1,5 +1,9 @@
 var path = window.location.pathname;
 
+if (path === "/"){
+    var item = document.getElementById("navbar-row")
+    item.hidden = true;
+}
 if (path.includes("cliente")){
     var item = document.getElementById("sidebar-cliente");
     item.classList.add('active');
