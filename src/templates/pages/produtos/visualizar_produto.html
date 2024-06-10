@@ -6,54 +6,48 @@
 
 <div class="content">
     <div class="container">
-        <form action="">
+        <form id="form_buscar_produto" action="" role="search">
+            <h3>Filtrar</h3>
 
-            <div class="row">
-                <div class="col">
-                    <h3>Filtrar</h3>
-                </div>
-            </div>
-            
-            <div class="row m-3">
-                <div class="col form-group">
-                    <label for="filtro_nome_produto">Nome:</label>
-                    <input type="text" id="filtro_nome_produto" name="nome" class="form-control" placeholder="Nome do Produto...">
+            <div class="row row-col-1">
+                <div class="col mb-3 form-group">
+                    <label class="form-label" for="filtro_nome_produto">Nome:</label>
+                    <input class="form-control" type="text" name="nome" id="filtro_nome_produto" placeholder="Nome do Produto...">
                 </div>
             </div>
 
-            <div class="row row-cols-2 m-3">
-                <div class="col form-group">
-                    <label for="filtro_data_inicio_produto">Data do Inicio:</label>
-                    <input type="date" id="filtro_data_inicio_produto" name="data_inicio" class="form-control">
+            <div class="row row-cols-2">
+                <div class="col mb-3 form-group">
+                    <label class="form-label" for="filtro_data_inicio_produto">Data do Final:</label>
+                    <input class="form-control" type="date" name="data_inicio" id="filtro_data_inicio_produto">
                 </div>
                 
-                <div class="col form-group">
-                    <label for="filtro_data_final_produto">Data do Final:</label>
-                    <input type="date" id="filtro_data_final_produto" name="data_final" class="form-control">
+                <div class="col mb-3 form-group">
+                    <label class="form-label" for="filtro_data_final_produto">Data do Final:</label>
+                    <input class="form-control" type="date" name="data_final" id="filtro_data_final_produto">
                 </div>
             </div>
 
-            <div class="row row-cols-2 m-3">
-                <div class="col form-group">
-                    <label for="filtro_valor_produto_min">Valor Mínimo:</label>
-                    <input type="number" id="filtro_valor_produto_min" name="valor_min" class="form-control" placeholder="Valor mínimo do Produto...">
+            <div class="row row-cols-2">
+                <div class="col mb-3 form-group">
+                    <label class="form-label" for="filtro_valor_produto_min">Valor Mínimo:</label>
+                    <input class="form-control" type="number" name="valor_min" id="filtro_valor_produto_min" placeholder="Valor mínimo do Produto...">
                 </div>
                 
-                <div class="col form-group">
-                    <label for="filtro_valor_produto_max">Valor Máximo:</label>
-                    <input type="number" id="filtro_valor_produto_max" name="valor_max" class="form-control" placeholder="Valor máximo do Produto...">
+                <div class="col mb-3 form-group">
+                    <label class="form-label" for="filtro_valor_produto_max">Valor Máximo:</label>
+                    <input class="form-control" type="number" name="valor_max" id="filtro_valor_produto_max" placeholder="Valor máximo do Produto...">
                 </div>
             </div>
 
-            <div class="row m-3">
-                <div class="col">
-                    <button class="btn btn-success" onclick="">Filtrar Produtos</button>
+            <div class="row row-cols-1">
+                <div class="col mb-3 form-group">
+                    <button class="btn btn-success">Filtrar Produtos</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-
 
 <div class="content">
     <div class="container">

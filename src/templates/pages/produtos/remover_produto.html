@@ -4,28 +4,32 @@
 
 <div class="content">
     <div class="container">
-        <form class="row align-items-end" id="form_buscar_produto" action="/remover_produto" role="search">
+        <form id="form_buscar_produto" method="get" action="/remover_produto" role="search">
             <h3>Buscar</h3>
-            <div class="col-2 mb-3">
-                <label class="form-label" for="input_id_produto">ID: </label>
-                <input class="form-control" type="number" name="id_produto" id="input_id_produto">
-            </div>
+            <div class="row align-items-end">
+                <div class="col-2 mb-3 form-group">
+                    <label class="form-label" for="input_id_produto">ID:</label>
+                    <input class="form-control" type="number" name="id_produto" id="input_id_produto" placeholder="ID do Produto...">
+                </div>
 
-            <div class="col mb-3">
-                <button class="btn btn-success" type="submit">Buscar</button>
+                <div class="col-10 mb-3 form-group">
+                    <button class="btn btn-success" type="submit">Buscar</button>
+                </div>
             </div>
-
         </form>
-
     </div>
 </div>
 
 <div class="content">
     <div class="container">
-        <form class="row align-items-end" id="form_remover_produto" action="/api/remover_produto" role="form" onsubmit="submitFormRemover(event)"">
+        <form class="row row-cols-1 align-items-end" id="form_remover_produto" action="/api/remover_produto" role="form" onsubmit="submitFormRemover(event)"">
             <h3>Produto</h3>
-            <div>
+
+            <div class="form-group" hidden>
                 <input type="hidden" name="id_produto" value="{{ produto.id_produto }}">
+            </div>
+            
+            <div class="col form-group">
                 <table class="table table-striped table-bordered table-hover">
                     <thead class="bg-dark">
                         <tr class="table-active">
@@ -52,8 +56,8 @@
                 </table>
             </div>
 
-            <div>
-                <button class="btn btn-danger" type="submit">Remover</button>
+            <div class="col mb-3 form-group">
+                <button class="btn btn-danger" type="submit">Remover Produto</button>
             </div>
         </form>
     </div>
