@@ -28,7 +28,7 @@ function submeterFormularioCadastro() {
         'id_fornecedor': parseInt(document.getElementById('id_fornecedor_produto').value)
     };
     
-    fetch('/cadastrar_produto', {
+    fetch('/api/cadastrar_produto', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

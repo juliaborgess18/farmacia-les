@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Body, Request
+from datetime import date, datetime
+from typing import Optional
+from fastapi import APIRouter, Body, Query, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from infrastructure.repositories.fornecedor import FornecedorRepositorio
@@ -31,21 +33,27 @@ async def get_remover_produto(request: Request, id_produto: int = 0):
     return templates.TemplateResponse("/pages/produtos/remover_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "produto": produto })
 
 @router.get("/visualizar_produto", response_class=HTMLResponse)
-async def get_visualizar_produto(request: Request):
-    produtos = ProdutoRepositorio.obter_todos()
-    return templates.TemplateResponse("/pages/produtos/visualizar_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "produtos": produtos })
+async def visualizar_produto(   request: Request,
+                                nome: Optional[str] = Query("", alias="nome"),
+                                data_inicio: Optional[str] = Query(None, alias="data_inicio"),
+                                data_final: Optional[str] = Query(None, alias="data_final"),
+                                valor_min: Optional[str] = Query(None, alias="valor_min"),
+                                valor_max: Optional[str] = Query(None, alias="valor_max")):
+    
+    data_inicio = datetime.strptime(data_inicio, "%Y-%m-%d").date() if not (data_inicio == None or data_inicio == '') else date.min
+    data_final = datetime.strptime(data_final, "%Y-%m-%d").date() if not (data_final == None or data_final == '') else date.max
+
+    valor_min = float(valor_min) if not (valor_min == None or valor_min == '') else 0
+    valor_max = float(valor_max) if not (valor_max == None or valor_max == '') else float('inf')
+
+    produtos = ProdutoRepositorio.obter_com_filtros(nome, data_inicio, data_final, valor_min, valor_max)
+    return templates.TemplateResponse("/pages/produtos/visualizar_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "produtos": produtos})
 
 
-
-@router.post("/cadastrar_produto")
+@router.post("/api/cadastrar_produto")
 async def post_produto(produto: Produto = Body()):
     produto = ProdutoRepositorio.inserir(produto)
     return {"MSG": produto.id_produto}
-
-@router.get("/obter_produtos")
-async def get_produtos():
-    produtos = ProdutoRepositorio.obter_todos()
-    return {"MSG": produtos}
 
 @router.put("/api/editar_produto")
 async def get_editar_produto(produto: Produto = Body()):
