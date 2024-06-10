@@ -21,17 +21,21 @@ async def get_cadastrar_produto(request: Request):
     return templates.TemplateResponse("/pages/produtos/cadastrar_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "fornecedores": fornecedores })
 
 @router.get("/editar_produto", response_class=HTMLResponse)
-async def get_editar_produto(request: Request):
-    return templates.TemplateResponse("/pages/produtos/editar_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM })
+async def get_editar_produto(request: Request, id_produto: int = 0):
+    produto = ProdutoRepositorio.obter_por_id(id_produto) if id_produto is not 0 else None
+    return templates.TemplateResponse("/pages/produtos/editar_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "produto": produto })
 
 @router.get("/remover_produto", response_class=HTMLResponse)
-async def get_remover_produto(request: Request):
-    return templates.TemplateResponse("/pages/produtos/remover_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM })
+async def get_remover_produto(request: Request, id_produto: int = 0):
+    produto = ProdutoRepositorio.obter_por_id(id_produto) if id_produto is not 0 else None
+    return templates.TemplateResponse("/pages/produtos/remover_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "produto": produto })
 
 @router.get("/visualizar_produto", response_class=HTMLResponse)
-async def get_editar_produto(request: Request):
+async def get_visualizar_produto(request: Request):
     produtos = ProdutoRepositorio.obter_todos()
     return templates.TemplateResponse("/pages/produtos/visualizar_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "produtos": produtos })
+
+
 
 @router.post("/cadastrar_produto")
 async def post_produto(produto: Produto = Body()):
@@ -42,3 +46,13 @@ async def post_produto(produto: Produto = Body()):
 async def get_produtos():
     produtos = ProdutoRepositorio.obter_todos()
     return {"MSG": produtos}
+
+@router.put("/api/editar_produto")
+async def get_editar_produto(produto: Produto = Body()):
+    ProdutoRepositorio.alterar(produto)
+    return {"MSG": True}
+
+@router.delete("/api/remover_produto")
+async def get_remover_produto(id_produto: int):
+    ProdutoRepositorio.remover(id_produto)
+    return {"MSG": True}

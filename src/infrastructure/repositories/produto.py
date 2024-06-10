@@ -22,7 +22,7 @@ class ProdutoRepositorio():
     def obter_por_id(cls, id: int)-> Optional[Produto]:
         try:
             db = get_db()
-            return db.query(Produto).filter_by(id_produto=id).first()
+            return db.query(Produto).filter_by(id_produto=id, foi_deletado=False).first()
         except Exception as e:
             print(e)    
             return None

@@ -42,3 +42,53 @@ function submeterFormularioCadastro() {
         }
     })
 }
+
+async function submitFormEditar(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const data = Object.fromEntries(formData.entries());
+
+    const response = await fetch(form.action, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    if (response.ok) {
+        alert('Produto alterado com sucesso!');
+    } else {
+        alert('Erro ao alterar o produto!');
+    }
+}
+
+async function submitFormRemover(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+    const id_produto = formData.get('id_produto');
+
+    const response = await fetch(`${form.action}?id_produto=${id_produto}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    if (response.ok) {
+        alert('Produto removido com sucesso!');
+    } else {
+        alert('Erro ao remover o produto!');
+    }
+}
