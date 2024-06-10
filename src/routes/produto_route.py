@@ -40,14 +40,23 @@ async def visualizar_produto(   request: Request,
                                 valor_min: Optional[str] = Query(None, alias="valor_min"),
                                 valor_max: Optional[str] = Query(None, alias="valor_max")):
     
-    data_inicio = datetime.strptime(data_inicio, "%Y-%m-%d").date() if not (data_inicio == None or data_inicio == '') else date.min
-    data_final = datetime.strptime(data_final, "%Y-%m-%d").date() if not (data_final == None or data_final == '') else date.max
+    parse_data_inicio = datetime.strptime(data_inicio, "%Y-%m-%d").date() if not (data_inicio == None or data_inicio == '') else date.min
+    parse_data_final = datetime.strptime(data_final, "%Y-%m-%d").date() if not (data_final == None or data_final == '') else date.max
 
-    valor_min = float(valor_min) if not (valor_min == None or valor_min == '') else 0
-    valor_max = float(valor_max) if not (valor_max == None or valor_max == '') else float('inf')
+    parse_valor_min = float(valor_min) if not (valor_min == None or valor_min == '') else 0
+    parse_valor_max = float(valor_max) if not (valor_max == None or valor_max == '') else float('inf')
 
-    produtos = ProdutoRepositorio.obter_com_filtros(nome, data_inicio, data_final, valor_min, valor_max)
-    return templates.TemplateResponse("/pages/produtos/visualizar_produto.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "produtos": produtos})
+    produtos = ProdutoRepositorio.obter_com_filtros(nome, parse_data_inicio, parse_data_final, parse_valor_min, parse_valor_max)
+    return templates.TemplateResponse("/pages/produtos/visualizar_produto.html", {
+        "request":request, 
+        "navItem": NAV_ITEM, 
+        "urlItem": URL_ITEM, 
+        "produtos": produtos, 
+        "nome": nome,
+        "data_inicio": data_inicio,
+        "data_final": data_final,
+        "valor_min": valor_min,
+        "valor_max": valor_max})
 
 
 @router.post("/api/cadastrar_produto")

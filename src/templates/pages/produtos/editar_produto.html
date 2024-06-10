@@ -6,13 +6,13 @@
 
 <div class="content">
     <div class="container">
-        <form id="form_buscar_produto" method="get" action="/editar_produto" role="search">
+        <form class="was-validated" id="form_buscar_produto" method="get" action="/editar_produto" role="search">
             <h3>Buscar</h3>
 
             <div class="row align-items-end">
-                <div class="col-2 mb-3 form-group ">
+                <div class="col-2 mb-3 form-group">
                     <label class="form-label" for="input_id_produto">ID: </label>
-                    <input class="form-control" type="number" name="id_produto" id="input_id_produto" placeholder="ID do Produto...">
+                    <input class="form-control" type="number" name="id_produto" id="input_id_produto" placeholder="ID do Produto..." required min="1" value="{{ produto.id_produto }}">
                 </div>
 
                 <div class="col-10 mb-3 form-group align-items-end">
@@ -27,7 +27,7 @@
 
 <div class="content">
     <div class="container">
-        <form class="row row-cols-1 align-items-end" id="form_alterar_produto" action="/api/editar_produto" role="form" onsubmit="submitFormEditar(event)">
+        <form class="row row-cols-1 align-items-end was-validated" id="form_alterar_produto" action="/api/editar_produto" role="form" onsubmit="submitFormEditar(event)">
             <h3>Editar</h3>
             <div class="form-group" hidden>
                 <input type="hidden" name="id_produto" value="{{ produto.id_produto }}">
@@ -36,17 +36,17 @@
                 
             <div class="col mb-3 form-group">
                 <label class="form-label"  for="input_nome_produto">Nome:</label>
-                <input class="form-control" type="text" name="nome" id="input_nome_produto" placeholder="Nome do Produto..." value="{{ produto.nome }}">
+                <input class="form-control" type="text" name="nome" id="input_nome_produto" placeholder="Nome do Produto..." value="{{ produto.nome }}" required>
             </div>
 
             <div class="col mb-3 form-group">
                 <label class="form-label" for="input_valor_produto">Valor: </label>
-                <input class="form-control" type="number" name="valor" id="input_valor_produto" placeholder="Valor do Produto..." value="{{ produto.valor }}">
+                <input class="form-control" type="number" name="valor" id="input_valor_produto" placeholder="Valor do Produto..." value="{{ produto.valor }}" required>
             </div>
             
             <div class="col mb-3 form-group">
                 <label class="form-label" for="input_validade_produto">Data de Validade: </label>
-                <input class="form-control" type="date" name="data_validade" id="input_validade_produto" value="{{ produto.data_validade }}">
+                <input class="form-control" type="date" name="data_validade" id="input_validade_produto" value="{{ produto.data_validade }}" required>
             </div>
                 
             <div class="col mb-3 form-group">

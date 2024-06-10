@@ -15,7 +15,7 @@ class FornecedorRepositorio():
     def obter_todos(cls) -> Optional[List[Fornecedor]]:
         try:
             db = get_db()
-            return db.query(Fornecedor).filter(Fornecedor.foi_deletado == False).all()
+            return db.query(Fornecedor).filter(Fornecedor.foi_deletado == False).order_by(Fornecedor.nome).all()
         except psycopg2.Error as ex:
             print(f"Error ao buscar no banco: \n{ex}")    
             return []

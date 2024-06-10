@@ -14,7 +14,7 @@ class ProdutoRepositorio():
     def obter_todos(cls) -> Optional[List[Produto]]:
         try:
             db = get_db()
-            return db.query(Produto).filter(Produto.foi_deletado == False).all()
+            return db.query(Produto).filter(Produto.foi_deletado == False).order_by(Produto.nome).all()
         except Exception as e:
             print(e)    
             return None
@@ -67,17 +67,6 @@ class ProdutoRepositorio():
             db.rollback()
 
     @classmethod
-    def remover(cls, id: int):
-        try:
-            db = get_db()
-            update_stmt = update(Produto).where(Produto.id_produto == id).values(foi_deletado=True, data_delete=date.today())
-            db.execute(update_stmt)
-            db.commit()
-        except Exception as ex:
-            print(f"Error ao deletar o produto: \n{ex}")
-            db.rollback()
-
-    @classmethod
     def obter_com_filtros(cls, nome: str, data_inicio: date, data_final: date, valor_min: float, valor_max: float):
         try:
             db = get_db()
@@ -89,7 +78,7 @@ class ProdutoRepositorio():
                           Produto.valor <= (valor_max if valor_max is not None else float('inf'))
                           )
 
-            produtos = db.query(Produto).filter(filtro).all()
+            produtos = db.query(Produto).filter(filtro).order_by(Produto.nome).all()
 
             return produtos
         except Exception as ex:
