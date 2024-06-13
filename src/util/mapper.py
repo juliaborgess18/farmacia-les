@@ -1,10 +1,11 @@
 from datetime import date
 from typing import List
+from dto.convenio.cadastrar_convenio_dto import CadastrarConvenioDTO
 from dto.produto.cadastrar_produto_dto import CadastrarProdutoDTO
 from dto.produto.editar_produto_dto import EditarProdutoDTO
 from infrastructure.models.cliente import Cliente as ClienteModel
 from schemas.cliente import Cliente as ClienteSchema
-from infrastructure.models.convenio import Convenio as ConvenioModel
+from infrastructure.models.convenio import Convenio as Convenio
 from schemas.convenio import Convenio as ConvenioSchema
 from infrastructure.models.devolucao import Devolucao as DevolucaoModel
 from schemas.devolucao import Devolucao as DevolucaoSchema
@@ -49,6 +50,18 @@ class Mapper():
                 valor=dto.valor,
                 data_validade=dto.data_validade
             )
+    
+    class MapperConvenio():
+        
+        @classmethod
+        def mapear_cadastrar_convenio_dto(cls, dto: CadastrarConvenioDTO) -> Convenio: 
+            return Convenio(
+                especialidade=dto.especialidade,
+                data_inicio_convenio=date.today(),
+                cnpj=dto.cnpj,
+                data_delete=None,
+                foi_deletado=False,
+                id_cliente = dto.id_cliente)
              
 
     @classmethod
@@ -81,19 +94,7 @@ class Mapper():
             cpf=cliente.cpf,
             id_endereco=cliente.id_endereco,
             endereco=endereco_mapeado)
-        return cliente_mapeado
-    
-    @classmethod
-    def mapear_convenio(cls, convenio: ConvenioSchema) -> ConvenioModel:
-        convenio_mapeado = ConvenioModel(
-            especialidade=convenio.especialidade,
-            data_inicio_convenio=date.today(),
-            cnpj=convenio.cnpj,
-            data_delete=None,
-            foi_deletado=False,
-            id_cliente = convenio.id_cliente)
-        return convenio_mapeado
-    
+        return cliente_mapeado  
 
     @classmethod
     def mapear_itens_devolucao(cls, itens_devolucao: List[ItemDevolucaoSchema]) -> ItemDevolucaoModel:

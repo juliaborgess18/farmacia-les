@@ -29,14 +29,13 @@ class ConvenioRepositorio:
             return None
         
     @classmethod
-    def inserir(cls, convenio: ConvenioSchema) -> Optional[Convenio]:
-        convenio_db = Mapper.mapear_convenio(convenio)
+    def inserir(cls, convenio: Convenio) -> Optional[Convenio]:
         try:
             db = get_db()
-            db.add(convenio_db)
+            db.add(convenio)
             db.commit()
-            db.refresh(convenio_db)
-            return convenio_db
+            db.refresh(convenio)
+            return convenio
         except psycopg2.Error as ex:
             print(f"Error ao inserir o Convenio: \n{ex}")
             db.rollback()
