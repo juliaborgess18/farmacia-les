@@ -1,5 +1,6 @@
 from datetime import date
 from typing import List
+from dto.produto.cadastrar_produto_dto import CadastrarProdutoDTO
 from infrastructure.models.cliente import Cliente as ClienteModel
 from schemas.cliente import Cliente as ClienteSchema
 from infrastructure.models.convenio import Convenio as ConvenioModel
@@ -10,7 +11,7 @@ from infrastructure.models.fornecedor import Fornecedor as FornecedorModel
 from schemas.fornecedor import Fornecedor as FornecedorSchema
 from infrastructure.models.funcionario import Funcionario as FuncionarioModel
 from schemas.funcionario import Funcionario as FuncionarioSchema
-from infrastructure.models.produto import Produto as ProdutoModel
+from infrastructure.models.produto import Produto
 from schemas.produto import Produto as ProdutoSchema
 from infrastructure.models.usuario import Usuario as UsuarioModel
 from schemas.usuario import Usuario as UsuarioSchema
@@ -25,6 +26,20 @@ from infrastructure.models.itemVenda import ItemVenda as ItemVendaModel
 from schemas.itemVenda import ItemVenda as ItemVendaSchema
 
 class Mapper():
+
+    class MapperProduto():
+
+        @classmethod
+        def mapear_cadastrar_produto_dto(cls, dto: CadastrarProdutoDTO) -> Produto:
+            return Produto(
+                nome=dto.nome,
+                valor=dto.valor,
+                data_validade=dto.data_validade,
+                id_fornecedor=dto.id_fornecedor,
+                data_delete=None,
+                foi_deletado=False
+            )
+             
 
     @classmethod
     def mapear_endereco(cls, endereco: EnderecoSchema) -> EnderecoModel:
@@ -131,17 +146,6 @@ class Mapper():
             id_endereco=funcionario.id_endereco,
             endereco=endereco_mapeado)
         return funcionario_mapeado
-    
-    @classmethod
-    def mapear_produto(cls, produto: ProdutoSchema) -> ProdutoModel:
-        produto_mapeado = ProdutoModel(
-            nome=produto.nome,
-            valor=produto.valor,
-            data_validade=produto.data_validade,
-            data_delete=None,
-            foi_deletado=False,
-            id_fornecedor=produto.id_fornecedor)
-        return produto_mapeado
     
     @classmethod
     def mapear_usuario(cls, usuario: UsuarioSchema) -> UsuarioModel:

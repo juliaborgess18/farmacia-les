@@ -3,9 +3,11 @@ from typing import Optional
 from fastapi import APIRouter, Body, Query, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from dto.produto.cadastrar_produto_dto import CadastrarProdutoDTO
 from infrastructure.repositories.fornecedor import FornecedorRepositorio
 from infrastructure.repositories.produto import ProdutoRepositorio
 from schemas.produto import Produto
+from util.mapper import Mapper
 
 router = APIRouter()
 
@@ -60,9 +62,10 @@ async def visualizar_produto(   request: Request,
 
 
 @router.post("/api/cadastrar_produto")
-async def post_produto(produto: Produto = Body()):
-    produto = ProdutoRepositorio.inserir(produto)
-    return {"MSG": produto.id_produto}
+async def post_produto(produto: CadastrarProdutoDTO = Body()):
+    produto_mapeado = Mapper.MapperProduto.mapear_cadastrar_produto_dto(produto)
+    produto_inserido = ProdutoRepositorio.inserir(produto_mapeado)
+    return {"MSG": produto_inserido.id_produto}
 
 @router.put("/api/editar_produto")
 async def get_editar_produto(produto: Produto = Body()):

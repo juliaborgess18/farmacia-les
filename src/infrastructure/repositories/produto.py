@@ -29,14 +29,13 @@ class ProdutoRepositorio():
             return None
         
     @classmethod
-    def inserir(cls, produto: ProdutoSchema)-> Optional[Produto]:
-        produto_db = Mapper.mapear_produto(produto)
+    def inserir(cls, produto: Produto)-> Optional[Produto]:
         try:
             db = get_db()
-            db.add(produto_db)
+            db.add(produto)
             db.commit()
-            db.refresh(produto_db)
-            return produto_db
+            db.refresh(produto)
+            return produto
         except Exception as ex:
             print(f"Error ao inserir o Produto: \n{ex}")
             db.rollback()
