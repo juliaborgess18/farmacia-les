@@ -41,13 +41,12 @@ class ProdutoRepositorio():
             db.rollback()
 
     @classmethod
-    def alterar(cls, produto: ProdutoSchema):
+    def alterar(cls, produto: Produto):
         try:
             db = get_db()
             update_stmt = update(Produto).where(Produto.id_produto == produto.id_produto).values(nome=produto.nome,
                                                                                                  valor=produto.valor,
-                                                                                                 data_validade=produto.data_validade,
-                                                                                                 id_fornecedor=produto.id_fornecedor)
+                                                                                                 data_validade=produto.data_validade)
             db.execute(update_stmt)
             db.commit()
         except Exception as ex:
