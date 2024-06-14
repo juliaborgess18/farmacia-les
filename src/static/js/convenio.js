@@ -20,30 +20,6 @@ function TableRowAdicionarClasseSucesso(id, rows){
     });
 }
 
-// function submeterFormularioCadastro() {
-//     var formData = {
-//         'especialidade': document.getElementById('especialidade_convenio').value,
-//         'cnpj': document.getElementById('cnpj_convenio').value,
-//         'id_cliente': parseInt(document.getElementById('input_id_cliente').value)
-//     };
-
-//     console.log("Data: ", JSON.stringify(formData))
-    
-//     fetch('/cadastrar_convenio', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(formData),
-//     }).then(response => {
-//         if (response.ok) {
-//             alert("Convênio cadastrado com sucesso.")
-//         } else {
-//             alert("Erro ao cadastrar o convênio.")
-//         }
-//     })
-// }
-
 async function submitFormCadastro(event){
     event.preventDefault();
     const form = event.target;
@@ -93,5 +69,30 @@ async function submitFormEditar(event) {
         alert('Convênio alterado com sucesso!');
     } else {
         alert('Erro ao alterar o convênio!');
+    }
+}
+
+async function submitFormRemover(event) {
+    console.log("entrou no submitFormRemover")
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+    const id_convenio = formData.get('id_convenio');
+
+    const response = await fetch(`${form.action}?id_convenio=${id_convenio}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    if (response.ok) {
+        alert('Convênio removido com sucesso!');
+    } else {
+        alert('Erro ao remover o convênio!');
     }
 }
