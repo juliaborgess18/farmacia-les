@@ -69,3 +69,29 @@ async function submitFormCadastro(event){
         alert('Erro ao cadastrar o convênio.');
     }
 }
+
+async function submitFormEditar(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const data = Object.fromEntries(formData.entries());
+
+    const response = await fetch(form.action, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    if (response.ok) {
+        alert('Convênio alterado com sucesso!');
+    } else {
+        alert('Erro ao alterar o convênio!');
+    }
+}

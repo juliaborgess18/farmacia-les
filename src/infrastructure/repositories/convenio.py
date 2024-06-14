@@ -41,13 +41,11 @@ class ConvenioRepositorio:
             db.rollback()
 
     @classmethod
-    def alterar(cls, convenio: ConvenioSchema):
+    def alterar(cls, convenio: Convenio):
         try:
             db = get_db()
             update_stmt = update(Convenio).where(Convenio.id_convenio == convenio.id_convenio).values(especialidade=convenio.especialidade,
-                                                                                                      data_inicio_convenio=convenio.data_inicio_convenio,
-                                                                                                      cnpj=convenio.cnpj,
-                                                                                                      id_cliente = convenio.id_cliente)
+                                                                                                      cnpj=convenio.cnpj)
             db.execute(update_stmt)
             db.commit()
         except psycopg2.Error as ex:

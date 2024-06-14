@@ -1,6 +1,7 @@
 from datetime import date
 from typing import List
 from dto.convenio.cadastrar_convenio_dto import CadastrarConvenioDTO
+from dto.convenio.editar_convenio_dto import EditarConvenioDTO
 from dto.produto.cadastrar_produto_dto import CadastrarProdutoDTO
 from dto.produto.editar_produto_dto import EditarProdutoDTO
 from infrastructure.models.cliente import Cliente as ClienteModel
@@ -62,6 +63,13 @@ class Mapper():
                 data_delete=None,
                 foi_deletado=False,
                 id_cliente = dto.id_cliente)
+        
+        @classmethod
+        def mapear_editar_convenio_dto(cls, dto: EditarConvenioDTO) -> Convenio: 
+            return Convenio(
+                id_convenio=dto.id_convenio,
+                especialidade=dto.especialidade,
+                cnpj=dto.cnpj)
              
 
     @classmethod
