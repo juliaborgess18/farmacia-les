@@ -1,7 +1,6 @@
-function submeterFormulario() {
+async function submeterFormulario(event) {
     // Coletando dados do formulário
-    const id_cliente = 0;
-    const id_endereco = 0;
+    event.preventDefault(); // Evita o comportamento padrão de submissão do formulário
     const nome = document.getElementById('nome_cliente').value;
     const sobrenome = document.getElementById('sobrenome_cliente').value;
     const dataNascimento = document.getElementById('data_nascimento_cliente').value;
@@ -47,4 +46,53 @@ function submeterFormulario() {
     });
 }
 
+async function removerCliente(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = new FormData(form);
+    const id_cliente = formData.get('id_cliente');
+
+    const response = await fetch(`${form.action}?id_cliente=${id_cliente}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    if (response.ok) {
+        alert('Cliente removido com sucesso!');
+    } else {
+        alert('Erro ao remover o Cliente!');
+    }
+}
+
+async function editarCliente(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const data = Object.fromEntries(formData.entries());
+    console.log(JSON.stringify(data))
+    const response = await fetch(form.action, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    if (response.ok) {
+        alert('Cliente alterado com sucesso!');
+    } else {
+        alert('Erro ao alterar o cliente!');
+    }
+}
 

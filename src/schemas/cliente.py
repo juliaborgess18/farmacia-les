@@ -12,4 +12,5 @@ class Cliente(BaseModel):
     cpf: str
     id_endereco: Optional[int] = None
     endereco: Optional[Endereco] = None
+    data_cadastro: Optional[date] = None
 
