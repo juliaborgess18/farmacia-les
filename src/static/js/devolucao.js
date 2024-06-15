@@ -4,8 +4,8 @@ function btnClickIdVenda(idProduto, qtde) {
     const rows = document.querySelectorAll("tr")
 
     var item = {
-        id_produto: idProduto,
-        qtde: qtde
+        qtde: qtde,
+        id_produto: idProduto
     }
     
     ControladorListaItens(idProduto, item, rows)
@@ -77,13 +77,14 @@ async function submitFormCadastro(event){
     event.preventDefault();
 
     const rows = document.querySelectorAll("tr")
-    var valor_total = calcValorTotal(rows)
+    var valor_total = calcValorTotal(rows).toString()
     var formData = {
-        'id_venda': parseInt(document.getElementById("th_id_venda").textContent),
+        'id_venda': document.getElementById("th_id_venda").textContent,
         'valor_devolucao': valor_total,
         'itens_devolucao': lista_items_devolucao,
     };
     
+    console.log(JSON.stringify(formData))
     fetch('/api/cadastrar_devolucao', {
         method: 'POST',
         headers: {
@@ -103,7 +104,7 @@ function submeterFormularioCadastro() {
     const rows = document.querySelectorAll("tr")
     var valor_total = calcValorTotal(rows)
     var formData = {
-        'id_venda': parseInt(document.getElementById("th_id_venda").textContent),
+        'id_venda': document.getElementById("th_id_venda").textContent,
         'valor_devolucao': valor_total,
         'itens_devolucao': lista_items_devolucao,
     };
@@ -123,3 +124,4 @@ function submeterFormularioCadastro() {
         }
     })
 }
+

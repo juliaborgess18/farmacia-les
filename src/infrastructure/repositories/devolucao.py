@@ -30,14 +30,13 @@ class DevolucaoRepositorio():
             return Devolucao()
         
     @classmethod
-    def inserir(cls, devolucao: DevolucaoSchema)-> Optional[Devolucao]:
-        devolucao_db = Mapper.mapear_devolucao(devolucao)
+    def inserir(cls, devolucao: Devolucao)-> Optional[Devolucao]:
         try:
             db = get_db()
-            db.add(devolucao_db)
+            db.add(devolucao)
             db.commit()
-            db.refresh(devolucao_db)
-            return devolucao_db
+            db.refresh(devolucao)
+            return devolucao
         except psycopg2.Error as ex:
             print(f"Error ao inserir o Devolucao: \n{ex}")
             db.rollback()

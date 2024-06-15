@@ -2,13 +2,14 @@ from datetime import date
 from typing import List
 from dto.convenio.cadastrar_convenio_dto import CadastrarConvenioDTO
 from dto.convenio.editar_convenio_dto import EditarConvenioDTO
+from dto.devolucao.cadastrar_devolucao_dto import CadastrarDevolucaoDTO, ItemDevolucaoDTO
 from dto.produto.cadastrar_produto_dto import CadastrarProdutoDTO
 from dto.produto.editar_produto_dto import EditarProdutoDTO
 from infrastructure.models.cliente import Cliente as ClienteModel
 from schemas.cliente import Cliente as ClienteSchema
 from infrastructure.models.convenio import Convenio as Convenio
 from schemas.convenio import Convenio as ConvenioSchema
-from infrastructure.models.devolucao import Devolucao as DevolucaoModel
+from infrastructure.models.devolucao import Devolucao
 from schemas.devolucao import Devolucao as DevolucaoSchema
 from infrastructure.models.fornecedor import Fornecedor as FornecedorModel
 from schemas.fornecedor import Fornecedor as FornecedorSchema
@@ -22,7 +23,7 @@ from infrastructure.models.venda import Venda as VendaModel
 from schemas.venda import Venda as VendaSchema
 from infrastructure.models.endereco import Endereco as EnderecoModel
 from schemas.endereco import Endereco as EnderecoSchema
-from infrastructure.models.itemDevolucao import ItemDevolucao as ItemDevolucaoModel
+from infrastructure.models.itemDevolucao import ItemDevolucao
 from schemas.itemDevolucao import ItemDevolucao as ItemDevolucaoSchema
 
 from infrastructure.models.itemVenda import ItemVenda as ItemVendaModel
@@ -71,6 +72,25 @@ class Mapper():
                 especialidade=dto.especialidade,
                 cnpj=dto.cnpj)
              
+    class MapperDevolucao():
+
+        @classmethod
+        def mapear_itens_devolucao(cls, itens: List[ItemDevolucaoDTO]) -> List[ItemDevolucao]:
+            retorno = []
+            for item in itens:
+                devolucao = ItemDevolucao(qtde=item.qtde, id_produto=item.id_produto)
+                retorno.append(devolucao)
+            return retorno
+
+        @classmethod
+        def mapear_cadastrar_devolucao_dto(cls, dto: CadastrarDevolucaoDTO) -> Devolucao:
+            return Devolucao(
+                id_venda = dto.id_venda,
+                valor_devolucao = dto.valor_devolucao,
+                itens_devolucao = cls.mapear_itens_devolucao(dto.itens_devolucao),
+                data_delete=None,
+                foi_deletado=False
+            )
 
     @classmethod
     def mapear_endereco(cls, endereco: EnderecoSchema) -> EnderecoModel:
@@ -103,30 +123,7 @@ class Mapper():
             id_endereco=cliente.id_endereco,
             endereco=endereco_mapeado)
         return cliente_mapeado  
-
-    @classmethod
-    def mapear_itens_devolucao(cls, itens_devolucao: List[ItemDevolucaoSchema]) -> ItemDevolucaoModel:
-        itens_mapeados=[]
-        for item in itens_devolucao:
-            item_mapeado = ItemDevolucaoModel(
-                qtde=item.qtde,
-                id_produto=item.id_produto,
-                id_devolucao=item.id_devolucao
-            )
-            itens_mapeados.append(item_mapeado)
-        return itens_mapeados
-
-    @classmethod
-    def mapear_devolucao(cls, devolucao: DevolucaoSchema) -> DevolucaoModel:
-        devolucao_mapeado = DevolucaoModel(
-            id_venda=devolucao.id_venda,
-            valor_devolucao=devolucao.valor_devolucao,
-            data_delete=None,
-            foi_deletado=False,
-            itens_devolucao=cls.mapear_itens_devolucao(devolucao.itens_devolucao)
-            )
-        return devolucao_mapeado
-    
+   
     @classmethod
     def mapear_fornecedor(cls, fornecedor: FornecedorSchema) -> FornecedorModel:
         endereco_mapeado = None
