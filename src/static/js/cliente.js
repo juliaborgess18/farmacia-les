@@ -72,27 +72,45 @@ async function removerCliente(event) {
 
 async function editarCliente(event) {
     event.preventDefault();
+    const formData = new FormData(event.target);
 
-    const form = event.target;
-    const formData = new FormData(form);
+    const endereco = {
+        rua: formData.get('rua'),
+        numero: formData.get('numero'),
+        bairro: formData.get('bairro'),
+        cidade: formData.get('cidade'),
+        uf: formData.get('uf')
+    };
 
-    const data = Object.fromEntries(formData.entries());
+    const data = {
+        id_cliente: formData.get('id_cliente'),
+        id_endereco: formData.get('id_endereco'),
+        nome: formData.get('nome'),
+        sobrenome: formData.get('sobrenome'),
+        data_nascimento: formData.get('data_nascimento'),
+        tel_contato: formData.get('tel_contato'),
+        cpf: formData.get('cpf'),
+        endereco: endereco
+    };
+    
     console.log(JSON.stringify(data))
-    const response = await fetch(form.action, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
+    try {
+        const response = await fetch('/api/editar_cliente', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
 
-    const result = await response.json();
-    console.log(result);
-
-    if (response.ok) {
-        alert('Cliente alterado com sucesso!');
-    } else {
-        alert('Erro ao alterar o cliente!');
+        if (response.ok) {
+            alert('Alteração realizada com sucesso!');
+        } else {
+            alert('Erro ao realizar alteração.');
+        }
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao realizar alteração.');
     }
-}
+};
 

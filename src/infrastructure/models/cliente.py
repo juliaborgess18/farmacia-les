@@ -1,9 +1,7 @@
 from sqlalchemy import Boolean, Column, Integer, String, Date, ForeignKey
 from sqlalchemy.orm import relationship
-
 from infrastructure.config.database import Base
 from infrastructure.models.endereco import Endereco
-
 
 class Cliente(Base):
     __tablename__ = 'cliente'

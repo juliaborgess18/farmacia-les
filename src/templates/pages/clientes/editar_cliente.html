@@ -25,13 +25,17 @@
 <div class="content">
     <div class="container">
         <form id="cliente_form" class="row" action="/api/editar_cliente" onsubmit="editarCliente(event)">
+            
+            <input type="hidden" name="id_cliente" value="{{ cliente.id_cliente }}">
+            <input type="hidden" name="id_endereco" value="{{ cliente.id_endereco }}">
+
             <h3>{{ funcItem }}</h3>
             <div class="col-12 col-lg-4">
                 <label for="nome_cliente">Nome: </label>
                 <div class="form-group mb-3">
                     <input class="form-control" type="text" name="nome" id="nome_cliente" value="{{ cliente.nome }}">
                 </div>
-
+                
                 <label for="sobrenome_cliente">Sobrenome: </label>
                 <div class="form-group mb-3">
                     <input class="form-control" type="text" name="sobrenome" id="sobrenome_cliente"
@@ -64,7 +68,7 @@
                         <input class="form-control" type="text" name="rua" id="endereco_cliente">
                         {% else %}
                         <input class="form-control" type="text" name="rua" id="endereco_cliente"
-                            value="{{ cliente.endereco.rua }}">
+                            value="{{ cliente.endereco.rua if cliente != None else ''}}">
                         {% endif %}
                     </div>
                 </div>

@@ -1,10 +1,12 @@
 from fastapi import APIRouter, Body, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from dto.alterar_endereco import AlterarEnderecoDTO
 from infrastructure.config.database import SessionLocal
 from schemas.cliente import Cliente
 from infrastructure.repositories.cliente import ClienteRepositorio
-from dto.remover_cliente_dto import RemoverClienteDTO
+from dto.alterar_cliente import AlterarClienteDTO
+from util.mapper_cliente import MapperCliente
 
 router = APIRouter()
 
@@ -27,16 +29,17 @@ async def get_cliente(request: Request):
 
 @router.get("/editar_cliente", response_class=HTMLResponse)
 async def get_editar_cliente(request: Request, id_cliente: int = 0):
-    cliente_para_editar = ClienteRepositorio.obter_por_id(id_cliente)
+    cliente_para_alterar = ClienteRepositorio.obter_por_id(id_cliente)
     return templates.TemplateResponse("/pages/clientes/editar_cliente.html", 
         {"request":request, 
          "funcItem": "Editar", 
          "navItem": NAV_ITEM, 
          "urlItem": URL_ITEM, 
-         "cliente":cliente_para_editar})
+         "cliente":cliente_para_alterar})
 
 @router.put("/api/editar_cliente")
-async def get_editar_cliente(cliente: Cliente):
+async def put_editar_cliente(cliente_alterado: AlterarClienteDTO):
+    cliente = MapperCliente.alterar_cliente(cliente_alterado)
     ClienteRepositorio.alterar(cliente)
     return {"MSG": True}
 

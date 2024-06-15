@@ -38,7 +38,6 @@ class Mapper():
         )
         return endereco_mapeado
 
-
     @classmethod
     def mapear_cliente(cls, cliente: ClienteSchema) -> ClienteModel:
         endereco_mapeado = None
