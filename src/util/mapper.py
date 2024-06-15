@@ -71,26 +71,6 @@ class Mapper():
                 id_convenio=dto.id_convenio,
                 especialidade=dto.especialidade,
                 cnpj=dto.cnpj)
-             
-    class MapperDevolucao():
-
-        @classmethod
-        def mapear_itens_devolucao(cls, itens: List[ItemDevolucaoDTO]) -> List[ItemDevolucao]:
-            retorno = []
-            for item in itens:
-                devolucao = ItemDevolucao(qtde=item.qtde, id_produto=item.id_produto)
-                retorno.append(devolucao)
-            return retorno
-
-        @classmethod
-        def mapear_cadastrar_devolucao_dto(cls, dto: CadastrarDevolucaoDTO) -> Devolucao:
-            return Devolucao(
-                id_venda = dto.id_venda,
-                valor_devolucao = dto.valor_devolucao,
-                itens_devolucao = cls.mapear_itens_devolucao(dto.itens_devolucao),
-                data_delete=None,
-                foi_deletado=False
-            )
 
     @classmethod
     def mapear_endereco(cls, endereco: EnderecoSchema) -> EnderecoModel:
