@@ -4,6 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 from dto.devolucao.cadastrar_devolucao_dto import CadastrarDevolucaoDTO
+from dto.devolucao.editar_devolucao_dto import EditarDevolucaoDTO
 from infrastructure.repositories.devolucao import DevolucaoRepositorio
 from infrastructure.repositories.venda import VendaRepositorio
 from schemas.devolucao import Devolucao
@@ -75,6 +76,10 @@ async def post_devolucao(devolucao: CadastrarDevolucaoDTO = Body()):
         VendaRepositorio.remover_item_venda(item.id_produto, devolucao.id_venda)
 
     return {"MSG": devolucao_inserida.id_devolucao}
+
+@router.put("/api/editar_devolucao")
+async def put_devolucao(devolucao: EditarDevolucaoDTO = Body()):
+    return {"MSG": True}
 
 @router.delete("/api/remover_devolucao")
 async def delete_devolucao(id_devolucao: int):

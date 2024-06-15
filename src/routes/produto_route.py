@@ -69,12 +69,12 @@ async def post_produto(produto: CadastrarProdutoDTO = Body()):
     return {"MSG": produto_inserido.id_produto}
 
 @router.put("/api/editar_produto")
-async def get_editar_produto(produto: EditarProdutoDTO = Body()):
+async def put_produto(produto: EditarProdutoDTO = Body()):
     produto_mapeado = Mapper.MapperProduto.mapear_editar_produto_dto(produto)
     ProdutoRepositorio.alterar(produto_mapeado)
     return {"MSG": True}
 
 @router.delete("/api/remover_produto")
-async def get_remover_produto(id_produto: int):
+async def delete_produto(id_produto: int):
     ProdutoRepositorio.remover(id_produto)
     return {"MSG": True}
