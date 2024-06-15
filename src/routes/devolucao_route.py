@@ -37,7 +37,7 @@ async def get_remover_devolucao(request: Request):
     devolucoes = DevolucaoRepositorio.obter_todos()
     return templates.TemplateResponse("/pages/devolucao/visualizar_devolucao.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "devolucoes": devolucoes})
 
-@router.post("/cadastrar_devolucao")
+@router.post("/api/cadastrar_devolucao")
 async def get_cadastro_devolucao(devolucao: Devolucao = Body()):
     devolucao = DevolucaoRepositorio.inserir(devolucao)
     for item in devolucao.itens_devolucao:

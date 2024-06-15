@@ -72,6 +72,33 @@ function calcValorTotal(rows){
     })
     return valor_total
 }
+
+async function submitFormCadastro(event){
+    event.preventDefault();
+
+    const rows = document.querySelectorAll("tr")
+    var valor_total = calcValorTotal(rows)
+    var formData = {
+        'id_venda': parseInt(document.getElementById("th_id_venda").textContent),
+        'valor_devolucao': valor_total,
+        'itens_devolucao': lista_items_devolucao,
+    };
+    
+    fetch('/api/cadastrar_devolucao', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    }).then(response => {
+        if (response.ok) {
+            alert("Devolução cadastrada com sucesso.")
+        } else {
+            alert("Erro ao cadastrar a devolução.")
+        }
+    })
+}
+
 function submeterFormularioCadastro() {
     const rows = document.querySelectorAll("tr")
     var valor_total = calcValorTotal(rows)
@@ -81,9 +108,8 @@ function submeterFormularioCadastro() {
         'itens_devolucao': lista_items_devolucao,
     };
 
-    // alert(JSON.stringify(formData))
     
-    fetch('/cadastrar_devolucao', {
+    fetch('/api/cadastrar_devolucao', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
