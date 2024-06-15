@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Body, Request
+from typing import Optional
+from fastapi import APIRouter, Body, Query, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
@@ -43,9 +44,26 @@ async def get_remover_devolucao(request: Request, id_devolucao: int = 0):
     return templates.TemplateResponse("/pages/devolucao/remover_devolucao.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "devolucao": devolucao})
 
 @router.get("/visualizar_devolucao", response_class=HTMLResponse)
-async def get_remover_devolucao(request: Request):
-    devolucoes = DevolucaoRepositorio.obter_todos()
-    return templates.TemplateResponse("/pages/devolucao/visualizar_devolucao.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "devolucoes": devolucoes})
+async def get_visualizar_devolucao(     request: Request, 
+                                        id_venda: Optional[str] = Query(None, alias="id_venda"),
+                                        valor_min: Optional[str] = Query(None, alias="valor_min"),
+                                        valor_max: Optional[str] = Query(None, alias="valor_max")):
+    
+    print("get_visualizar_devolucao")
+    print(id_venda)
+    parse_id_venda = id_venda if id_venda != '' else None
+    parse_valor_min = float(valor_min) if not (valor_min == None or valor_min == '') else 0
+    parse_valor_max = float(valor_max) if not (valor_max == None or valor_max == '') else float('inf')
+
+    devolucoes = DevolucaoRepositorio.obter_com_filtros(parse_id_venda, parse_valor_min, parse_valor_max)
+
+    return templates.TemplateResponse("/pages/devolucao/visualizar_devolucao.html", 
+    {
+        "request":request, 
+        "navItem": NAV_ITEM, 
+        "urlItem": URL_ITEM, 
+        "devolucoes": devolucoes
+    })
 
 @router.post("/api/cadastrar_devolucao")
 async def post_devolucao(devolucao: CadastrarDevolucaoDTO = Body()):

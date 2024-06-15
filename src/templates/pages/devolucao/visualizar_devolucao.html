@@ -6,38 +6,38 @@
 
 <div class="content">
     <div class="container">
-        <form action="">
+        <form class="was-validated" id="form_buscar_devolucao" action="/visualizar_devolucao" method="get" role="search">
+            <h3>Filtrar</h3>
 
-            <div class="row">
-                <div class="col">
-                    <h3>Filtrar</h3>
+            <div class="row row-cols-1">
+                <div class="col mb-3 form-group">
+                    <label class="form-label" for="filtro_id_venda">Id Venda:</label>
+                    <input class="form-control" type="number" name="id_venda" id="filtro_id_venda" placeholder="Id da Venda..." minlength="0">
                 </div>
             </div>
-            
-            <div class="row m-3">
-                <div class="col form-group">
-                    <label for="filtro_id_venda">Id Venda:</label>
-                    <input type="number" id="filtro_id_venda" name="filtro_id_venda" class="form-control">
+
+            <div class="row row-cols-2">
+                <div class="col mb-3 form-group">
+                    <label class="form-label" for="filtro_valor_devolucao_min">Valor Mínimo:</label>
+                    <input class="form-control" type="number" name="valor_min" id="filtro_valor_devolucao_min" placeholder="Valor mínimo da Devolução..." min="1">
+                    <div class="invalid-feedback">
+                        Por favor, forneça um valor mínimo válido.
+                    </div>
                 </div>
                 
+                <div class="col mb-3 form-group">
+                    <label class="form-label" for="filtro_valor_devolucao_max">Valor Máximo:</label>
+                    <input class="form-control" type="number" name="valor_max" id="filtro_valor_devolucao_max" placeholder="Valor máximo do Devolução..." min="1">
+                    <div class="invalid-feedback">
+                        Por favor, forneça um valor máximo válido.
+                    </div>
+                </div>
             </div>
 
-            <div class="row row-cols-2 m-3">
-                <div class="col form-group">
-                    <label for="filtro_valor_min">Valor Mínimo:</label>
-                    <input type="number" id="filtro_valor_min" name="valor_min" class="form-control">
-                </div>
-
-                <div class="col form-group">
-                    <label for="filtro_valor_max">Valor Máximo:</label>
-                    <input type="number" id="filtro_valor_max" name="valor_max" class="form-control">
-                </div>
-                
-            </div>
-
-            <div class="row m-3">
-                <div class="col">
-                    <button class="btn btn-success" onclick="">Filtrar Devoluções</button>
+            <div class="row row-cols-1">
+                <div class="col mb-3 form-group">
+                    <button class="btn btn-success" type="submit">Filtrar Devoluções</button>
+                    <button class="btn btn-danger" type="reset">Limpar Campos</button>
                 </div>
             </div>
         </form>
@@ -51,7 +51,7 @@
         <table class="table table-striped table-bordered table-hover">
             <thead class="bg-dark">               
                 <tr class="table-active">
-                    <th scope="col">Id</th>
+                    <th scope="col">Id Devolução</th>
                     <th scope="col">Id Venda</th>
                     <th scope="col">Valor</th>
                 </tr>
@@ -59,8 +59,8 @@
             <tbody>
                 {% for devolucao in devolucoes %}
                 <tr id="{{ devolucao.id_devolucao }}">
+                    <th scope="row">{{ devolucao.id_devolucao }}</th>
                     <td>{{ devolucao.id_venda }}</td>
-                    <td>{{ devolucao.id_devolucao }}</td>
                     <td>{{ devolucao.valor_devolucao}}</td>
                 </tr>
                 {% endfor %}

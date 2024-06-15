@@ -1,8 +1,8 @@
 from datetime import date
-from typing import List, Optional
+from typing import Any, List, Optional
 
 import psycopg2
-from sqlalchemy import update
+from sqlalchemy import and_, update
 from infrastructure.config.database import get_db
 from infrastructure.models.devolucao import Devolucao
 from infrastructure.models.itemDevolucao import ItemDevolucao
@@ -71,3 +71,21 @@ class DevolucaoRepositorio():
         except psycopg2.Error as ex:
             print(f"Error ao deletar o devolucao: \n{ex}")
             db.rollback()
+
+    @classmethod
+    def obter_com_filtros(cls, id_venda: int, valor_min: float, valor_max: float):
+        try:
+            db = get_db()
+            filtro = and_(Devolucao.foi_deletado == False,
+                          Devolucao.valor_devolucao >= valor_min,
+                          Devolucao.valor_devolucao <= valor_max
+                         )
+            if id_venda != None:
+                filtro = and_(filtro, Devolucao.id_venda == id_venda)
+
+            devolucao = db.query(Devolucao).filter(filtro).all()
+
+            return devolucao
+        except Exception as ex:
+            print(f"Error ao buscar o Produto: \n{ex}")
+            return []
