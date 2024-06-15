@@ -1,7 +1,7 @@
 from datetime import date
 from typing import List, Optional
 import psycopg2
-from sqlalchemy import update
+from sqlalchemy import and_, update
 
 from infrastructure.config.database import get_db
 from infrastructure.models.convenio import Convenio
@@ -23,32 +23,29 @@ class ConvenioRepositorio:
     def obter_por_id(cls, id: int) -> Optional[Convenio]:
         try:
             db = get_db()
-            return db.query(Convenio).filter_by(id_convenio=id).first()
+            return db.query(Convenio).filter_by(id_convenio=id, foi_deletado=False).first()
         except Exception as e:
             print(e)    
             return None
         
     @classmethod
-    def inserir(cls, convenio: ConvenioSchema) -> Optional[Convenio]:
-        convenio_db = Mapper.mapear_convenio(convenio)
+    def inserir(cls, convenio: Convenio) -> Optional[Convenio]:
         try:
             db = get_db()
-            db.add(convenio_db)
+            db.add(convenio)
             db.commit()
-            db.refresh(convenio_db)
-            return convenio_db
+            db.refresh(convenio)
+            return convenio
         except psycopg2.Error as ex:
             print(f"Error ao inserir o Convenio: \n{ex}")
             db.rollback()
 
     @classmethod
-    def alterar(cls, convenio: ConvenioSchema):
+    def alterar(cls, convenio: Convenio):
         try:
             db = get_db()
             update_stmt = update(Convenio).where(Convenio.id_convenio == convenio.id_convenio).values(especialidade=convenio.especialidade,
-                                                                                                      data_inicio_convenio=convenio.data_inicio_convenio,
-                                                                                                      cnpj=convenio.cnpj,
-                                                                                                      id_cliente = convenio.id_cliente)
+                                                                                                      cnpj=convenio.cnpj)
             db.execute(update_stmt)
             db.commit()
         except psycopg2.Error as ex:
@@ -65,3 +62,19 @@ class ConvenioRepositorio:
         except psycopg2.Error as ex:
             print(f"Error ao deletar o Convenio: \n{ex}")
             db.rollback()
+
+    @classmethod
+    def obter_com_filtros(cls, especialidade: str, data_inicio: date, data_final: date):
+        try:
+            db = get_db()
+            filtro = and_(Convenio.foi_deletado == False,
+                          Convenio.especialidade.like(f'%{especialidade}%'), 
+                          Convenio.data_inicio_convenio >= data_inicio,
+                          Convenio.data_inicio_convenio <= data_final)
+
+            convenios = db.query(Convenio).filter(filtro).order_by(Convenio.especialidade).all()
+
+            return convenios
+        except Exception as ex:
+            print(f"Error ao buscar o Produto: \n{ex}")
+            return []

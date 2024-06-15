@@ -6,36 +6,32 @@
 
 <div class="content">
     <div class="container">
-        <form action="">
+        <form class="was-validated" id="form_buscar_convenio" action="/visualizar_convenio" method="get" role="search">
+            <h3>Filtrar</h3>
 
-            <div class="row">
-                <div class="col">
-                    <h3>Filtrar</h3>
-                </div>
-            </div>
-            
-            <div class="row m-3">
-                <div class="col form-group">
-                    <label for="filtro_especialidade">Especialidade:</label>
-                    <input type="text" id="filtro_especialidade" name="especialidade" class="form-control" placeholder="Especialidade...">
+            <div class="row row-cols-1">
+                <div class="col mb-3 form-group">
+                    <label class="form-label" for="filtro_especialidade_convenio">Especialidade:</label>
+                    <input class="form-control" type="text" name="especialidade" id="filtro_especialidade_convenio" placeholder="Especialidade..." minlength="0">
                 </div>
             </div>
 
-            <div class="row row-cols-2 m-3">
-                <div class="col form-group">
-                    <label for="filtro_data_inicio">Data do Inicio:</label>
-                    <input type="date" id="filtro_data_inicio" name="data_inicio" class="form-control">
+            <div class="row row-cols-2">
+                <div class="col mb-3 form-group">
+                    <label class="form-label" for="filtro_data_inicio">Data do Inicio:</label>
+                    <input class="form-control" type="date" name="data_inicio" id="filtro_data_inicio" >
                 </div>
                 
-                <div class="col form-group">
-                    <label for="filtro_data_final">Data do Final:</label>
-                    <input type="date" id="filtro_data_final" name="data_final" class="form-control">
+                <div class="col mb-3 form-group">
+                    <label class="form-label" for="filtro_data_final">Data do Final:</label>
+                    <input class="form-control" type="date" name="data_final" id="filtro_data_final">
                 </div>
             </div>
 
-            <div class="row m-3">
-                <div class="col">
-                    <button class="btn btn-success" onclick="">Filtrar Convênios</button>
+            <div class="row row-cols-1">
+                <div class="col mb-3 form-group">
+                    <button class="btn btn-success" type="submit">Filtrar Convênios</button>
+                    <button class="btn btn-danger" type="reset">Limpar Campos</button>
                 </div>
             </div>
         </form>

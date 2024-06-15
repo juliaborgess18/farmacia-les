@@ -4,8 +4,8 @@ function btnClickIdVenda(idProduto, qtde) {
     const rows = document.querySelectorAll("tr")
 
     var item = {
-        id_produto: idProduto,
-        qtde: qtde
+        qtde: qtde,
+        id_produto: idProduto
     }
     
     ControladorListaItens(idProduto, item, rows)
@@ -72,18 +72,20 @@ function calcValorTotal(rows){
     })
     return valor_total
 }
-function submeterFormularioCadastro() {
+
+async function submitFormCadastro(event){
+    event.preventDefault();
+
     const rows = document.querySelectorAll("tr")
-    var valor_total = calcValorTotal(rows)
+    var valor_total = calcValorTotal(rows).toString()
     var formData = {
-        'id_venda': parseInt(document.getElementById("th_id_venda").textContent),
+        'id_venda': document.getElementById("th_id_venda").textContent,
         'valor_devolucao': valor_total,
         'itens_devolucao': lista_items_devolucao,
     };
-
-    // alert(JSON.stringify(formData))
     
-    fetch('/cadastrar_devolucao', {
+    console.log(JSON.stringify(formData))
+    fetch('/api/cadastrar_devolucao', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -97,3 +99,28 @@ function submeterFormularioCadastro() {
         }
     })
 }
+
+async function submitFormRemover(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+    const id_devolucao = formData.get('id_devolucao');
+
+    const response = await fetch(`${form.action}?id_devolucao=${id_devolucao}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    if (response.ok) {
+        alert('Devolução removida com sucesso!');
+    } else {
+        alert('Erro ao remover a devolução!');
+    }
+}
+

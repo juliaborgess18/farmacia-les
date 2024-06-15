@@ -22,7 +22,7 @@
 
 <div class="content">
     <div class="container">
-        <form class="row row-cols-1 align-items-end" id="form_remover_produto" action="/api/remover_produto" role="form" onsubmit="submitFormRemover(event)"">
+        <form class="row row-cols-1 align-items-end" id="form_remover_produto" action="/api/remover_produto" role="form" onsubmit="submitFormRemover(event)">
             <h3>Produto</h3>
 
             <div class="form-group" hidden>
@@ -42,7 +42,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% if produto != None%}
+                        {% if produto != None %}
                         <tr id="{{ produto.id_produto }}">
                             <th scope="row">{{ produto.id_produto }}</th>
                             <td>{{ produto.nome }}</td>
