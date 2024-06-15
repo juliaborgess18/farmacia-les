@@ -100,28 +100,27 @@ async function submitFormCadastro(event){
     })
 }
 
-function submeterFormularioCadastro() {
-    const rows = document.querySelectorAll("tr")
-    var valor_total = calcValorTotal(rows)
-    var formData = {
-        'id_venda': document.getElementById("th_id_venda").textContent,
-        'valor_devolucao': valor_total,
-        'itens_devolucao': lista_items_devolucao,
-    };
+async function submitFormRemover(event) {
+    event.preventDefault();
 
-    
-    fetch('/api/cadastrar_devolucao', {
-        method: 'POST',
+    const form = event.target;
+    const formData = new FormData(form);
+    const id_devolucao = formData.get('id_devolucao');
+
+    const response = await fetch(`${form.action}?id_devolucao=${id_devolucao}`, {
+        method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    }).then(response => {
-        if (response.ok) {
-            alert("Devolução cadastrada com sucesso.")
-        } else {
-            alert("Erro ao cadastrar a devolução.")
+            'Content-Type': 'application/json'
         }
-    })
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    if (response.ok) {
+        alert('Devolução removida com sucesso!');
+    } else {
+        alert('Erro ao remover a devolução!');
+    }
 }
 

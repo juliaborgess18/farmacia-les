@@ -20,29 +20,6 @@ function TableRowAdicionarClasseSucesso(id, rows){
     });
 }
 
-// function submeterFormularioCadastro() {
-//     var formData = {
-//         'nome': document.getElementById('nome_produto').value,
-//         'valor': parseFloat(document.getElementById('valor_produto').value),
-//         'data_validade': document.getElementById('validade_produto').value,
-//         'id_fornecedor': parseInt(document.getElementById('id_fornecedor_produto').value)
-//     };
-    
-//     fetch('/api/cadastrar_produto', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(formData),
-//     }).then(response => {
-//         if (response.ok) {
-//             alert("Produto cadastrado com sucesso.")
-//         } else {
-//             alert("Erro ao cadastrar o produto.")
-//         }
-//     })
-// }
-
 async function submitFormCadastro(event){
     event.preventDefault();
     const form = event.target;

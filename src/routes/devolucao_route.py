@@ -38,9 +38,9 @@ async def get_editar_devolucao(request: Request, id_devolucao: int = 0):
     })
 
 @router.get("/remover_devolucao", response_class=HTMLResponse)
-async def get_remover_devolucao(request: Request):
-    devolucoes = []
-    return templates.TemplateResponse("/pages/devolucao/remover_devolucao.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "devolucoes": devolucoes})
+async def get_remover_devolucao(request: Request, id_devolucao: int = 0):
+    devolucao = DevolucaoRepositorio.obter_por_id(id_devolucao) if id_devolucao != 0 else None
+    return templates.TemplateResponse("/pages/devolucao/remover_devolucao.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "devolucao": devolucao})
 
 @router.get("/visualizar_devolucao", response_class=HTMLResponse)
 async def get_remover_devolucao(request: Request):
@@ -57,3 +57,8 @@ async def post_devolucao(devolucao: CadastrarDevolucaoDTO = Body()):
         VendaRepositorio.remover_item_venda(item.id_produto, devolucao.id_venda)
 
     return {"MSG": devolucao_inserida.id_devolucao}
+
+@router.delete("/api/remover_devolucao")
+async def delete_devolucao(id_devolucao: int):
+    DevolucaoRepositorio.remover(id_devolucao)
+    return {"MSG": True}
