@@ -31,46 +31,6 @@ from schemas.itemVenda import ItemVenda as ItemVendaSchema
 
 class Mapper():
 
-    class MapperProduto():
-
-        @classmethod
-        def mapear_cadastrar_produto_dto(cls, dto: CadastrarProdutoDTO) -> Produto:
-            return Produto(
-                nome=dto.nome,
-                valor=dto.valor,
-                data_validade=dto.data_validade,
-                id_fornecedor=dto.id_fornecedor,
-                data_delete=None,
-                foi_deletado=False
-            )
-        
-        @classmethod
-        def mapear_editar_produto_dto(cls, dto: EditarProdutoDTO) -> Produto:
-            return Produto(
-                id_produto= dto.id_produto,
-                nome=dto.nome,
-                valor=dto.valor,
-                data_validade=dto.data_validade
-            )
-    
-    class MapperConvenio():
-        
-        @classmethod
-        def mapear_cadastrar_convenio_dto(cls, dto: CadastrarConvenioDTO) -> Convenio: 
-            return Convenio(
-                especialidade=dto.especialidade,
-                data_inicio_convenio=date.today(),
-                cnpj=dto.cnpj,
-                data_delete=None,
-                foi_deletado=False,
-                id_cliente = dto.id_cliente)
-        
-        @classmethod
-        def mapear_editar_convenio_dto(cls, dto: EditarConvenioDTO) -> Convenio: 
-            return Convenio(
-                id_convenio=dto.id_convenio,
-                especialidade=dto.especialidade,
-                cnpj=dto.cnpj)
 
     @classmethod
     def mapear_endereco(cls, endereco: EnderecoSchema) -> EnderecoModel:

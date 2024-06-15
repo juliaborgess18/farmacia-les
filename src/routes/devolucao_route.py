@@ -7,9 +7,6 @@ from dto.devolucao.cadastrar_devolucao_dto import CadastrarDevolucaoDTO
 from dto.devolucao.editar_devolucao_dto import EditarDevolucaoDTO
 from infrastructure.repositories.devolucao import DevolucaoRepositorio
 from infrastructure.repositories.venda import VendaRepositorio
-from schemas.devolucao import Devolucao
-from schemas.produto import Produto
-from util.mapper import Mapper
 from util.mapper_devolucao import MapperDevolucao
 
 router = APIRouter()
