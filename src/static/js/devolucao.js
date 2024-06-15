@@ -4,8 +4,8 @@ function btnClickIdVenda(idProduto, qtde) {
     const rows = document.querySelectorAll("tr")
 
     var item = {
-        id_produto: idProduto,
-        qtde: qtde
+        qtde: qtde,
+        id_produto: idProduto
     }
     
     ControladorListaItens(idProduto, item, rows)
@@ -72,18 +72,20 @@ function calcValorTotal(rows){
     })
     return valor_total
 }
-function submeterFormularioCadastro() {
+
+async function submitFormCadastro(event){
+    event.preventDefault();
+
     const rows = document.querySelectorAll("tr")
-    var valor_total = calcValorTotal(rows)
+    var valor_total = calcValorTotal(rows).toString()
     var formData = {
-        'id_venda': parseInt(document.getElementById("th_id_venda").textContent),
+        'id_venda': document.getElementById("th_id_venda").textContent,
         'valor_devolucao': valor_total,
         'itens_devolucao': lista_items_devolucao,
     };
-
-    // alert(JSON.stringify(formData))
     
-    fetch('/cadastrar_devolucao', {
+    console.log(JSON.stringify(formData))
+    fetch('/api/cadastrar_devolucao', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -97,3 +99,68 @@ function submeterFormularioCadastro() {
         }
     })
 }
+
+async function submitFormRemover(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+    const id_devolucao = formData.get('id_devolucao');
+
+    const response = await fetch(`${form.action}?id_devolucao=${id_devolucao}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    if (response.ok) {
+        alert('Devolução removida com sucesso!');
+    } else {
+        alert('Erro ao remover a devolução!');
+    }
+}
+
+function btnClickEditarDevolucao(qtde, id){
+    const inputQtde = document.getElementById("input_qtde")
+    inputQtde.value=qtde
+    const rows = document.querySelectorAll("tr")
+    TableRowLimparClassesDeEstilo(rows);
+    TableRowAdicionarClasseSucesso(id, rows)
+}
+
+function TableRowLimparClassesDeEstilo(rows){
+    rows.forEach(function(row) {
+        row.classList.remove("table-success")
+    });
+}
+
+async function submitFormEditar(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const data = Object.fromEntries(formData.entries());
+    console.log(JSON.stringify(data))
+    const response = await fetch(form.action, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    if (response.ok) {
+        alert('Produto alterado com sucesso!');
+    } else {
+        alert('Erro ao alterar o produto!');
+    }
+}
+

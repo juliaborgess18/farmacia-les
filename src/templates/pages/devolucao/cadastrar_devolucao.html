@@ -6,25 +6,37 @@
 
 <div class="content">
     <div class="container">
-        <h3>Cadastro de Devolução</h3>
-        <form class="row" id="form_venda" action="/cadastrar_devolucao" method="get" role="search">
-            <div class="form-group mb-3">
-                <label for="input_id_venda">Buscar Venda:</label>
-                <input type="search" id="input_id_venda" name="id_venda" class="form-control" placeholder="Id venda...">
+        <form class="was-validated" id="form_buscar_venda" method="get" action="/cadastrar_devolucao" role="search">
+            <h3>Cadastrar Devolução</h3>
+
+            <div class="row align-items-end">
+                <div class="col-2 mb-3 form-group">
+                    <label class="form-label" for="input_id_venda">Buscar Venda:</label>
+                    <input class="form-control" type="number" name="id_venda" id="input_id_venda" placeholder="ID da venda..." required min="1" value="{{ venda.id_venda }}">
+                </div>
+
+                <div class="col-10 mb-3 form-group align-items-end">
+                    <button class="btn btn-success " type="submit">Buscar</button>
+                </div>
+
             </div>
-            <div>
-                <button type="submit" class="btn btn-success">Buscar</button>
-            </div>
+
         </form>
     </div>
 </div>
 
 <div class="content">
     <div class="container">
-        <form class="row">
+        <form 
+            class="row row-cols-1 align-items-end was-validated" 
+            id="form_cadastrar_item_devolucao" 
+            action="/api/cadastrar_devolucao" 
+            role="form" 
+            onsubmit="submitFormCadastro(event)">
+
             <h3>Vendas</h3>
 
-            <div class="form-group mb-3">
+            <div class="col form-group mb-3">
                 <table class="table table-striped table-bordered table-hover mt-3">
                     <thead class="bg-dark">
                         <tr class="table-active">
@@ -39,7 +51,6 @@
                     </thead>
     
                     <tbody>
-
                         {% for item in venda.itens_venda %}
                         <tr id="{{ item.id_produto }}">
                             <th scope="row" id="th_id_venda">{{ item.id_venda }}</th>
@@ -66,7 +77,8 @@
             </div>
 
             <div>
-                <button class="btn btn-success" onclick="submeterFormularioCadastro()">Cadastrar Devolução</button>
+                <button class="btn btn-success" type="submit">Cadastrar Devolução</button>
+                <button class="btn btn-danger" type="reset">Limpar Campos</button>
             </div>
         </form>
     </div>

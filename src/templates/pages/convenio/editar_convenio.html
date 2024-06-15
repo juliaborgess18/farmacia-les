@@ -6,47 +6,49 @@
 
 <div class="content">
     <div class="container">
-        <form class="row">
+        <form class="was-validated" id="form_buscar_convenio" method="get" action="/editar_convenio" role="search">
             <h3>Pesquisar</h3>
-                
-                <label for="id_convenio">ID:</label>
-                <div class="form-group mb-3 col-10">
-                    <input type="number" id="id_convenio" name="id" class="form-control" placeholder="ID do Convênio...">
+
+            <div class="row align-items-end">
+                <div class="col-2 mb-3 form-group">
+                    <label class="form-label" for="input_id_convenio">ID:</label>
+                    <input class="form-control" type="number" name="id_convenio" id="input_id_convenio" placeholder="ID do convenio..." required min="1" value="{{ convenio.id_convenio }}">
                 </div>
-                
-                <div class="col-2">
-                    <button class="btn btn-success" onclick="">Buscar Convênio</button>
+
+                <div class="col-10 mb-3 form-group align-items-end">
+                    <button class="btn btn-success " type="submit">Buscar</button>
                 </div>
+
+            </div>
+
         </form>
     </div>
 </div>
 
 <div class="content">
     <div class="container">
-        <form class="row">
+        <form class="row row-cols-1 align-items-end was-validated" id="form_alterar_convenio" action="/api/editar_convenio" role="form" onsubmit="submitFormEditar(event)">
             <h3>Editar</h3>
-                
-            <label for="nome_convenio_cliente">Nome:</label>
-            <div class="form-group mb-3">
-                <input type="text" id="nome_convenio_cliente" name="nome" class="form-control" placeholder="Nome do Convêniado..." disabled>
+            <div class="form-group" hidden>
+                <input type="hidden" name="id_convenio" value="{{ convenio.id_convenio }}">
             </div>
 
-            <label for="especialidade_convenio">Especialidade: </label>
-            <div class="form-group mb-3">
-                <input type="text" id="especialidade_convenio" name="especialidade" class="form-control"  placeholder="Especialidade...">
+            <div class="col form-group mb-3">
+                <label class="form-label" for="input_especialidade">Especialidade:</label>
+                <input class="form-control" type="text" name="especialidade" id="input_especialidade" placeholder="Especialidade..." value="{{ convenio.especialidade }}">
             </div>
             
-            <label for="cnpj_convenio">Cnpj: </label>
-            <div class="form-group mb-3">
-                <input type="text" id="cnpj_convenio" name="cnpj" class="form-control">
+            <div class="col form-group mb-3">
+                <label class="form-label" for="input_cnpj">Cnpj:</label>
+                <input class="form-control" type="text" name="cnpj" id="input_cnpj" placeholder="Especialidade..." value="{{ convenio.cnpj }}">
             </div>
                 
-            <div class="col-2">
-                <button class="btn btn-success" onclick="">Editar Convênio</button>
+            <div class="col mb-3 form-group">
+                <button class="btn btn-success" type="submit">Editar Convênio</button>
             </div>
         </form>
     </div>
 </div>
 
-
+<script src="/static/js/convenio.js"></script>
 {% endblock %}

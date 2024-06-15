@@ -4,50 +4,67 @@
 
 <div class="content">
     <div class="container">
-        <h3>Remover</h3>
-        <div class="row">
-            <div class="form mb-3 col-2">
-                <label for="id_convenio">ID: </label>
-                <div class="form mb-3">
-                    <input class="form-control" type="text" name="" id="id_convenio">
+        <form class="was-validated" id="form_buscar_convenio" method="get" action="/remover_convenio" role="search">
+            <h3>Pesquisar</h3>
+
+            <div class="row align-items-end">
+                <div class="col-2 mb-3 form-group">
+                    <label class="form-label" for="input_id_convenio">ID:</label>
+                    <input class="form-control" type="number" name="id_convenio" id="input_id_convenio" placeholder="ID do convenio..." required min="1" value="{{ convenio.id_convenio }}">
                 </div>
+
+                <div class="col-10 mb-3 form-group align-items-end">
+                    <button class="btn btn-success " type="submit">Buscar</button>
+                </div>
+
             </div>
-            <div class="col-2 mt-4">
-                <button class="btn btn-success" type="submit">Buscar</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 
 <div class="content">
     <div class="container">
-        <h3>Convênio</h3>
-        <table class="table table-striped table-bordered table-hover">
-            <thead class="bg-dark">
-                <tr class="table-active">
-                    <th scope="col">Id</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Sobrenome</th>
-                    <th scope="col">Especialidade</th>
-                    <th scope="col">Data de início</th>
-                    <th scope="col">Cnpj</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for convenio in convenios %}
-                <tr id="{{ convenio.id_convenio }}">
-                    <th scope="row">{{ convenio.id_convenio }}</th>
-                    <td>{{ convenio.cliente.nome }}</td>
-                    <td>{{ convenio.cliente.sobrenome }}</td>
-                    <td>{{ convenio.especialidade }}</td>
-                    <td>{{ convenio.data_inicio_convenio }}</td>
-                    <td>{{ convenio.cnpj }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <button class="btn btn-danger" type="submit"> Remover </button>
+        <form class="was-validated" id="form_remover_convenio" action="/api/remover_convenio" role="form" onsubmit="submitFormRemover(event)">       
+            <h3>Convênio</h3>
+
+            <div class="form-group" hidden>
+                <input type="hidden" name="id_convenio" value="{{ convenio.id_convenio }}">
+            </div>
+
+            <div class="col form-group">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead class="bg-dark">
+                        <tr class="table-active">
+                            <th scope="col">Id</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Sobrenome</th>
+                            <th scope="col">Especialidade</th>
+                            <th scope="col">Data de início</th>
+                            <th scope="col">Cnpj</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if convenio != None %}
+                        <tr id="{{ convenio.id_convenio }}">
+                            <th scope="row">{{ convenio.id_convenio }}</th>
+                            <td>{{ convenio.cliente.nome }}</td>
+                            <td>{{ convenio.cliente.sobrenome }}</td>
+                            <td>{{ convenio.especialidade }}</td>
+                            <td>{{ convenio.data_inicio_convenio }}</td>
+                            <td>{{ convenio.cnpj }}</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col mb-3 form-group">
+                <button class="btn btn-danger" type="submit">Remover</button>
+            </div>
+            
+        </form>
     </div>
 </div>
 
+<script src="/static/js/convenio.js"></script>
 {% endblock %}
