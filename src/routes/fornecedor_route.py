@@ -4,8 +4,8 @@ from fastapi.templating import Jinja2Templates
 from infrastructure.repositories.fornecedor import FornecedorRepositorio
 from infrastructure.repositories.fornecedor import FornecedorRepositorio
 from schemas.fornecedor import Fornecedor
-from dto.fornecedor.cadastrar_fornecedor_dto import CadastrarFornecedorDTO
-from util.mapper_fornecedor import MapperFornecedor
+# from dto.fornecedor.cadastrar_fornecedor_dto import CadastrarFornecedorDTO
+# from util.mapper_fornecedor import MapperFornecedor
 
 router = APIRouter()
 
@@ -37,28 +37,28 @@ async def get_visualizar_fornecedor(request: Request):
     fornecedores = FornecedorRepositorio.obter_todos()
     return templates.TemplateResponse("/pages/fornecedores/visualizar_fornecedor.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "fornecedores": fornecedores })
 
-@router.post("/api/cadastrar_fornecedor")
-async def post_fornecedor(fornecedor_dto: CadastrarFornecedorDTO = Body()):
-    # Mapeando e inserindo o endereço
-    endereco = Endereco(
-        numero=fornecedor_dto.endereco.numero,
-        rua=fornecedor_dto.endereco.rua,
-        bairro=fornecedor_dto.endereco.bairro,
-        cidade=fornecedor_dto.endereco.cidade,
-        uf=fornecedor_dto.endereco.uf
-    )
-    endereco_inserido = EnderecoRepositorio.inserir(endereco)
+# @router.post("/api/cadastrar_fornecedor")
+# async def post_fornecedor(fornecedor_dto: CadastrarFornecedorDTO = Body()):
+#     # Mapeando e inserindo o endereço
+#     endereco = Endereco(
+#         numero=fornecedor_dto.endereco.numero,
+#         rua=fornecedor_dto.endereco.rua,
+#         bairro=fornecedor_dto.endereco.bairro,
+#         cidade=fornecedor_dto.endereco.cidade,
+#         uf=fornecedor_dto.endereco.uf
+#     )
+#     endereco_inserido = EnderecoRepositorio.inserir(endereco)
     
-    # Mapeando e inserindo o fornecedor
-    fornecedor = Fornecedor(
-        nome=fornecedor_dto.nome,
-        cnpj=fornecedor_dto.cnpj,
-        email=fornecedor_dto.email,
-        telefone=fornecedor_dto.telefone,
-        id_endereco=endereco_inserido.id_endereco,
-        foi_deletado=False,
-        data_delete=None
-    )
-    fornecedor_inserido = FornecedorRepositorio.inserir(fornecedor)
+#     # Mapeando e inserindo o fornecedor
+#     fornecedor = Fornecedor(
+#         nome=fornecedor_dto.nome,
+#         cnpj=fornecedor_dto.cnpj,
+#         email=fornecedor_dto.email,
+#         telefone=fornecedor_dto.telefone,
+#         id_endereco=endereco_inserido.id_endereco,
+#         foi_deletado=False,
+#         data_delete=None
+#     )
+#     fornecedor_inserido = FornecedorRepositorio.inserir(fornecedor)
     
-    return {"MSG": fornecedor_inserido.id_fornecedor}
+#     return {"MSG": fornecedor_inserido.id_fornecedor}

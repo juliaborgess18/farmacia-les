@@ -110,30 +110,30 @@ class Mapper():
         return usuario_mapeado
 
 
-    @classmethod
-    def mapear_itens_venda(cls, itens_venda: List[ItemVendaSchema]) -> ItemVendaModel:
-        itens_mapeados=[]
-        for item in itens_venda:
-            item_mapeado = ItemVendaModel(
-                qtde=item.qtde,
-                id_produto=item.id_produto,
-                id_venda=item.id_venda
-            )
-            itens_mapeados.append(item_mapeado)
-        return itens_mapeados
+    # @classmethod
+    # def mapear_itens_venda(cls, itens_venda: List[ItemVendaSchema]) -> ItemVendaModel:
+    #     itens_mapeados=[]
+    #     for item in itens_venda:
+    #         item_mapeado = ItemVendaModel(
+    #             qtde=item.qtde,
+    #             id_produto=item.id_produto,
+    #             id_venda=item.id_venda
+    #         )
+    #         itens_mapeados.append(item_mapeado)
+    #     return itens_mapeados
 
 
-    @classmethod
-    def mapear_venda(cls, venda: VendaSchema) -> VendaModel:
-        venda_mapeado = VendaModel(
-            data_venda=venda.data_venda,
-            valor_total=venda.valor_total,
-            status=venda.status,
-            data_delete=None,
-            foi_deletado=False,
-            id_funcionario=venda.id_funcionario,
-            id_cliente=venda.id_cliente,
-            id_formapagamento=venda.id_formapagamento,
-            itens_venda=cls.mapear_itens_venda(venda.itens_venda)
-        )
-        return venda_mapeado
+    # @classmethod
+    # def mapear_venda(cls, venda: VendaSchema) -> VendaModel:
+    #     venda_mapeado = VendaModel(
+    #         data_venda=venda.data_venda,
+    #         valor_total=venda.valor_total,
+    #         status=venda.status,
+    #         data_delete=None,
+    #         foi_deletado=False,
+    #         id_funcionario=venda.id_funcionario,
+    #         id_cliente=venda.id_cliente,
+    #         id_formapagamento=venda.id_formapagamento,
+    #         itens_venda=cls.mapear_itens_venda(venda.itens_venda)
+    #     )
+    #     return venda_mapeado

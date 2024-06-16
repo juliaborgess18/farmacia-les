@@ -123,18 +123,18 @@ CREATE TABLE Venda (
     REFERENCES Cliente (idCliente)
 );
 
-CREATE TABLE ItemVenda (
-  qtde INT NOT NULL,
-  idVenda INT NOT NULL,
-  idProduto INT NOT NULL,
-  PRIMARY KEY (idVenda, idProduto),
-  CONSTRAINT fk_ItemVenda_Venda
-    FOREIGN KEY (idVenda)
-    REFERENCES Venda (idVenda),
-  CONSTRAINT fk_ItemVenda_Produto
-    FOREIGN KEY (idProduto)
-    REFERENCES Produto (idProduto)
-);
+  CREATE TABLE ItemVenda (
+    qtde INT NOT NULL,
+    idVenda INT NOT NULL,
+    idProduto INT NOT NULL,
+    PRIMARY KEY (idVenda, idProduto),
+    CONSTRAINT fk_ItemVenda_Venda
+      FOREIGN KEY (idVenda)
+      REFERENCES Venda (idVenda),
+    CONSTRAINT fk_ItemVenda_Produto
+      FOREIGN KEY (idProduto)
+      REFERENCES Produto (idProduto)
+  );
 
 CREATE TABLE Devolucao (
   idDevolucao SERIAL NOT NULL,

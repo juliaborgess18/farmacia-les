@@ -13,5 +13,3 @@ class AlterarClienteDTO(BaseModel):
     cpf: Optional[str] = None
     id_endereco: Optional[int] = None
     endereco: Optional[AlterarEnderecoDTO] = None
-    
-    
