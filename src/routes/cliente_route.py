@@ -5,7 +5,7 @@ from dto.endereco.endereco import AlterarEnderecoDTO
 from infrastructure.config.database import SessionLocal
 from schemas.cliente import Cliente
 from infrastructure.repositories.cliente import ClienteRepositorio
-from dto.cliente.alterar_cliente import AlterarClienteDTO
+from dto.cliente.cliente import AlterarClienteDTO, CadastrarClienteDTO
 from util.Mappers.cliente.mapper_cliente import MapperCliente
 
 router = APIRouter()
@@ -27,10 +27,11 @@ async def get_cliente(request: Request):
          "urlItem": URL_ITEM
         })
 
-@router.post("/cadastrar_cliente")
-async def post_cliente(cliente: Cliente = Body()):
-    cliente = ClienteRepositorio.inserir(cliente)
-    return {'MSG': "Cliente Cadastrado com Sucesso"}
+@router.post("/api/cadastrar_cliente")
+async def post_cliente(cliente: CadastrarClienteDTO = Body()):
+    cliente_para_cadastrar = MapperCliente.cadastrar_cliente(cliente)
+    ClienteRepositorio.inserir(cliente_para_cadastrar)
+    return {'MSG': True}
 
 @router.get("/editar_cliente", response_class=HTMLResponse)
 async def get_editar_cliente(request: Request, id_cliente: int = 0):
