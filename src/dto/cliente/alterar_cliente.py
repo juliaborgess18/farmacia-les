@@ -1,7 +1,7 @@
 from datetime import date
 from typing import Optional
 from pydantic import BaseModel
-from dto.alterar_endereco import AlterarEnderecoDTO
+from dto.endereco.endereco import AlterarEnderecoDTO
 
 class AlterarClienteDTO(BaseModel):
     id_cliente: Optional[int] = None

@@ -3,9 +3,11 @@ from typing import List, Optional
 
 import psycopg2
 from sqlalchemy import update
+from dto.funcionario.cadastrar_funcionario import CadastrarFuncionarioDTO
 from infrastructure.config.database import get_db
 from infrastructure.models.funcionario import Funcionario
 from schemas.funcionario import Funcionario as FuncionarioSchema
+from util.Mappers.funcionario.mapper_funcionario import MapperFuncionario
 from util.mapper import Mapper
 
 class FuncionarioRepositorio():
@@ -29,14 +31,13 @@ class FuncionarioRepositorio():
             return Funcionario()
 
     @classmethod
-    def inserir(cls, funcionario: FuncionarioSchema) -> Optional[Funcionario]:
-        funcionario_db = Mapper.mapear_funcionario(funcionario)
+    def inserir(cls, funcionario: Funcionario) -> Optional[Funcionario]:
         try:
             db = get_db()
-            db.add(funcionario_db)
+            db.add(funcionario)
             db.commit()
-            db.refresh(funcionario_db)
-            return funcionario_db
+            db.refresh(funcionario)
+            return funcionario
         except psycopg2.Error as ex:
             print(f"Error ao inserir o funcionario: \n{ex}")
             db.rollback()

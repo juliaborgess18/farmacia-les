@@ -1,4 +1,4 @@
-from dto.alterar_cliente import AlterarClienteDTO
+from dto.cliente.alterar_cliente import AlterarClienteDTO
 from infrastructure.models.cliente import Cliente as db
 from util.mapper_endereco import MapperEndereco
 

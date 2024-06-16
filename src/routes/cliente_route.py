@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Body, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from dto.alterar_endereco import AlterarEnderecoDTO
+from dto.endereco.endereco import AlterarEnderecoDTO
 from infrastructure.config.database import SessionLocal
 from schemas.cliente import Cliente
 from infrastructure.repositories.cliente import ClienteRepositorio
-from dto.alterar_cliente import AlterarClienteDTO
-from util.mapper_cliente import MapperCliente
+from dto.cliente.alterar_cliente import AlterarClienteDTO
+from util.Mappers.cliente.mapper_cliente import MapperCliente
 
 router = APIRouter()
 
@@ -26,6 +26,11 @@ async def get_cliente(request: Request):
          "navItem": NAV_ITEM, 
          "urlItem": URL_ITEM
         })
+
+@router.post("/cadastrar_cliente")
+async def post_cliente(cliente: Cliente = Body()):
+    cliente = ClienteRepositorio.inserir(cliente)
+    return {'MSG': "Cliente Cadastrado com Sucesso"}
 
 @router.get("/editar_cliente", response_class=HTMLResponse)
 async def get_editar_cliente(request: Request, id_cliente: int = 0):
@@ -65,8 +70,4 @@ async def get_visualizar_cliente(request: Request):
     clientes = ClienteRepositorio.obter_todos()
     return templates.TemplateResponse("/pages/clientes/visualizar_cliente.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM, "clientes": clientes })
 
-@router.post("/cadastrar_cliente")
-async def post_cliente(cliente: Cliente = Body()):
-    cliente = ClienteRepositorio.inserir(cliente)
-    return {'MSG': "Cliente Cadastrado com Sucesso"}
 
