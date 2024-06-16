@@ -1,12 +1,11 @@
     let produtos = [];
 
     function adicionarProduto() {
-        const idProduto = document.getElementById('id_produto').value;
-        const nomeProduto = document.getElementById('id_produto').value; // Não temos o nome do produto aqui, você pode adicioná-lo de outra forma
-        const quantidadeProduto = document.getElementById('quantidade_produto').value;
+        const id = document.getElementById('id_produto').value;
+        const quantidade = document.getElementById('quantidade_produto').value;
 
-        if (idProduto && quantidadeProduto) {
-            produtos.push({ id: idProduto, nome: nomeProduto, quantidade: quantidadeProduto });
+        if (id && quantidade) {
+            produtos.push({ id_produto: id, qtde: quantidade });
             atualizarListaProdutos();
             document.getElementById('id_produto').value = '';
             document.getElementById('quantidade_produto').value = '';
@@ -26,12 +25,12 @@
 
         produtos.forEach((produto, index) => {
             const row = tbody.insertRow();
-            const cellNomeProduto = row.insertCell(0);
+            const cellIdProduto = row.insertCell(0);
             const cellQuantidade = row.insertCell(1);
             const cellAcoes = row.insertCell(2);
 
-            cellNomeProduto.textContent = produto.nome;
-            cellQuantidade.textContent = produto.quantidade;
+            cellIdProduto.textContent = produto.id_produto;
+            cellQuantidade.textContent = produto.qtde;
             cellAcoes.innerHTML = `<button class="btn btn-danger" type="button" onclick="removerProduto(${index})">Remover</button>`;
         });
     }
@@ -48,19 +47,15 @@
             return;
         }
 
-        // Obter a data atual
-        const dataAtual = new Date();
-        const dataVenda = `${dataAtual.getFullYear()}-${(dataAtual.getMonth() + 1).toString().padStart(2, '0')}-${dataAtual.getDate().toString().padStart(2, '0')}`;
 
         const dadosVenda = {
             id_funcionario: idFuncionario,
             id_cliente: idCliente,
             id_forma_pagamento: idFormaPagamento,
-            data_venda: dataVenda, // Inclua a data da venda nos dados enviados
-            produtos: produtos
+            itens_venda: produtos
         };
 
-        console.log('Dados da Venda:', dadosVenda);
+        console.log('Dados da Venda:', JSON.stringify(dadosVenda));
 
         fetch('/api/cadastrar_venda', {
             method: 'POST',

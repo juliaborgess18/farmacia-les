@@ -3,6 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from dto.venda.cadastrar_venda_dto import CadastrarVendaDTO
 from infrastructure.repositories.fornecedor import FornecedorRepositorio
+from infrastructure.repositories.produto import ProdutoRepositorio
 from infrastructure.repositories.venda import VendaRepositorio
 from schemas.venda import Venda
 from util.mapper_venda import MapperVenda
@@ -39,11 +40,14 @@ async def get_visualizar_venda(request: Request):
 @router.post("/api/cadastrar_venda")
 async def post_venda(venda: CadastrarVendaDTO = Body()):
     venda_mapeada = MapperVenda.mapear_venda(venda)
-    item_venda_mapeada = MapperVenda.mapear_itens_venda(venda)
+    # Lógica para calcular valor da lista
+    valor_total=0
+    for item in venda_mapeada.itens_venda:
+        produto=ProdutoRepositorio.obter_por_id(item.id_produto)
+        valor_total += float(produto.valor) * int(item.qtde)
+    venda_mapeada.valor_total = valor_total
     venda_inserida = VendaRepositorio.inserir(venda_mapeada)
-    
-    # Lógica adicional aqui, se necessário
-    
+
     return {"MSG": venda_inserida.id_venda}
 
 # @router.post("/api/cadastrar_venda")

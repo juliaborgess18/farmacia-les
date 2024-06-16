@@ -30,14 +30,13 @@ class VendaRepositorio():
             return Venda()
 
     @classmethod
-    def inserir(cls, venda: VendaSchema) -> Optional[Venda]:
-        venda_db = Mapper.mapear_venda(venda)
+    def inserir(cls, venda: Venda) -> Optional[Venda]:
         try:
             db = get_db()
-            db.add(venda_db)
+            db.add(venda)
             db.commit()
-            db.refresh(venda_db)
-            return venda_db
+            db.refresh(venda)
+            return venda
         except psycopg2.Error as ex:
             print(f"Error ao inserir o venda: \n{ex}")
             db.rollback()
