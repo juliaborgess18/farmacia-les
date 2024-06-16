@@ -124,3 +124,43 @@ async function submitFormRemover(event) {
     }
 }
 
+function btnClickEditarDevolucao(qtde, id){
+    const inputQtde = document.getElementById("input_qtde")
+    inputQtde.value=qtde
+    const rows = document.querySelectorAll("tr")
+    TableRowLimparClassesDeEstilo(rows);
+    TableRowAdicionarClasseSucesso(id, rows)
+}
+
+function TableRowLimparClassesDeEstilo(rows){
+    rows.forEach(function(row) {
+        row.classList.remove("table-success")
+    });
+}
+
+async function submitFormEditar(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const data = Object.fromEntries(formData.entries());
+    console.log(JSON.stringify(data))
+    const response = await fetch(form.action, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    if (response.ok) {
+        alert('Produto alterado com sucesso!');
+    } else {
+        alert('Erro ao alterar o produto!');
+    }
+}
+

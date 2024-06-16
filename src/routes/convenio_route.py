@@ -8,8 +8,7 @@ from dto.convenio.cadastrar_convenio_dto import CadastrarConvenioDTO
 from dto.convenio.editar_convenio_dto import EditarConvenioDTO
 from infrastructure.repositories.cliente import ClienteRepositorio
 from infrastructure.repositories.convenio import ConvenioRepositorio
-from schemas.convenio import Convenio
-from util.mapper import Mapper
+from util.mapper_convenio import MapperConvenio
 
 router = APIRouter()
 
@@ -50,13 +49,13 @@ async def get_visualizar_convenio(  request: Request,
 
 @router.post("/api/cadastrar_convenio")
 async def post_convenio(convenio: CadastrarConvenioDTO = Body()):
-    convenio_mapeado = Mapper.MapperConvenio.mapear_cadastrar_convenio_dto(convenio)
+    convenio_mapeado = MapperConvenio.mapear_cadastrar_convenio_dto(convenio)
     convenio_inserido = ConvenioRepositorio.inserir(convenio_mapeado)
     return {"MSG": convenio_inserido.id_convenio}
 
 @router.put("/api/editar_convenio")
 async def put_convenio(convenio: EditarConvenioDTO = Body()):
-    convenio_mapeado = Mapper.MapperConvenio.mapear_editar_convenio_dto(convenio)
+    convenio_mapeado = MapperConvenio.mapear_editar_convenio_dto(convenio)
     ConvenioRepositorio.alterar(convenio_mapeado)
     return {"MSG": True}
 

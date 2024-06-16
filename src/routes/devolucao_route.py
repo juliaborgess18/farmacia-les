@@ -7,9 +7,7 @@ from dto.devolucao.cadastrar_devolucao_dto import CadastrarDevolucaoDTO
 from dto.devolucao.editar_devolucao_dto import EditarDevolucaoDTO
 from infrastructure.repositories.devolucao import DevolucaoRepositorio
 from infrastructure.repositories.venda import VendaRepositorio
-from schemas.devolucao import Devolucao
-from schemas.produto import Produto
-from util.mapper import Mapper
+from util.mapper_devolucao import MapperDevolucao
 
 router = APIRouter()
 
@@ -69,7 +67,7 @@ async def get_visualizar_devolucao(     request: Request,
 @router.post("/api/cadastrar_devolucao")
 async def post_devolucao(devolucao: CadastrarDevolucaoDTO = Body()):
 
-    devolucao_mapeada = Mapper.MapperDevolucao.mapear_cadastrar_devolucao_dto(devolucao)
+    devolucao_mapeada = MapperDevolucao.mapear_cadastrar_devolucao_dto(devolucao)
     devolucao_inserida = DevolucaoRepositorio.inserir(devolucao_mapeada)
 
     for item in devolucao.itens_devolucao:
@@ -79,6 +77,8 @@ async def post_devolucao(devolucao: CadastrarDevolucaoDTO = Body()):
 
 @router.put("/api/editar_devolucao")
 async def put_devolucao(devolucao: EditarDevolucaoDTO = Body()):
+    devolucao_mapeada = MapperDevolucao.mapear_editar_devolucao_dto(devolucao)
+    DevolucaoRepositorio.alterar_item_devolucao(devolucao_mapeada)
     return {"MSG": True}
 
 @router.delete("/api/remover_devolucao")

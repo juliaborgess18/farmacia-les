@@ -42,20 +42,20 @@ class DevolucaoRepositorio():
             db.rollback()
 
     @classmethod
-    def alterar(cls, devolucao: DevolucaoSchema):
+    def alterar(cls, devolucao: Devolucao):
         try:
             db = get_db()
-            update_stmt = update(Devolucao).where(Devolucao.id_devolucao == devolucao.id_devolucao).values(valor_devolucao=devolucao.valor_devolucao)
-            db.execute(update_stmt)
 
+            valor_total = 0
             for item in devolucao.itens_devolucao:
                 item_update_stmt = update(ItemDevolucao).where(
                     ItemDevolucao.id_produto == item.id_produto,
                     ItemDevolucao.id_devolucao == devolucao.id_devolucao
-                ).values(
-                    qtde=item.qtde
-                )
+                ).values(qtde=item.qtde)
+                valor_total += item.qtde * item.produto.valor
                 db.execute(item_update_stmt)
+            update_stmt = update(Devolucao).where(Devolucao.id_devolucao == devolucao.id_devolucao).values(valor_devolucao=valor_total)
+            db.execute(update_stmt)
             db.commit()
         except psycopg2.Error as ex:
             print(f"Error ao alterar o Devolucao: \n{ex}")
@@ -89,3 +89,23 @@ class DevolucaoRepositorio():
         except Exception as ex:
             print(f"Error ao buscar o Produto: \n{ex}")
             return []
+        
+    @classmethod
+    def alterar_item_devolucao(cls, item_devolucao: ItemDevolucao):
+        try:
+            db = get_db()
+
+            update_stmt = update(ItemDevolucao).where(ItemDevolucao.id_devolucao == item_devolucao.id_devolucao and ItemDevolucao.id_produto == item_devolucao.id_produto).values(qtde=item_devolucao.qtde)
+            db.execute(update_stmt)
+
+            devolucao = db.query(Devolucao).filter_by(id_devolucao=item_devolucao.id_devolucao).first()
+            valor_total = 0
+            for item in devolucao.itens_devolucao:
+                valor_total += item.qtde * item.produto.valor
+
+            devolucao.valor_devolucao = valor_total
+            db.commit()
+        except psycopg2.Error as ex:
+            print(f"Error ao alterar o Devolucao: \n{ex}")
+            db.rollback()
+
