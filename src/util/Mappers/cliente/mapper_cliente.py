@@ -32,7 +32,6 @@ class MapperCliente:
         cliente_alterado.tel_contato = dto.tel_contato
         cliente_alterado.data_cadastro = dto.data_cadastro
         
-        cliente_alterado.id_endereco = dto.id_endereco
         cliente_alterado.endereco = MapperEndereco.alterar_endereco(dto.endereco)
                         
         return cliente_alterado

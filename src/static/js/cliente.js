@@ -27,8 +27,6 @@ async function submeterFormulario(event) {
         }
     };
 
-    console.log(clienteData);
-
     // Enviando dados para o servidor
     fetch('/api/cadastrar_cliente', {
         method: 'POST',
