@@ -21,9 +21,3 @@ class AlterarClienteDTO(BaseModel):
     data_cadastro: Optional[date] = None
     cpf: Optional[str] = None
     endereco: Optional[AlterarEnderecoDTO] = None
-<<<<<<< HEAD:src/dto/alterar_cliente.py
-=======
-    
-    
-    
->>>>>>> julia:src/dto/cliente/cliente.py
