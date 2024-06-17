@@ -1,1 +1,28 @@
 {% extends 'base.html' %}
+
+{% block title %} Principal {% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="container">
+        <h3>Relatórios</h3>
+        <hr>
+        <div class="row">
+            <div class="col-2 m-3">
+                <div class="card">
+                    <div class="card-header">
+                      Relatórios - Produto
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Produtos mais vendidos</h5>
+                      <p class="card-text">Relátorio que lista os produtos mais vendidos dentro de um período de tempo</p>
+                      <a href="/relatorios/produtos_mais_vendidos" class="btn btn-primary w-100">Relatório</a>
+                    </div>
+                  </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

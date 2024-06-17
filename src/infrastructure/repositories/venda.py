@@ -2,11 +2,13 @@ from datetime import date
 from typing import List, Optional
 
 import psycopg2
-from sqlalchemy import update
+from sqlalchemy import text, update
+from dto.relatorios.relatorio_quantidade_produtos_vendidos import RelatorioQuantidadeProdutosVendidosDTO
 from infrastructure.config.database import get_db
 from infrastructure.models.itemVenda import ItemVenda
 from infrastructure.models.venda import Venda
 from schemas.venda import Venda as VendaSchema
+from util.constantes import RELATORIO_QTDE_PRODUTOS_VENDIDOS
 from util.mapper import Mapper
 
 class VendaRepositorio():
@@ -101,4 +103,15 @@ class VendaRepositorio():
         except psycopg2.Error as ex:
             print(f"Error ao buscas os itens de venda: \n{ex}")   
             db.rollback() 
+            return []
+        
+    @classmethod
+    def obter_quantidade_produtos_vendidos(cls, data_inicio: date, data_final: date) -> List:
+        try:
+            db = get_db()
+            query = text(RELATORIO_QTDE_PRODUTOS_VENDIDOS)
+            resultado = db.execute(query, {'data_inicio': data_inicio, 'data_final': data_final})
+            return resultado
+        except psycopg2.Error as ex:
+            print(f"Error ao gerar o relatório: \n{ex}")    
             return []
