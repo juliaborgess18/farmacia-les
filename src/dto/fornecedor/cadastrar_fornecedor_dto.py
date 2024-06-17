@@ -9,7 +9,7 @@ class CadastrarFornecedorDTO(BaseModel):
     telefone: str
     endereco: CadastrarEnderecoDTO
 
-# class AlterarFornecedorDTO(BaseModel):
+# class AlterarFornecedorDTO(BaseModel)
 #     id_fornecedor: Optional[int]
 #     nome: Optional[str]
 #     cnpj: Optional[str]
