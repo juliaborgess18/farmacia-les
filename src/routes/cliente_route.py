@@ -69,4 +69,3 @@ async def get_visualizar_cliente(request: Request):
 async def post_cliente(cliente: Cliente = Body()):
     cliente = ClienteRepositorio.inserir(cliente)
     return {'MSG': "Cliente Cadastrado com Sucesso"}
-
