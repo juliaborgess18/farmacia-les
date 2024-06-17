@@ -5,7 +5,7 @@ from dto.endereco.endereco import AlterarEnderecoDTO, CadastrarEnderecoDTO
 class CadastrarFornecedorDTO(BaseModel):
     nome: str
     cnpj: str
-    email: EmailStr
+    email: str
     telefone: str
     endereco: CadastrarEnderecoDTO
 
