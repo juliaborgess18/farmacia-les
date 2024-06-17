@@ -1,10 +1,18 @@
-# from pydantic import BaseModel, EmailStr
+from typing import Optional
+from pydantic import BaseModel, EmailStr
+from dto.endereco.endereco import AlterarEnderecoDTO, CadastrarEnderecoDTO
 
-# from dto.endereco.cadastrar_endereco_dto import EnderecoDTO
+class CadastrarFornecedorDTO(BaseModel):
+    nome: str
+    cnpj: str
+    email: EmailStr
+    telefone: str
+    endereco: CadastrarEnderecoDTO
 
-# class CadastrarFornecedorDTO(BaseModel):
-#     nome: str
-#     cnpj: str  # Sem validação de regex
-#     email: EmailStr
-#     telefone: str
-#     endereco: EnderecoDTO  # Aninhando a DTO do endereço
+# class AlterarFornecedorDTO(BaseModel):
+#     id_fornecedor: Optional[int]
+#     nome: Optional[str]
+#     cnpj: Optional[str]
+#     email: Optional[EmailStr]
+#     telefone: Optional[str]
+#     endereco: Optional[AlterarEnderecoDTO]

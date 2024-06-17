@@ -6,7 +6,9 @@
 
 <div class="content">
     <div class="container ">
-        <form class="row" action="/cadastrar_fornecedor" method="post">
+
+        <form id="fornecedor_form" role="form" class="row" action="/api/cadastrar_fornecedor" method="post" onsubmit="cadastrarFornecedor(event)">
+            
             <h3>Cadastro de Fornecedor</h3>
             <div class="col-12 col-lg-6">
                 <label for="nome_fornecedor">Nome: </label>
@@ -69,5 +71,5 @@
         </form>
     </div>
 </div>
-
+<script src="/static/js/fornecedor.js"></script>
 {% endblock %}

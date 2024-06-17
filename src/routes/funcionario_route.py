@@ -32,6 +32,7 @@ async def post_cadastrar_funcionario(funcionario:CadastrarFuncionarioDTO = Body(
     FuncionarioRepositorio.inserir(funcionario_para_cadastrar)
     return {"MSG": True}
 
+
 @router.get("/editar_funcionario", response_class=HTMLResponse)
 async def get_editar_funcionario(request: Request, id_funcionario: int = 0):
     funcionario = FuncionarioRepositorio.obter_por_id(id_funcionario)

@@ -40,12 +40,14 @@ async def get_visualizar_venda(request: Request):
 @router.post("/api/cadastrar_venda")
 async def post_venda(venda: CadastrarVendaDTO = Body()):
     venda_mapeada = MapperVenda.mapear_venda(venda)
+    
     # Lógica para calcular valor da lista
     valor_total=0
     for item in venda_mapeada.itens_venda:
         produto=ProdutoRepositorio.obter_por_id(item.id_produto)
         valor_total += float(produto.valor) * int(item.qtde)
     venda_mapeada.valor_total = valor_total
+    
     venda_inserida = VendaRepositorio.inserir(venda_mapeada)
 
     return {"MSG": venda_inserida.id_venda}

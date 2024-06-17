@@ -50,8 +50,3 @@ class MapperFuncionario:
         funcionario_alterado.data_delete = None
         
         return funcionario_alterado
-        
-
-        
-        
-        
