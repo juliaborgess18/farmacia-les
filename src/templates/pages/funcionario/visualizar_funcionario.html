@@ -16,32 +16,32 @@
             
             <div class="row row-cols-2 m-3">
                 <div class="col form-group">
-                    <label for="filtro_data_cadastro_inicio_funcionario">Data do Inicio:</label>
-                    <input type="date" id="filtro_data_cadastro_inicio_funcionario" name="data_cadastro_inicio" class="form-control">
+                    <label for="filtro_data_cadastro_inicio_funcionario">Data de Admissão Inicial:</label>
+                    <input type="date" id="filtro_data_cadastro_inicio_funcionario" name="data_inicio" class="form-control">
                 </div>
                 
                 <div class="col form-group">
-                    <label for="filtro_data_cadastro_final_funcionario">Data do Final:</label>
-                    <input type="date" id="filtro_data_cadastro_final_funcionario" name="data_cadastro_final" class="form-control">
+                    <label for="filtro_data_cadastro_final_funcionario">Data de Admissão Final:</label>
+                    <input type="date" id="filtro_data_cadastro_final_funcionario" name="data_final" class="form-control">
                 </div>
             </div>
 
             <div class="row row-cols-2 m-3">
                 <div class="col form-group">
-                    <label for="filtro_idade_funcionario_min">Idade Mínima:</label>
-                    <input type="number" id="filtro_idade_funcionario_min" name="idade_min" class="form-control">
+                    <label for="filtro_idade_funcionario_min">Salário mínimo: </label>
+                    <input type="number" id="filtro_idade_funcionario_min" name="salario_min" class="form-control">
                 </div>
 
                 <div class="col form-group">
-                    <label for="filtro_idade_funcionario_max">Idade Máxima:</label>
-                    <input type="number" id="filtro_idade_funcionario_max" name="idade_max" class="form-control">
+                    <label for="filtro_idade_funcionario_max">Salário máximo: </label>
+                    <input type="number" id="filtro_idade_funcionario_max" name="salario_max" class="form-control">
                 </div>
                 
-            </div>
-
-            <div class="row m-3">
-                <div class="col">
-                    <button class="btn btn-success" onclick="">Filtrar funcionarios</button>
+                <div class="row row-cols-1 mt-3">
+                    <div class="col mb-3 form-group">
+                        <button class="btn btn-success" type="submit">Filtrar</button>
+                        <button class="btn btn-danger" type="reset">Limpar</button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -52,17 +52,15 @@
 <div class="content">
     <div class="container">
         <h3>Visualizar</h3>
-
+        <form action="/visualizar_funcionario" method="get" role="search"></form>
         <table class="table table-striped table-bordered table-hover mt-3">
             <thead class="bg-dark">
                 <tr class="table-active">
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Sobrenome</th>
-                    <th scope="col">Data de Nascimento</th>
-                    <th scope="col">Telefone de Contato</th>
                     <th scope="col">Data de Admissão</th>
-                    <th scope="col">CPF</th>
+                    <th scope="col">Salário</th>
                 </tr>
                 <tbody>
                     {% for funcionario in funcionarios %}
@@ -70,10 +68,8 @@
                         <th scope="row">{{ funcionario.id_funcionario }}</th>
                         <td>{{ funcionario.nome }}</td>
                         <td>{{ funcionario.sobrenome }}</td>
-                        <td>{{ funcionario.data_nascimento }}</td>
-                        <td>{{ funcionario.tel_contato }}</td>
-                        <td>{{ funcionario.data_cadastro }}</td>
-                        <td>{{ funcionario.cpf }}</td>
+                        <td>{{ funcionario.data_admissao }}</td>
+                        <td>{{ funcionario.salario }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -81,5 +77,5 @@
         </table>
     </div>
 </div>
-
+<script src="/static/js/funcionario.js"></script>
 {% endblock %}

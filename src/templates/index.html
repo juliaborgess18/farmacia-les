@@ -1,1 +1,40 @@
 {% extends 'base.html' %}
+
+{% block title %} Principal {% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="container">
+        <h3>Relatórios</h3>
+        <hr>
+        <div class="row">
+
+            <!-- <div class="col-2 m-3">
+              <div class="card shadow-sm bg-body-tertiary rounded">
+                <div class="card-header text-center fs-6 bg-main text-white">
+                  Produtos mais vendidos
+                </div>
+                <div class="card-body text-center">
+                  <a class="text-decoration-none bg-link-main link-opacity-75-hover" href="/relatorios/itens_mais_vendidos">
+                    <i class="bi bi-file-earmark-bar-graph-fill" style="font-size: 120px;"></i>
+                  </a>
+                </div>
+                
+              </div>
+            </div> -->
+            <div class="col-2 m-3 text-center">
+              <div class="report-link">
+                  <a class="text-decoration-none bg-link-main link-opacity-75-hover" href="/relatorios/itens_mais_vendidos">
+                    <i class="bi bi-file-earmark-bar-graph-fill" style="font-size: 120px;"></i>
+                  </a>
+              </div>
+              <div class="report-title">
+                <p>Produtos mais vendidos</p>
+              </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

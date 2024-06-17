@@ -2,7 +2,7 @@ from datetime import date
 from typing import List, Optional
 
 import psycopg2
-from sqlalchemy import update
+from sqlalchemy import and_, update
 from dto.funcionario.funcionario import CadastrarFuncionarioDTO
 from infrastructure.config.database import get_db
 from infrastructure.models.endereco import Endereco
@@ -87,6 +87,25 @@ class FuncionarioRepositorio():
             except psycopg2.Error as ex:
                 print(f"Error ao deletar o funcionario: \n{ex}")
                 db.rollback()
+                
+    @classmethod
+    def obter_com_filtros(cls, nome: str, data_inicio: date, data_final: date, salario_min: float, salario_max: float) -> Optional[List[Funcionario]]:
+        try:
+            db = get_db()
+            filtro = and_(Funcionario.foi_deletado == False,
+                          Funcionario.nome.like(f'%{nome}%'), 
+                          Funcionario.data_admissao >= (data_inicio if data_inicio is not None else date.min),
+                          Funcionario.data_admissao <= (data_final if data_final is not None else date.max),
+                          Funcionario.salario >= (salario_min if salario_min is not None else 0),
+                          Funcionario.salario <= (salario_max if salario_max is not None else float('inf'))
+                          )
+
+            funcionarios = db.query(Funcionario).filter(filtro).order_by(Funcionario.nome).all()
+
+            return funcionarios
+        except Exception as ex:
+            print(f"Error ao buscar o Funcionário: \n{ex}")
+            return []
 
 
 
