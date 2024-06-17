@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Body, Request
+from datetime import date, datetime
+from typing import Optional
+from fastapi import APIRouter, Body, Query, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
@@ -66,5 +68,32 @@ async def delete_remover_funcionario(id_funcionario:int = 0):
     
 
 @router.get("/visualizar_funcionario", response_class=HTMLResponse)
-async def get_visualizar_funcionario(request: Request):
-    return templates.TemplateResponse("/pages/funcionario/visualizar_funcionario.html", {"request":request, "navItem": NAV_ITEM, "urlItem": URL_ITEM })
+async def get_visualizar_funcionario(request: Request,
+                                nome: Optional[str] = Query("", alias="nome"),
+                                data_inicio: Optional[str] = Query(None, alias="data_inicio"),
+                                data_final: Optional[str] = Query(None, alias="data_final"),
+                                salario_min: Optional[str] = Query(None, alias="salario_min"),
+                                salario_max: Optional[str] = Query(None, alias="salario_max")):
+    
+    data_admissao_inicial = datetime.strptime(data_inicio, "%Y-%m-%d").date() if not (data_inicio == None or data_inicio == '') else date.min
+    data_admissao_final = datetime.strptime(data_final, "%Y-%m-%d").date() if not (data_final == None or data_final == '') else date.max
+
+    valor_min = float(salario_min) if salario_min else 0
+    valor_max = float(salario_max) if salario_max else float('inf')
+    
+    funcionarios = FuncionarioRepositorio.obter_com_filtros(nome,data_admissao_inicial, data_admissao_final, valor_min, valor_max)
+    
+    print(funcionarios)
+    
+    return templates.TemplateResponse("/pages/funcionario/visualizar_funcionario.html", 
+        {"request":request, 
+         "navItem": NAV_ITEM, 
+         "urlItem": URL_ITEM,
+         "nome":nome,
+        "data_inicio": data_admissao_inicial,
+        "data_final": data_admissao_final,
+        "salario_min": valor_min,
+        "salario_max": valor_max, 
+        "funcionarios":funcionarios,
+        }
+    )
