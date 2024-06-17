@@ -11,7 +11,7 @@ router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 URL_PREFIXO = "/relatorios"
 
-@router.get(f"{URL_PREFIXO}/produtos_mais_vendidos", response_class=HTMLResponse)
+@router.get(f"{URL_PREFIXO}/itens_mais_vendidos", response_class=HTMLResponse)
 async def get_produto(request: Request, 
                       data_inicio: Optional[str] = Query(None, alias="data_inicio"),
                       data_final: Optional[str] = Query(None, alias="data_final"),):
