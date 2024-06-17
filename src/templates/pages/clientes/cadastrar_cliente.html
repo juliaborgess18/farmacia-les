@@ -6,7 +6,7 @@
 
 <div class="content">
     <div class="container">
-        <form id="cliente_form" class="row">
+        <form id="cliente_form" class="row" role="form" action="/api/cadastrar_cliente" onsubmit="submeterFormulario(event)">
             <h3>{{ funcItem }}</h3>
             <div class="col-12 col-lg-4">
                 <label for="nome_cliente">Nome: </label>

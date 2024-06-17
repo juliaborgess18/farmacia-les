@@ -7,7 +7,7 @@ async function submeterFormulario(event) {
     const cpf = document.getElementById('cpf_cliente').value;
     const celular = document.getElementById('celular_cliente').value;
     const endereco = document.getElementById('endereco_cliente').value;
-    const numero = parseInt(document.getElementById('numero_endereco_cliente').value);
+    const numero = document.getElementById('numero_endereco_cliente').value;
     const bairro = document.getElementById('bairro_endereco_cliente').value;
     const cidade = document.getElementById('cidade_endereco_cliente').value;
     const uf = document.getElementById('uf_endereco_cliente').value;
@@ -28,7 +28,7 @@ async function submeterFormulario(event) {
     };
 
     // Enviando dados para o servidor
-    fetch('/cadastrar_cliente', {
+    fetch('/api/cadastrar_cliente', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

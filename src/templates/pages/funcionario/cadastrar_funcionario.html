@@ -5,12 +5,96 @@
 {% block content %}
 <div class="content">
     <div class="container">
-        {% include '/pages/funcionario/form_funcionario.html' %}
-        <div class="row">
-            <div class="col-12 col-lg-1">
-                <button class="btn btn-success" type="submit">Cadastrar</button>
+        <form id="funcionario_form" role="form" class="row" method="post" action="/api/cadastrar_funcionario" onsubmit="cadastrarFuncionario(event)">
+
+            <h3>{{ funcItem }}</h3>
+            <div class="col-12 col-lg-4">
+                <label for="nome_funcionario">Nome: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="text" name="nome" id="nome_funcionario">
+                </div>
+
+                <label for="sobrenome_funcionario">Sobrenome: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="text" name="sobrenome" id="sobrenome_funcionario">
+                </div>
+
+                <label for="data_nascimento_funcionario">Data de nascimento: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="date" name="data_nascimento" id="data_nascimento_funcionario">
+                </div>
+
+                <label for="cpf_funcionario">CPF: </label>
+                <div class="form mb-3">
+                    <input class="form-control" type="text" name="cpf" id="cpf_funcionario">
+                </div>
+
+                <label for="celular_funcionario">Celular: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="text" name="tel_contato" id="celular_funcionario">
+                </div>
             </div>
-        </div>
+
+            <h4>Dados de admissão</h4>
+            <div class="col-12 col-lg-4">
+                <label for="data_admissao_funcionario">Data de admissão: </label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="date" name="data_admissao" id="data_admissao_funcionario">
+                </div>
+
+                <label for="cargo_funcionario">Cargo:</label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="text" name="cargo" id="cargo_funcionario">
+                </div>
+
+                <label for="salario_funcionario">Salário:</label>
+                <div class="form-group mb-3">
+                    <input class="form-control" type="text" name="salario" id="salario_funcionario">
+                </div>
+            </div>
+
+            <h4>Endereço</h4>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <label for="rua_endereco_funcionario">Rua: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="rua" id="rua_endereco_funcionario">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-1">
+                    <label for="numero_endereco_funcionario">Número: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="numero" id="numero_endereco_funcionario">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <label for="bairro_endereco_funcionario">Bairro: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="bairro" id="bairro_endereco_funcionario">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <label for="cidade_endereco_funcionario">Cidade: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="cidade" id="cidade_endereco_funcionario">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-1">
+                    <label for="uf_endereco_funcionario">UF: </label>
+                    <div class="form-group mb-3">
+                        <input class="form-control" type="text" name="uf" id="uf_endereco_funcionario">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-1">
+                    <button class="btn btn-success" type="submit" >Cadastrar</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
+<script src="/static/js/funcionario.js"></script>
 {% endblock %}
