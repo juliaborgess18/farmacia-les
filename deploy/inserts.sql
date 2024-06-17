@@ -16,7 +16,6 @@ INSERT INTO Cliente (nome, sobrenome, dataNascimento, telContato, dataCadastro, 
 ('Ana', 'Martins', '1995-04-05', '(61) 5555-4444', '2024-03-25', '789.123.456-78', 4),
 ('Lucas', 'Rodrigues', '1993-08-12', '(71) 1111-0000', '2024-03-25', '987.654.321-00', 5);
 
-
 INSERT INTO Funcionario (nome, sobrenome, dataNascimento, telContato, dataAdmissao, cargo, estaAtivo, salario, cpf, idEndereco) VALUES
 ('Carlos', 'Santana', '1980-03-10', '(11) 3333-2222', '2020-01-15', 'Gerente', TRUE, 5000.00, '333.444.555-66', 1),
 ('Amanda', 'Oliveira', '1992-07-20', '(21) 8888-7777', '2021-05-20', 'Vendedor', TRUE, 3000.00, '222.333.444-55', 2),
