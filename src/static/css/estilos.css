@@ -12,6 +12,18 @@ body{
   --sidebar-height: 100vh;
 }
 
+.bg-main {
+  background-color: #38686a;
+}
+
+.bg-link-main {
+  color: #38686a;
+}
+
+.bg-link-main:hover {
+  opacity: 75%;
+}
+
 .sidebar {
   background-color: #38686a;
   width: var(--sidebar-width);
