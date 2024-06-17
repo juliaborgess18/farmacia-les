@@ -15,7 +15,6 @@ class MapperCliente:
         cliente_cadastrado.tel_contato = dto.tel_contato
         cliente_cadastrado.cpf = dto.cpf
         
-        cliente_cadastrado.id_endereco = dto.id_endereco
         cliente_cadastrado.endereco = MapperEndereco.cadastrar_endereco(dto.endereco)
         
         return cliente_cadastrado
